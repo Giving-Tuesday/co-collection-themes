@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
-  "version": "0.3.6",
+  "version": "0.3.7",
   "author": "",
   "license": "ISC",
   "description": "Reusable React component + theme library for the co-embed app.",

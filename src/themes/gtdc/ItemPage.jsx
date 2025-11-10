@@ -8,7 +8,7 @@ import styles from './ItemPage.module.css';
 import LinkButton from '../../LinkButton';
 
 const Section = memo(({ heading, content, ctaLabel, ctaUrl }) => {
-  if (!content) return null;
+  if (!content || content.length === 0) return null;
 
   return (
     <>
