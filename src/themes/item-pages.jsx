@@ -6,6 +6,7 @@ import { ItemPage as GtrexItemPage } from './gtrex';
 import { ItemPage as PosterchildItemPage } from './posterchild';
 import { ItemPage as ProblemsSolutionsItemPage } from './problems-solutions';
 import { ItemPage as VizDatabaseItemPage } from './viz-database';
+import { ItemPage as TestTomItemPage } from './test-tom';
 
 export const itemPageThemeEntries = [
   {
@@ -40,6 +41,10 @@ export const itemPageThemeEntries = [
     themeName: ['viz-database', 'viz-database-beta'],
     ItemPageComponent: VizDatabaseItemPage,
   },
+  {
+    themeName: ['test-tom'],
+    ItemPageComponent: TestTomItemPage,
+  },
 ];
 
 export {
@@ -51,4 +56,5 @@ export {
   PosterchildItemPage,
   ProblemsSolutionsItemPage,
   VizDatabaseItemPage,
+  TestTomItemPage,
 };

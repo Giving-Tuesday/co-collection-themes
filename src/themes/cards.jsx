@@ -6,6 +6,7 @@ import { Card as GtdcCard } from './gtdc';
 import { Card as PosterchildCard } from './posterchild';
 import { Card as ProblemsSolutionsCard } from './problems-solutions';
 import { Card as VizDatabaseCard } from './viz-database';
+import { Card as TestTomCard } from './test-tom';
 
 export const cardThemeEntries = [
   {
@@ -22,6 +23,7 @@ export const cardThemeEntries = [
   { themeName: ['posterchild'], CardComponent: PosterchildCard },
   { themeName: ['problems-solutions'], CardComponent: ProblemsSolutionsCard },
   { themeName: ['viz-database', 'viz-database-beta'], CardComponent: VizDatabaseCard },
+  { themeName: ['test-tom'], CardComponent: TestTomCard },
 ];
 
 export {
@@ -33,4 +35,5 @@ export {
   PosterchildCard,
   ProblemsSolutionsCard,
   VizDatabaseCard,
+  TestTomCard,
 };

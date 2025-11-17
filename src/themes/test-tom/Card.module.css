@@ -1,0 +1,45 @@
+.cardContentTop {
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.cardContentTop p {
+  color: #fff;
+  font-family: var(--font-family-heading);
+}
+
+.authorContainer {
+  height: 40px;
+  width: 100%;
+}
+
+.title {
+  line-height: 20px;
+  margin: 0 0 0.75rem;
+}
+
+.author {
+  color: var(--card-text-color-mid);
+  font-size: 11px;
+  line-height: 1.3em;
+  margin: 0;
+  text-align: left;
+}
+
+.desc {
+  color: var(--card-text-color-mid);
+  font-size: 13px;
+  height: 52px;
+  line-height: 18px;
+  margin: auto 0;
+  text-align: left;
+  width: 100%;
+}
+
+.yearPublished {
+  color: var(--color-primary);
+  font-family: var(--font-family-heading) !important;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 12px 0 0 0;
+}

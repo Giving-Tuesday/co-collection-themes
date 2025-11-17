@@ -1,0 +1,18 @@
+{
+  "_id": "69160d61f68c33ea1733d884",
+  "_collection": "6914f5a48671e8eb70622f12",
+  "published": true,
+  "title": "Sustainable Urban Water Management in Southeast Asia",
+  "author": ["Dr. Elara Vance"],
+  "desc": "A comprehensive analysis of innovative water conservation techniques and policy recommendations implemented across high-density urban centers.",
+  "resource_url": "https://data.example.com/urban-water-seasia-2023",
+  "slug": "sustainable-urban-water-management-in-southeast-asia-69160d61f68c33ea1733d884",
+  "custom_fields": {
+    "region": ["Asia Pacific"],
+    "countries": ["Indonesia", "Thailand", "Vietnam"],
+    "join_date": "2021",
+    "goals": "SDG 6: Clean Water and Sanitation|SDG 11: Sustainable Cities and Communities"
+  },
+  "page_views": 1,
+  "creation_date": "2025-11-13T16:54:57.061Z"
+}
