@@ -45,7 +45,12 @@
   margin-bottom: 0;
 }
 .additionalInfo {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-secondary);
+  color: white;
+  border-radius: var(--sidebar-border-radius);
+  padding: 1rem;
   grid-template-columns: 1.5fr 2fr;
   margin: 0 0 2rem 0;
 }
