@@ -29,7 +29,7 @@ const ItemPage = ({ itemData }) => {
             ) : null}
             {countries ? (
               <p className={styles.additionalInfoText}>
-                {region.length > 1 ? 'Countries' : 'Country'}: {countries}
+                {region.length > 1 ? 'Countries' : 'Country'}: {countries.join(', ')}
               </p>
             ) : null}
             {join_date ? (
