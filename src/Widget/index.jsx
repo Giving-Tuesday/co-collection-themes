@@ -3,7 +3,7 @@ import { getThemeCard } from '../utils/card-themes.utils';
 
 import styles from './Widget.module.css';
 
-const Widget = ({ items, widgetTheme, maxCardsPerRow = 5 }) => {
+const Widget = ({ items, widgetTheme, embedUrl, maxCardsPerRow = 5 }) => {
   const CardComponent = getThemeCard(widgetTheme);
   const itemCount = items?.length || 0;
 
@@ -14,7 +14,11 @@ const Widget = ({ items, widgetTheme, maxCardsPerRow = 5 }) => {
       } ${styles.widgetWrapper}`}
     >
       {items?.map((item) => (
-        <CardComponent key={item._id} item={item} />
+        <CardComponent
+          key={item._id}
+          href={`${embedUrl}?co-item=${item.slug}`}
+          item={item}
+        />
       ))}
     </div>
   );
