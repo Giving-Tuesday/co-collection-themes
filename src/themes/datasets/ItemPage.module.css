@@ -1,5 +1,3 @@
-@import '../datamarts/ItemPage.module.css';
-
 .datapoints {
   background: var(--color-accent);
   border-radius: var(--theme-badge-border-radius);
