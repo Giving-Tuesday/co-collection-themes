@@ -1,35 +1,22 @@
 .base {
-  /* Default widget variables - can be overridden by themes */
-  --widget-grid-gap: 0.5rem;
   --widget-background-color: transparent;
   --widget-border-radius: 0;
   --widget-padding: 0;
-
-  /* Internal variables */
-  --grid-gap: var(--widget-grid-gap, 1rem);
-  --item-count: 5;
-}
-
-.count1 {
-  --item-count: 1;
-}
-.count2 {
-  --item-count: 2;
-}
-.count3,
-.count4,
-.count5 {
-  --item-count: 3;
+  --grid-gap: 0.5rem;
 }
 
 .widgetWrapper {
+  --dynamic-width: 280px;
+  &:has(> :nth-child(4):last-child) {
+    --dynamic-width: 260px;
+  }
+  &:has(> :nth-child(5):last-child) {
+    --dynamic-width: 240px;
+  }
   display: grid;
-  place-self: center;
-  grid-auto-rows: auto;
-  grid-template-rows: var(--card-min-height, 320px);
-  grid-template-columns: repeat(1, 1fr);
-  grid-column-gap: var(--grid-gap);
-  grid-row-gap: var(--grid-gap);
+  grid-template-columns: repeat(auto-fit, min(100%, var(--dynamic-width)));
+  justify-content: center;
+  gap: var(--grid-gap);
   margin-bottom: 2rem;
 
   /* Apply theme-specific styling */
@@ -40,31 +27,6 @@
 
 /* Card overrides for widget specifically */
 .widgetWrapper > div {
-  height: var(--card-height);
-  max-width: var(--card-max-width);
+  max-width: 100%;
   min-height: var(--card-min-height);
-}
-
-@media (min-width: 800px) {
-  .widgetWrapper {
-    grid-template-columns: repeat(var(--item-count), 1fr);
-  }
-}
-
-@media (min-width: 1000px) {
-  .count4 {
-    --item-count: 4;
-  }
-  .widgetWrapper {
-    grid-template-columns: repeat(var(--item-count), 1fr);
-  }
-}
-
-@media (min-width: 1200px) {
-  .count5 {
-    --item-count: 5;
-  }
-  .widgetWrapper {
-    grid-template-columns: repeat(var(--item-count), 1fr);
-  }
 }

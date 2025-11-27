@@ -1,5 +1,3 @@
-import React from 'react';
-
 import styles from './Widget.module.css';
 
 const ItemPageWidget = ({
@@ -18,9 +16,11 @@ const ItemPageWidget = ({
 
   return (
     <div
-      className={`daro-widget ${styles.base} ${
+      className={`daro-widget ${styles.base} 
+      ${
         styles[`count${Math.min(itemCount, maxCardsPerRow)}`]
-      } ${styles.widgetWrapper}`}
+      } 
+      ${styles.widgetWrapper}`}
       {...props}
     >
       {items?.map((item) => (

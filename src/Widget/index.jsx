@@ -7,11 +7,7 @@ const Widget = ({ items, widgetTheme, embedUrl, maxCardsPerRow = 5 }) => {
   const itemCount = items?.length || 0;
 
   return (
-    <div
-      className={`daro-widget ${styles.base} ${
-        styles[`count${Math.min(itemCount, maxCardsPerRow)}`]
-      } ${styles.widgetWrapper}`}
-    >
+    <div className={`daro-widget ${styles.base} ${styles.widgetWrapper}`}>
       {items?.map((item) => (
         <CardComponent
           key={item._id}
