@@ -65,22 +65,29 @@ const ItemPage = ({ itemData }) => {
       <div className={styles.datapoints}>
         <Datapoint label="Initiative Type" data={initiative_type} />
         <Datapoint label="Topic(s)" data={topics.join(', ')} />
-        <Datapoint label="Project Assets" data={project_assets.join(', ')} />
+        {project_assets && (
+          <Datapoint label="Project Assets" data={project_assets.join(', ')} />
+        )}
         <Datapoint label="Data Contained" data={data_contained} />
         <Datapoint label="How to Access the Project" data={access_details} />
         <Datapoint label="Update Schedule" data={update_schedule} />
         <Datapoint label="Designed For" data={designed_for} />
         <Datapoint label="Use Case Example" data={use_cases} />
         <Datapoint label="Learn More about this Project" data={learn_more} />
-        <Datapoint
-          label="Key Supporters"
-          data={key_supporters?.map((supporter) => (
-            <li>{supporter}</li>
-          ))}
-        />
+        {key_supporters && (
+          <Datapoint
+            label="Key Supporters"
+            data={key_supporters.map((supporter) => (
+              <li>{supporter}</li>
+            ))}
+          />
+        )}
       </div>
       {givingLabWidgetItems?.length > 0 ? (
         <div className={styles.widgetWrapper}>
+          <h3 className={styles.widgetTitle}>
+            Reports and Publications from this Project
+          </h3>
           <ItemPageWidget
             isItemPageWidget
             items={givingLabWidgetItems}
