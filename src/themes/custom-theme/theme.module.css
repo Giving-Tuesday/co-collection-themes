@@ -1,0 +1,16 @@
+.root {
+  --font-family-heading: Montserrat, Arial, sans-serif;
+  --color-primary: #0fb5c3;
+  --color-secondary: #2c5d95;
+  --card-title-font-size: 16px;
+  --card-title-line-height: 20px;
+  --card-title-color-hover: #0fb5c3;
+  --card-border: 1px solid #2c5d95;
+  --card-border-radius: 16px;
+  --card-height: 325px;
+  --card-max-width: 360px;
+  --card-top-bg: #2c5d95;
+  --icon-label-size: 18px;
+  --sidebar-bg: #dee1e6ff;
+  --sidebar-border-radius: 16px;
+}

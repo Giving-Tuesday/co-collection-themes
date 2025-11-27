@@ -1,0 +1,48 @@
+.cardContentTop {
+  padding: 0;
+  height: 6rem;
+}
+
+.cardContentBottom {
+  margin-top: 0;
+}
+
+.middleContainer {
+  line-height: 1.2rem;
+  width: 100%;
+}
+
+.resourceType {
+  color: var(--color-primary);
+  font-family: var(--font-family-heading) !important;
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.author {
+  color: var(--card-text-color-mid);
+  font-size: 0.8rem;
+  margin: 0;
+  text-align: left;
+}
+
+.title {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.title a {
+  font-size: 1rem;
+  line-height: 1.2rem;
+}
+
+.year {
+  color: var(--color-primary);
+  font-family: var(--font-family-heading) !important;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 12px 0 0 0;
+}

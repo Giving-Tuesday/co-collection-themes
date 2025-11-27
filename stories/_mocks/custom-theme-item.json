@@ -1,0 +1,39 @@
+{
+  "_id": {
+    "$oid": "66ec7300be839435e5079c35"
+  },
+  "_collection": {
+    "$oid": "6554d2a567d9690164175a60"
+  },
+  "creation_date": {
+    "$date": "2024-09-19T18:52:48.000Z"
+  },
+  "published": true,
+  "title": "Generosity in Florida (Infographic)",
+  "author": ["GivingTuesday"],
+  "desc": "The Growing Generosity in Florida report provides actionable insights for nonprofit organizations, donors, and policymakers about the dynamics of individual givers across the state of Florida in the United States. In this study, we focused exclusively on younger people (adults aged 18-45) to generate insights about how to best attract and retain them as lifelong givers. The goal is to better understand givers throughout Florida, using this knowledge to guide strategies and generate ideas to ultimately increase giving in Florida.\n\nWe sincerely appreciate the support of Florida Nonprofit Alliance and Jessie Ball DuPont Fund in making this project possible.",
+  "resource_url": "https://assets.noviams.com/novi-file-uploads/fna/PDFs-and-Documents/Growing_Generosity_In_Florida/Infographic-Growing_Generosi-777c6adc.pdf",
+  "slug": "generosity-in-florida-66ec7300be839435e5079c35",
+  "custom_fields": {
+    "region": ["United States and Canada"],
+    "subcollection": ["GivingTuesday"],
+    "resource_type": "Dashboard or Infographic",
+    "access_level": "Open Access",
+    "year_published": "2023",
+    "gtdc_project": [
+      "<a href='https://data.givingtuesday.org/projects/?co-item=growing-generosity-in-florida-671264efedefc3ef03a07d18&from=widget#our-work' _blank>Growing Generosity in Florida</a>"
+    ],
+    "topics": [
+      "Resource Mobilization",
+      "Donor Behavior and Motivation",
+      "Nonmonetary Giving",
+      "Dimensions of Generosity"
+    ],
+    "access_request": "https://docs.google.com/forms/d/e/1FAIpQLSdqGkiRwci-VFb1dAAdwBx4_wwhEpVKJHRdJVvZ1mGoriK_-A/viewform?usp=sf_link",
+    "country": ["United States"],
+    "viz_url": "",
+    "cover_url": "https://cdn-co-ajah-ca.nyc3.cdn.digitaloceanspaces.com/_development/gtrex/custom-theme/GrowingGenerosityInFlorida-01.png",
+    "dataset_documentation": "",
+    "widget_viz-library": ""
+  }
+}
