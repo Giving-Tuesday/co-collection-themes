@@ -12,6 +12,7 @@
   --card-padding: 1rem;
   --card-top-bg: none;
   --card-border: 1px solid #e0e0e0;
+  --card-title-color-hover: #0fb5c3;
 }
 
 .wrapper {

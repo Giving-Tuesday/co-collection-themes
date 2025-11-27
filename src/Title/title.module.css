@@ -20,7 +20,7 @@
 }
 
 .title > a:hover {
-  border-bottom: 1px solid var(--color-primary, #000);
-  color: var(--card-title-color-hover, var(--card-title-color));
+  text-decoration: underline;
+  color: var(--card-title-color-hover);
   transition: all 0.2s linear;
 }
