@@ -24,7 +24,11 @@ const ItemPageWidget = ({
       {...props}
     >
       {items?.map((item) => (
-        <CardComponent key={item._id} href={`${embedUrl}?co=${item.slug}`} item={item} />
+        <CardComponent
+          key={item._id}
+          href={`${embedUrl}?co-item=${item.slug}`}
+          item={item}
+        />
       ))}
     </div>
   );
