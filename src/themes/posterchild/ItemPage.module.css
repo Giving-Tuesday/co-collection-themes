@@ -35,15 +35,16 @@
   padding: 1rem;
 }
 
-.widgetWrapper {
-  margin: 1rem 0 3rem;
-}
-
 .widgetTitle {
   color: var(--color-secondary);
   font-family: var(--font-family-heading);
   font-size: 1.25rem;
-  margin-bottom: 0;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.widgetWrapper {
+  margin: 2rem 0 4rem;
 }
 
 @media (min-width: 820px) {
