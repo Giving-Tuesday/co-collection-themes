@@ -1,7 +1,6 @@
 .root {
   /* Theme-level variable overrides (only differences from base) */
   --card-border-radius: 6px;
-  --card-min-height: 320px;
   --color-secondary: #2c5d95;
   --item-page-line-height: 1.45rem;
 }

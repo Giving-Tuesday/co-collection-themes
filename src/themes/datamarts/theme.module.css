@@ -2,7 +2,6 @@
   /* Theme-level variable overrides (only differences from base) */
   --card-border: 1px solid #2c5d95;
   --card-border-radius: 24px;
-  --card-min-height: 320px;
   --theme-badge-border-radius: 12px;
   --color-primary: #0fb5c3;
   --color-secondary: #2c5d95;
