@@ -6,7 +6,6 @@
   --card-title-color: rgb(48, 80, 131);
   --card-title-line-height: 24px;
   --card-text-color-mid: #808080;
-  --card-max-width: 320px;
   --card-min-height: 320px;
   --card-height: 100%;
   --card-padding: 1rem;
@@ -24,16 +23,9 @@
   box-sizing: border-box;
   height: var(--card-height, 325px);
   min-height: var(--card-min-height);
-  margin: 0.25rem 0;
-  max-width: 100%;
+  margin: 0;
   overflow: hidden;
   padding: var(--card-padding);
   position: relative;
   width: 100%;
-}
-
-@media (min-width: 600px) {
-  .wrapper {
-    margin: 0.25rem;
-  }
 }
