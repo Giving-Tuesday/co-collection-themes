@@ -55,7 +55,7 @@ const ItemPage = ({ itemData }) => {
           </ul>
         </div>
         <div className={styles.content}>
-          <h1 className={styles.title}>{title}</h1>
+          <h2 className={styles.title}>{title}</h2>
           <div dangerouslySetInnerHTML={{ __html: htmlDescription }} />
           {bibliography ? (
             <section>

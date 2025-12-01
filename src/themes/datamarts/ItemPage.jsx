@@ -47,7 +47,7 @@ const ItemPage = ({ itemData }) => {
 
   return (
     <BaseItemPage className={theme.root} data-theme="datamarts">
-      <h1 className={styles.title}>{title}</h1>
+      <h2 className={styles.title}>{title}</h2>
       <div className={styles.actions}>
         <Action
           icon="CgFileDocument"

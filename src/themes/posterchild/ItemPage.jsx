@@ -44,7 +44,7 @@ const ItemPage = ({ itemData }) => {
 
   return (
     <BaseItemPage className={theme.root} data-theme="posterchild">
-      <h1 className={styles.title}>{title}</h1>
+      <h2 className={styles.title}>{title}</h2>
       <div className={styles.actions}>
         <Action icon="IoIosOpen" label="Project website" url={website_url} />
         <Action
@@ -101,6 +101,7 @@ const ItemPage = ({ itemData }) => {
       ) : null}
       {vizDatabaseWidgetItems?.length > 0 ? (
         <div className={styles.widgetWrapper}>
+          <h3 className={styles.widgetTitle}>Visualizations from this this Project</h3>
           <ItemPageWidget
             items={vizDatabaseWidgetItems}
             CardComponent={VizDatabaseCard}

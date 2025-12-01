@@ -47,10 +47,10 @@ const ItemPage = ({ itemData }) => {
 
   return (
     <BaseItemPage className={theme.root} data-theme="problems-solutions">
-      <h1 className={styles.title}>
+      <h2 className={styles.title}>
         <span>{item_type}: </span>
         {title}
-      </h1>
+      </h2>
       <div
         className={styles.description}
         dangerouslySetInnerHTML={{ __html: htmlDescription }}
