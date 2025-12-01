@@ -22,7 +22,7 @@ const Card = ({ CustomLink, href, item, to }) => {
       <CardContent position="middle">
         <Title {...{ CustomLink, href, to }} text={title} className={styles.title} />
         <div className={styles.authorContainer}>
-          {author.length > 0 ? (
+          {author[0].length > 0 ? (
             <p className={styles.author}>by {truncateText(author.join(', '), 100)}</p>
           ) : null}
         </div>
