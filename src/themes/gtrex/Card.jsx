@@ -11,7 +11,7 @@ import BaseCard from '../../BaseCard';
 import theme from './theme.module.css';
 import styles from './Card.module.css';
 
-const Card = ({ CustomLink, href, item, to }) => {
+const Card = ({ CustomLink, href, item, to, showYear = true }) => {
   const { author, title, custom_fields = {} } = item;
   const { resource_type } = custom_fields;
 
@@ -28,8 +28,10 @@ const Card = ({ CustomLink, href, item, to }) => {
           ) : null}
         </div>
       </CardContent>
-      <CardContent align="between" position="bottom">
-        <p className={styles.yearPublished}>{custom_fields.year_published}</p>
+      <CardContent align={showYear ? 'between' : 'end'} position="bottom">
+        {showYear && (
+          <p className={styles.yearPublished}>{custom_fields.year_published}</p>
+        )}
         <ReadMore {...{ CustomLink, href, to }} />
       </CardContent>
     </BaseCard>

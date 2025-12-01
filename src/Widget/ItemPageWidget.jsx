@@ -5,7 +5,7 @@ const ItemPageWidget = ({
   CardComponent,
   embedUrl,
   maxCardsPerRow = 5,
-  ...props
+  showYear,
 }) => {
   const itemCount = items?.length || 0;
 
@@ -17,14 +17,12 @@ const ItemPageWidget = ({
   return (
     <div
       className={`daro-widget ${styles.base} 
-      ${
-        styles[`count${Math.min(itemCount, maxCardsPerRow)}`]
-      } 
+      ${styles[`count${Math.min(itemCount, maxCardsPerRow)}`]} 
       ${styles.widgetWrapper}`}
-      {...props}
     >
       {items?.map((item) => (
         <CardComponent
+          showYear={showYear}
           key={item._id}
           href={`${embedUrl}?co-item=${item.slug}`}
           item={item}

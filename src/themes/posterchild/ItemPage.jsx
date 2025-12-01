@@ -89,20 +89,19 @@ const ItemPage = ({ itemData }) => {
             Reports and Publications from this Project
           </h3>
           <ItemPageWidget
-            isItemPageWidget
             items={givingLabWidgetItems}
             CardComponent={GtrexCard}
             embedUrl="https://www.givingtuesday.org/resource-exchange/library"
+            showYear={false}
           />
           <LinkButton newWindow isCentered url={assets_gtrex}>
-            <IconLabel icon="IoIosOpen" label="Access Visualizations from this Report" />
+            <IconLabel icon="IoIosOpen" label="Access all resources from this project" />
           </LinkButton>
         </div>
       ) : null}
       {vizDatabaseWidgetItems?.length > 0 ? (
         <div className={styles.widgetWrapper}>
           <ItemPageWidget
-            isItemPageWidget
             items={vizDatabaseWidgetItems}
             CardComponent={VizDatabaseCard}
             embedUrl="https://www.givingtuesday.org/visualizations-library"
@@ -119,7 +118,6 @@ const ItemPage = ({ itemData }) => {
         <div className={styles.widgetWrapper}>
           <h3 className={styles.widgetTitle}>Datasets Associated with this Project</h3>
           <ItemPageWidget
-            isItemPageWidget
             items={datasetsWidgetItems}
             CardComponent={DatasetsCard}
             embedUrl="https://data.givingtuesday.org/datasets"
