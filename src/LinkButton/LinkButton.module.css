@@ -39,4 +39,5 @@
 
 .linkButton:hover {
   opacity: 0.89;
+  text-decoration: underline;
 }
