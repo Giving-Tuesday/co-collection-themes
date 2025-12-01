@@ -1,3 +1,11 @@
+.primary {
+  background-color: var(--color-primary);
+}
+
+.secondary {
+  background-color: var(--color-secondary);
+}
+
 .linkButton {
   border: 1px solid transparent;
   cursor: pointer;
@@ -10,9 +18,12 @@
   text-align: center;
   text-decoration: none;
   width: fit-content !important;
-  background-color: var(--btn-bg);
-  color: var(--btn-text, #fff) !important;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.linkButton:hover {
+  opacity: 0.8;
 }
 
 .linkButton.xsmall {
@@ -29,15 +40,6 @@
   margin: 3px auto;
 }
 
-.linkButton.daro-primary-btn {
-  color: var(--white) !important;
-}
-
 .linkButton svg {
   margin-right: 8px;
-}
-
-.linkButton:hover {
-  opacity: 0.89;
-  text-decoration: underline;
 }
