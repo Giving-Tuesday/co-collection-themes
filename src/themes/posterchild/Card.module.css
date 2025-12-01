@@ -21,9 +21,10 @@
 }
 .shortDescription {
   color: var(--card-text-color-mid);
-  line-height: 14px !important;
+  line-height: 16px !important;
   font-size: 13px !important;
   margin-top: 0;
+  text-align: center;
 }
 .externalSiteLink {
   position: absolute;

@@ -21,7 +21,7 @@ const Card = ({ CustomLink, href, item, to }) => {
       <CardContent align="end" position="top" className={styles.cardContentTop}>
         <Badge>{initiative_type}</Badge>
       </CardContent>
-      <CardContent align="start" position="middle">
+      <CardContent align="center" position="middle">
         {project_image ? (
           <div className={styles.thumbnailWrapper}>
             <img className={styles.thumbnail} src={project_image} />
