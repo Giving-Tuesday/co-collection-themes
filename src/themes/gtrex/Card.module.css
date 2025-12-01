@@ -1,12 +1,14 @@
 .cardContentTop {
   color: #fff;
-  margin-bottom: 2rem;
-  height: 1.5rem;
+  height: 3.5rem;
+  padding: 0 1rem;
 }
 
 .cardContentTop p {
   color: #fff;
   font-family: var(--font-family-heading);
+  font-size: 15px !important;
+  line-height: 18px !important;
 }
 
 .authorContainer {
@@ -15,14 +17,14 @@
 }
 
 .title {
-  line-height: 20px;
+  line-height: 20px !important;
   margin: 0 0 0.75rem;
 }
 
 .author {
   color: var(--card-text-color-mid);
-  font-size: 11px;
-  line-height: 1.3em;
+  font-size: 12px;
+  line-height: 15px !important;
   margin: 0;
   text-align: left;
 }
