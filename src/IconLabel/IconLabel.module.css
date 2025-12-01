@@ -1,3 +1,7 @@
+.primary {
+  color: white;
+}
+
 .iconLabel {
   display: flex;
   align-items: center;
