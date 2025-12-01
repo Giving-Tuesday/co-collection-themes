@@ -17,20 +17,13 @@ const Card = ({ CustomLink, href, item, to }) => {
       <CardContent align="end" position="top">
         <Badge>{dataset_type}</Badge>
       </CardContent>
-      <CardContent position="middle">
+      <CardContent align="between" position="middle" className={styles.contentMiddle}>
         <div className={styles.imgWrapper}>
           {custom_fields.dataset_image ? (
             <img className={styles.img} src={custom_fields.dataset_image} />
           ) : null}
         </div>
-        <Title
-          {...{ CustomLink, href, to }}
-          text={title}
-          height="52px"
-          className={styles.title}
-        />
-      </CardContent>
-      <CardContent position="bottom">
+        <Title {...{ CustomLink, href, to }} text={title} className={styles.title} />
         {short_desc ? (
           <p className={styles.shortDesc}>{truncateText(short_desc, 280)}</p>
         ) : null}

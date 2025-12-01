@@ -1,3 +1,7 @@
+.contentMiddle {
+  margin-bottom: 1rem;
+}
+
 .imgWrapper {
   height: var(--img-height);
   overflow: hidden;
@@ -13,15 +17,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60px;
   text-align: center;
 }
 
 .shortDesc {
   color: var(--card-text-color-mid);
   font-size: 14px;
-  height: 52px;
-  line-height: 20px;
+  line-height: 18px !important;
   text-align: center;
-  padding-bottom: 2rem;
+  margin: 0;
 }
