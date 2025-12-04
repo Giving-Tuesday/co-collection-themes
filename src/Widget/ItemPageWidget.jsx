@@ -24,7 +24,7 @@ const ItemPageWidget = ({
         <CardComponent
           showYear={showYear}
           key={item._id}
-          href={`${embedUrl}?co-item=${item.slug}`}
+          href={`${embedUrl}?co-item=${item.slug}&from=widget`}
           item={item}
         />
       ))}

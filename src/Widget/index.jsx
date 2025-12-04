@@ -11,7 +11,7 @@ const Widget = ({ items, widgetTheme, embedUrl, maxCardsPerRow = 5 }) => {
       {items?.map((item) => (
         <CardComponent
           key={item._id}
-          href={`${embedUrl}?co-item=${item.slug}`}
+          href={`${embedUrl}?co-item=${item.slug}&from=widget`}
           item={item}
         />
       ))}
