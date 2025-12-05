@@ -1,17 +1,33 @@
-import React, { memo } from 'react';
-
+import { memo } from 'react';
 import BaseItemPage from '../../BaseItemPage';
 import useConvertToHtml from '../../hooks/use-convert-to-html';
-
 import theme from './theme.module.css';
 import styles from './ItemPage.module.css';
 import LinkButton from '../../LinkButton';
 import IconLabel from '../../IconLabel';
+import { displayArrayItems, getAvailableUrls } from '../../utils/item-page.utils';
+
+// Configuration for CTA labels
+const CTA_LABELS = {
+  SLIDE: 'Access Presentation Deck',
+  REPORT: 'Access Report',
+  TEMPLATE: 'Access Template',
+  VISUALIZATION: 'Access Visualization',
+};
+
+// Configuration for datapoints
+const DATAPOINTS_CONFIG = [
+  { key: 'data_years', label: 'Year(s) Represented' },
+  { key: 'topic', label: 'Topic' },
+  { key: 'presentation_date', label: 'Presentation Date' },
+  { key: 'viz_type', label: 'Visualization Type' },
+  { key: 'event_name', label: 'Event' },
+  { key: 'author', label: 'Author' },
+  { key: 'source', label: 'Source' },
+];
 
 const DatapointsItem = memo(({ label, value }) => {
   if (!value) return null;
-
-  const displayArrayItems = (val) => <>{Array.isArray(val) ? val.join(', ') : val}</>;
   return (
     <li className={styles.datapointItem}>
       <p className={styles.datapointLabel}>{label}</p>
@@ -24,29 +40,11 @@ const ItemPage = ({ itemData }) => {
   if (!itemData?._id) return null;
 
   const { author, title, desc, custom_fields = {} } = itemData;
-  const {
-    image_url,
-    data_years,
-    event_name,
-    presentation_date,
-    report_url,
-    slide_url,
-    source,
-    template_url,
-    topic,
-    viz_type,
-  } = custom_fields;
+  const { image_url } = custom_fields;
 
   const htmlDescription = useConvertToHtml(desc);
-  const additionalCta =
-    slide_url?.length > 0 || report_url?.length > 0 || template_url?.length > 0;
-  const getAdditionalCtaText = (slide_url, report_url, template_url) => {
-    return (
-      (slide_url && 'Access Presentation Deck') ||
-      (report_url && 'Access Report') ||
-      (template_url && 'Access Template')
-    );
-  };
+  const additionalCtaUrl = getAvailableUrls(custom_fields, CTA_LABELS);
+  const hasAdditionalCta = Boolean(additionalCtaUrl);
 
   return (
     <BaseItemPage className={theme.root} data-theme="viz-database">
@@ -60,27 +58,23 @@ const ItemPage = ({ itemData }) => {
       </div>
       <div className={styles.ctaBar}>
         <LinkButton newWindow url={image_url}>
-          <IconLabel as="span" icon="External Link" label="Access Visualization" />
+          <IconLabel as="span" icon="External Link" label={CTA_LABELS.VISUALIZATION} />
         </LinkButton>
-        {additionalCta && (
-          <LinkButton newWindow url={slide_url || report_url || template_url}>
-            <IconLabel
-              as="span"
-              icon="External Link"
-              label={getAdditionalCtaText(slide_url, report_url, template_url)}
-            />
+        {hasAdditionalCta && (
+          <LinkButton newWindow url={additionalCtaUrl.url}>
+            <IconLabel as="span" icon="External Link" label={additionalCtaUrl.label} />
           </LinkButton>
         )}
       </div>
       <div className={styles.datapointWrapper}>
         <ul className={styles.datapoints}>
-          <DatapointsItem label="Year(s) Represented" value={data_years} />
-          <DatapointsItem label="Topic" value={topic} />
-          <DatapointsItem label="Presentation Date" value={presentation_date} />
-          <DatapointsItem label="Visualization Type" value={viz_type} />
-          <DatapointsItem label="Event" value={event_name} />
-          <DatapointsItem label="Author" value={author} />
-          <DatapointsItem label="Source" value={source} />
+          {DATAPOINTS_CONFIG.map(({ key, label }) => (
+            <DatapointsItem
+              key={key}
+              label={label}
+              value={key === 'author' ? author : custom_fields[key]}
+            />
+          ))}
         </ul>
       </div>
     </BaseItemPage>
