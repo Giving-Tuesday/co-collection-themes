@@ -38,6 +38,15 @@ const ItemPage = ({ itemData }) => {
   } = custom_fields;
 
   const htmlDescription = useConvertToHtml(desc);
+  const additionalCta =
+    slide_url?.length > 0 || report_url?.length > 0 || template_url?.length > 0;
+  const getAdditionalCtaText = (slide_url, report_url, template_url) => {
+    return (
+      (slide_url && 'Access Presentation Deck') ||
+      (report_url && 'Access Report') ||
+      (template_url && 'Access Template')
+    );
+  };
 
   return (
     <BaseItemPage className={theme.root} data-theme="viz-database">
@@ -50,13 +59,18 @@ const ItemPage = ({ itemData }) => {
         />
       </div>
       <div className={styles.ctaBar}>
-        <LinkButton
-          isCentered
-          newWindow
-          url={image_url || slide_url || report_url || template_url}
-        >
+        <LinkButton newWindow url={image_url}>
           <IconLabel as="span" icon="External Link" label="Access Visualization" />
         </LinkButton>
+        {additionalCta && (
+          <LinkButton newWindow url={slide_url || report_url || template_url}>
+            <IconLabel
+              as="span"
+              icon="External Link"
+              label={getAdditionalCtaText(slide_url, report_url, template_url)}
+            />
+          </LinkButton>
+        )}
       </div>
       <div className={styles.datapointWrapper}>
         <ul className={styles.datapoints}>
