@@ -19,7 +19,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  gap: 1rem;
   margin: 3rem 0;
 }
 .datapointsWrapper {
