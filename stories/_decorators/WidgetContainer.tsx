@@ -1,4 +1,6 @@
-const WidgetContainer = ({ children }) => {
+const WidgetContainer = ({
+  children
+}: any) => {
   return <div>{children}</div>;
 };
 

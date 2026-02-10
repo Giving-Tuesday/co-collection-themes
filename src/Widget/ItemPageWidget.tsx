@@ -1,3 +1,4 @@
+// @ts-expect-error TS(2307): Cannot find module './Widget.module.css' or its co... Remove this comment to see the full error message
 import styles from './Widget.module.css';
 
 const ItemPageWidget = ({
@@ -5,8 +6,8 @@ const ItemPageWidget = ({
   CardComponent,
   embedUrl,
   maxCardsPerRow = 5,
-  showYear,
-}) => {
+  showYear
+}: any) => {
   const itemCount = items?.length || 0;
 
   if (!CardComponent) {
@@ -20,14 +21,12 @@ const ItemPageWidget = ({
       ${styles[`count${Math.min(itemCount, maxCardsPerRow)}`]} 
       ${styles.widgetWrapper}`}
     >
-      {items?.map((item) => (
-        <CardComponent
-          showYear={showYear}
-          key={item._id}
-          href={`${embedUrl}?co-item=${item.slug}&from=widget`}
-          item={item}
-        />
-      ))}
+      {items?.map((item: any) => <CardComponent
+        showYear={showYear}
+        key={item._id}
+        href={`${embedUrl}?co-item=${item.slug}&from=widget`}
+        item={item}
+      />)}
     </div>
   );
 };

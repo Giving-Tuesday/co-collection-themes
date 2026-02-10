@@ -4,7 +4,9 @@ import { MdAddComment } from 'react-icons/md';
 import BaseItemPage from '../../BaseItemPage';
 import useConvertToHtml from '../../hooks/use-convert-to-html';
 
+// @ts-expect-error TS(2307): Cannot find module './theme.module.css' or its cor... Remove this comment to see the full error message
 import theme from './theme.module.css';
+// @ts-expect-error TS(2307): Cannot find module './ItemPage.module.css' or its ... Remove this comment to see the full error message
 import styles from './ItemPage.module.css';
 import LinkButton from '../../LinkButton';
 import IconLabel from '../../IconLabel';
@@ -17,12 +19,14 @@ const PROBLEM_LINK = 'https://airtable.com/appuaKysIAOxom6CA/pag6jGDU9cxYHNNVK/f
 // TODO: FIX the routing problem for linked items as a fast-follow
 // need to accommodate all apps that use this theme, similar to how Card.jsx does it
 
-const LinkedItemsList = ({ linkedItems, linkedItemsType, location }) =>
+const LinkedItemsList = ({
+  linkedItems,
+  linkedItemsType,
+  location
+}: any) =>
   linkedItems.length > 0 ? (
     <ul className={styles.linkedItemsList}>
-      {linkedItems.map((item) => (
-        <li key={item.id}>{item.title}</li>
-      ))}
+      {linkedItems.map((item: any) => <li key={item.id}>{item.title}</li>)}
     </ul>
   ) : (
     <p className={styles.emptyListMessage}>
@@ -30,7 +34,9 @@ const LinkedItemsList = ({ linkedItems, linkedItemsType, location }) =>
     </p>
   );
 
-const ItemPage = ({ itemData }) => {
+const ItemPage = ({
+  itemData
+}: any) => {
   if (!itemData?._id) return null;
 
   const { desc: description, resource_url, title, custom_fields = {} } = itemData;
@@ -53,6 +59,7 @@ const ItemPage = ({ itemData }) => {
       </h2>
       <div
         className={styles.description}
+        // @ts-expect-error TS(2322): Type 'null' is not assignable to type 'string | Tr... Remove this comment to see the full error message
         dangerouslySetInnerHTML={{ __html: htmlDescription }}
       />
       <div className={styles.datapoints}>
@@ -76,6 +83,7 @@ const ItemPage = ({ itemData }) => {
               href={isProblem ? PROBLEM_LINK : SOLUTION_LINK}
               target="_blank"
             >
+              // @ts-expect-error TS(2786): 'MdAddComment' cannot be used as a JSX component.
               <MdAddComment />
               {isProblem ? PROBLEM_LABEL : SOLUTION_LABEL}
             </a>

@@ -64,14 +64,14 @@ const ICON_LIST = [
   { label: 'IoLibrarySharp', icon: IoLibrarySharp },
 ];
 
-export const findIcon = (iconName) => {
+export const findIcon = (iconName: any) => {
   const iconObj = ICON_LIST.find((item) =>
     item.label.toLowerCase().includes(iconName.toLowerCase()),
   );
   return iconObj ? iconObj.icon : null;
 };
 
-export const findIconByLabel = (label) => {
+export const findIconByLabel = (label: any) => {
   const iconObj = ICON_LIST.find((item) => item.label === label);
   return iconObj ? iconObj.icon : null;
 };

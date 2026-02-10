@@ -1,4 +1,6 @@
+// @ts-expect-error TS(2307): Cannot find module './BaseCard.module.css' or its ... Remove this comment to see the full error message
 import styles from './BaseCard.module.css';
+// @ts-expect-error TS(2307): Cannot find module '../BaseItemPage/BaseItemPage.m... Remove this comment to see the full error message
 import pageStyles from '../BaseItemPage/BaseItemPage.module.css';
 
 /**
@@ -22,7 +24,12 @@ import pageStyles from '../BaseItemPage/BaseItemPage.module.css';
  * @returns {JSX.Element} A styled div that wraps its children.
  */
 
-const BaseCard = ({ children, style, className = '', ...rest }) => {
+const BaseCard = ({
+  children,
+  style,
+  className = '',
+  ...rest
+}: any) => {
   return (
     <div
       className={`daro-card ${pageStyles.base} ${styles.base} ${styles.wrapper} ${className}`.trim()}

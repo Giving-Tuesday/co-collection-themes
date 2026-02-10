@@ -23,9 +23,15 @@
  *   <p>Long-form content</p>
  * </BaseItemPage>
  */
+// @ts-expect-error TS(2307): Cannot find module './BaseItemPage.module.css' or ... Remove this comment to see the full error message
 import styles from './BaseItemPage.module.css';
 
-const BaseItemPage = ({ children, style, className = '', ...rest }) => {
+const BaseItemPage = ({
+  children,
+  style,
+  className = '',
+  ...rest
+}: any) => {
   return (
     <article
       className={`daro-item-page ${styles.base} ${styles.wrapper} ${className}`.trim()}

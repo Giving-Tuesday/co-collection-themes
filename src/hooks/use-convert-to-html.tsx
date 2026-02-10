@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import convertToHtml from '../utils/convert-to-html.utils';
 
-export default function useConvertToHtml(rawHtml) {
+export default function useConvertToHtml(rawHtml: any) {
   const [html, setHtml] = useState(null);
 
   useEffect(() => {

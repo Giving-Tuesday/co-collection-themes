@@ -1,3 +1,4 @@
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'prop... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
 import CardContent from '../../CardContent';
 import Title from '../../Title';
@@ -5,10 +6,17 @@ import { linkTargetValidator } from '../../utils/prop-types.utils';
 import BaseCard from '../../BaseCard';
 import { getDataYearsLabels } from '../../utils/text.utils';
 
+// @ts-expect-error TS(2307): Cannot find module './theme.module.css' or its cor... Remove this comment to see the full error message
 import theme from './theme.module.css';
+// @ts-expect-error TS(2307): Cannot find module './Card.module.css' or its corr... Remove this comment to see the full error message
 import styles from './Card.module.css';
 
-const Card = ({ CustomLink, href, item, to }) => {
+const Card = ({
+  CustomLink,
+  href,
+  item,
+  to
+}: any) => {
   const { title, custom_fields = {} } = item;
   const { data_years, image_url } = custom_fields;
 

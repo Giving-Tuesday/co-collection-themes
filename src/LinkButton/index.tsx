@@ -1,3 +1,4 @@
+// @ts-expect-error TS(2307): Cannot find module './LinkButton.module.css' or it... Remove this comment to see the full error message
 import styles from './LinkButton.module.css';
 
 const LinkButton = ({
@@ -9,7 +10,7 @@ const LinkButton = ({
   small,
   isCentered,
   ...props
-}) => {
+}: any) => {
   if (!url || url.length === 0) return null;
 
   const classNames = [
