@@ -3,12 +3,16 @@ import React from 'react';
 import BaseItemPage from '../../BaseItemPage';
 import useConvertToHtml from '../../hooks/use-convert-to-html';
 
+// @ts-expect-error TS(2307): Cannot find module './theme.module.css' or its cor... Remove this comment to see the full error message
 import theme from './theme.module.css';
+// @ts-expect-error TS(2307): Cannot find module './ItemPage.module.css' or its ... Remove this comment to see the full error message
 import styles from './ItemPage.module.css';
 
 import { Action, Datapoint } from '../datamarts/ItemPage'; // Reuse components from datamarts theme
 
-const ItemPage = ({ itemData }) => {
+const ItemPage = ({
+  itemData
+}: any) => {
   if (!itemData?._id) return null;
 
   const { author, desc: description, title, custom_fields = {} } = itemData;
@@ -44,17 +48,20 @@ const ItemPage = ({ itemData }) => {
         {dataset_image ? <img src={dataset_image} alt={title} /> : null}
         <div
           className={styles.htmlDescription}
+          // @ts-expect-error TS(2322): Type 'null' is not assignable to type 'string | Tr... Remove this comment to see the full error message
           dangerouslySetInnerHTML={{ __html: htmlDescription }}
         />
       </div>
       <div className={styles.datapoints}>
         <Datapoint label="Dataset Type" data={dataset_type} />
+        // @ts-expect-error TS(2339): Property 'length' does not exist on type 'never'.
         {gtdcProjectHtml?.length > 0 ? (
           <Datapoint
             label="Associated GivingTuesday Initiative"
             data={
               <span
                 dangerouslySetInnerHTML={{
+                  // @ts-expect-error TS(2322): Type 'null' is not assignable to type 'string | Tr... Remove this comment to see the full error message
                   __html: gtdcProjectHtml,
                 }}
               />

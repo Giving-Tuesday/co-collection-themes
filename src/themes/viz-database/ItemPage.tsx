@@ -1,7 +1,9 @@
 import { memo } from 'react';
 import BaseItemPage from '../../BaseItemPage';
 import useConvertToHtml from '../../hooks/use-convert-to-html';
+// @ts-expect-error TS(2307): Cannot find module './theme.module.css' or its cor... Remove this comment to see the full error message
 import theme from './theme.module.css';
+// @ts-expect-error TS(2307): Cannot find module './ItemPage.module.css' or its ... Remove this comment to see the full error message
 import styles from './ItemPage.module.css';
 import LinkButton from '../../LinkButton';
 import IconLabel from '../../IconLabel';
@@ -26,6 +28,7 @@ const DATAPOINTS_CONFIG = [
   { key: 'source', label: 'Source' },
 ];
 
+// @ts-expect-error TS(2339): Property 'label' does not exist on type '{}'.
 const DatapointsItem = memo(({ label, value }) => {
   if (!value) return null;
   return (
@@ -36,7 +39,9 @@ const DatapointsItem = memo(({ label, value }) => {
   );
 });
 
-const ItemPage = ({ itemData }) => {
+const ItemPage = ({
+  itemData
+}: any) => {
   if (!itemData?._id) return null;
 
   const { author, title, desc, custom_fields = {} } = itemData;
@@ -53,6 +58,7 @@ const ItemPage = ({ itemData }) => {
         <img src={image_url} alt={`${title} image`} className={styles.image} />
         <div
           className={styles.description}
+          // @ts-expect-error TS(2322): Type 'null' is not assignable to type 'string | Tr... Remove this comment to see the full error message
           dangerouslySetInnerHTML={{ __html: htmlDescription }}
         />
       </div>
@@ -61,7 +67,9 @@ const ItemPage = ({ itemData }) => {
           <IconLabel as="span" icon="External Link" label={CTA_LABELS.VISUALIZATION} />
         </LinkButton>
         {hasAdditionalCta && (
+          // @ts-expect-error TS(2532): Object is possibly 'undefined'.
           <LinkButton newWindow url={additionalCtaUrl.url}>
+            // @ts-expect-error TS(2532): Object is possibly 'undefined'.
             <IconLabel as="span" icon="External Link" label={additionalCtaUrl.label} />
           </LinkButton>
         )}
@@ -71,6 +79,7 @@ const ItemPage = ({ itemData }) => {
           {DATAPOINTS_CONFIG.map(({ key, label }) => (
             <DatapointsItem
               key={key}
+              // @ts-expect-error TS(2322): Type '{ key: string; label: string; value: any; }'... Remove this comment to see the full error message
               label={label}
               value={key === 'author' ? author : custom_fields[key]}
             />

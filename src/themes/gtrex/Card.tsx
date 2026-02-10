@@ -1,3 +1,4 @@
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'prop... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
 import CardContent from '../../CardContent';
 import IconLabel from '../../IconLabel';
@@ -8,10 +9,18 @@ import { truncateText } from '../../utils/text.utils';
 
 import BaseCard from '../../BaseCard';
 
+// @ts-expect-error TS(2307): Cannot find module './theme.module.css' or its cor... Remove this comment to see the full error message
 import theme from './theme.module.css';
+// @ts-expect-error TS(2307): Cannot find module './Card.module.css' or its corr... Remove this comment to see the full error message
 import styles from './Card.module.css';
 
-const Card = ({ CustomLink, href, item, to, showYear = true }) => {
+const Card = ({
+  CustomLink,
+  href,
+  item,
+  to,
+  showYear = true
+}: any) => {
   const { author, title, custom_fields = {} } = item;
   const { resource_type } = custom_fields;
 

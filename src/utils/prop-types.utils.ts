@@ -1,5 +1,5 @@
 // Validate that either href or to is provided; if to is used, CustomLink must be supplied.
-export const linkTargetValidator = (props, propName, componentName) => {
+export const linkTargetValidator = (props: any, propName: any, componentName: any) => {
   const { href, to, CustomLink } = props;
   if (!href && !to) {
     return new Error(`${componentName}: either 'href' or 'to' must be provided.`);
