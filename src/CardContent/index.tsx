@@ -1,22 +1,31 @@
-// @ts-expect-error TS(2307): Cannot find module './CardContent.module.css' or i... Remove this comment to see the full error message
+import type { ReactNode } from 'react';
 import styles from './CardContent.module.css';
+import clsx from 'clsx';
+
+interface IconLabelProps {
+  align?: 'start' | 'center' | 'end' | 'between';
+  fill?: boolean;
+  position?: 'top' | 'middle' | 'bottom';
+  className?: string;
+  children: ReactNode;
+}
 
 const CardContent = ({
   align = 'between',
   fill,
-  position,
+  position = 'middle',
   className,
-  children
-}: any) => {
-  const alignKey = (align || '').toLowerCase();
-  const positionKey = (position || '').toLowerCase();
-
-  const variantAlign = styles[alignKey] || styles.left;
-  const variantPosition = styles[positionKey] || '';
-  const fillClass = fill ? styles.fill : '';
+  children,
+}: IconLabelProps) => {
   return (
     <div
-      className={`${styles.wrapper} ${variantAlign} ${variantPosition} ${fillClass} ${className}`.trim()}
+      className={clsx(
+        styles.wrapper,
+        styles[align],
+        styles[position],
+        fill && styles.fill,
+        className,
+      )}
     >
       {children}
     </div>

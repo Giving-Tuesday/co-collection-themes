@@ -1,13 +1,8 @@
-// @ts-expect-error TS(2307): Cannot find module './Badge.module.css' or its cor... Remove this comment to see the full error message
+import type { ReactNode } from 'react';
 import styles from './Badge.module.css';
 
-const Badge = ({
-  children
-}: any) => {
-  if (!children) {
-    return null;
-  }
-
+const Badge = ({ children }: { children: ReactNode }) => {
+  if (!children) return null;
   return <div className={styles.wrapper}>{children}</div>;
 };
 

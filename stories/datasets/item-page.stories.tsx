@@ -11,6 +11,6 @@ export default {
 
 export const ItemPage = () => (
   <ItemPageContainer>
-    <DatasetsItemPage itemData={item} />
+    <DatasetsItemPage item={item} />
   </ItemPageContainer>
 );

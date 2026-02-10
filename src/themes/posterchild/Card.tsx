@@ -1,25 +1,21 @@
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'prop... Remove this comment to see the full error message
-import PropTypes from 'prop-types';
 import Badge from '../../Badge';
 import CardContent from '../../CardContent';
 import Title from '../../Title';
 import IconLabel from '../../IconLabel';
-import { linkTargetValidator } from '../../utils/prop-types.utils';
 import { truncateText } from '../../utils/text.utils';
-
 import BaseCard from '../../BaseCard';
-
-// @ts-expect-error TS(2307): Cannot find module './theme.module.css' or its cor... Remove this comment to see the full error message
 import theme from './theme.module.css';
-// @ts-expect-error TS(2307): Cannot find module './Card.module.css' or its corr... Remove this comment to see the full error message
 import styles from './Card.module.css';
+import type { Item } from '../../types';
+import type { ElementType } from 'react';
 
-const Card = ({
-  CustomLink,
-  href,
-  item,
-  to
-}: any) => {
+interface CardProps {
+  CustomLink?: ElementType | undefined;
+  href: string;
+  item: Item;
+}
+
+const Card = ({ CustomLink, href, item }: CardProps) => {
   const { title, custom_fields = {} } = item;
   const { initiative_type, project_image, short_description, website_url } =
     custom_fields;
@@ -36,7 +32,7 @@ const Card = ({
           </div>
         ) : null}
         <Title
-          {...{ CustomLink, href, to }}
+          {...{ CustomLink, href }}
           text={truncateText(title, 72)}
           className={styles.title}
         />
@@ -49,7 +45,7 @@ const Card = ({
           />
         ) : null}
       </CardContent>
-      <CardContent align="right" position="bottom">
+      <CardContent align="end" position="bottom">
         {website_url ? (
           <a
             className={`wp-element-button ${styles.externalSiteLink}`.trim()}
@@ -62,18 +58,6 @@ const Card = ({
       </CardContent>
     </BaseCard>
   );
-};
-
-Card.propTypes = {
-  CustomLink: PropTypes.elementType,
-  href: linkTargetValidator,
-  to: linkTargetValidator,
-  item: PropTypes.shape({
-    title: PropTypes.string,
-    desc: PropTypes.string,
-    author: PropTypes.arrayOf(PropTypes.string),
-    custom_fields: PropTypes.shape({}),
-  }).isRequired,
 };
 
 export default Card;

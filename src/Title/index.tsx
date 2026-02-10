@@ -1,20 +1,27 @@
-// @ts-expect-error TS(2307): Cannot find module './title.module.css' or its cor... Remove this comment to see the full error message
+import type { ElementType, CSSProperties } from 'react';
 import styles from './title.module.css';
+import clsx from 'clsx';
 
-const Title = ({
-  className,
-  CustomLink,
-  height,
-  href,
-  text,
-  to
-}: any) => {
+interface TitleProps {
+  CustomLink?: ElementType | undefined;
+  href: string;
+  text: string;
+  height?: CSSProperties['height'];
+  className?: string;
+}
+
+const Title = ({ className, CustomLink, height, href, text }: TitleProps) => {
   return (
-    <p className={`${styles.title} ${className}`} style={{ height }}>
-      {to ? (
-        <CustomLink to={to}>{text}</CustomLink>
+    <p className={clsx(styles.title, className)} style={{ height }}>
+      {CustomLink ? (
+        <CustomLink href={href}>{text}</CustomLink>
       ) : (
-        <a href={href} className={styles.link}>
+        <a
+          href={href}
+          className={
+            'link' in styles && typeof styles.link === 'string' ? styles.link : undefined
+          }
+        >
           {text}
         </a>
       )}

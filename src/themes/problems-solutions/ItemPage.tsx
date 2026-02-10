@@ -1,15 +1,11 @@
-import React from 'react';
 import { MdAddComment } from 'react-icons/md';
-
 import BaseItemPage from '../../BaseItemPage';
 import useConvertToHtml from '../../hooks/use-convert-to-html';
-
-// @ts-expect-error TS(2307): Cannot find module './theme.module.css' or its cor... Remove this comment to see the full error message
 import theme from './theme.module.css';
-// @ts-expect-error TS(2307): Cannot find module './ItemPage.module.css' or its ... Remove this comment to see the full error message
 import styles from './ItemPage.module.css';
 import LinkButton from '../../LinkButton';
 import IconLabel from '../../IconLabel';
+import type { Item } from '../../types';
 
 const SOLUTION_LABEL = 'Suggest a solution for this problem.';
 const PROBLEM_LABEL = 'Suggest a problem that this solution can solve.';
@@ -22,11 +18,15 @@ const PROBLEM_LINK = 'https://airtable.com/appuaKysIAOxom6CA/pag6jGDU9cxYHNNVK/f
 const LinkedItemsList = ({
   linkedItems,
   linkedItemsType,
-  location
-}: any) =>
+}: {
+  linkedItems: Item[];
+  linkedItemsType: 'Problem' | 'Solution';
+}) =>
   linkedItems.length > 0 ? (
     <ul className={styles.linkedItemsList}>
-      {linkedItems.map((item: any) => <li key={item.id}>{item.title}</li>)}
+      {linkedItems.map((item: any) => (
+        <li key={item.id}>{item.title}</li>
+      ))}
     </ul>
   ) : (
     <p className={styles.emptyListMessage}>
@@ -34,12 +34,10 @@ const LinkedItemsList = ({
     </p>
   );
 
-const ItemPage = ({
-  itemData
-}: any) => {
-  if (!itemData?._id) return null;
+const ItemPage = ({ item }: { item: Item }) => {
+  if (!item._id) return null;
 
-  const { desc: description, resource_url, title, custom_fields = {} } = itemData;
+  const { desc: description, resource_url, title, custom_fields = {} } = item;
   const { item_type, goals, linked_items_DATA } = custom_fields;
   const hasLinkedItems = linked_items_DATA?.length > 0;
   const isProblem = item_type === 'Problem';
@@ -47,9 +45,9 @@ const ItemPage = ({
   const linkedItemsLabel = `${linkedItemsType} in library`;
   const linkedItemsData =
     hasLinkedItems &&
-    LinkedItemsList({ linkedItems: linked_items_DATA, linkedItemsType, location });
+    LinkedItemsList({ linkedItems: linked_items_DATA, linkedItemsType });
 
-  const htmlDescription = useConvertToHtml(description);
+  const htmlDescription = useConvertToHtml(description || '');
 
   return (
     <BaseItemPage className={theme.root} data-theme="problems-solutions">
@@ -57,11 +55,12 @@ const ItemPage = ({
         <span>{item_type}: </span>
         {title}
       </h2>
-      <div
-        className={styles.description}
-        // @ts-expect-error TS(2322): Type 'null' is not assignable to type 'string | Tr... Remove this comment to see the full error message
-        dangerouslySetInnerHTML={{ __html: htmlDescription }}
-      />
+      {htmlDescription && (
+        <div
+          className={styles.description}
+          dangerouslySetInnerHTML={{ __html: htmlDescription }}
+        />
+      )}
       <div className={styles.datapoints}>
         {goals ? (
           <div className={styles.datapoint}>
@@ -83,16 +82,17 @@ const ItemPage = ({
               href={isProblem ? PROBLEM_LINK : SOLUTION_LINK}
               target="_blank"
             >
-              // @ts-expect-error TS(2786): 'MdAddComment' cannot be used as a JSX component.
               <MdAddComment />
               {isProblem ? PROBLEM_LABEL : SOLUTION_LABEL}
             </a>
           </div>
         </div>
       </div>
-      <LinkButton isCentered url={resource_url}>
-        <IconLabel icon="External Link" label="Access Resource" />
-      </LinkButton>
+      {resource_url && (
+        <LinkButton isCentered url={resource_url}>
+          <IconLabel icon="External Link" label="Access Resource" />
+        </LinkButton>
+      )}
     </BaseItemPage>
   );
 };
