@@ -9,10 +9,15 @@ import LinkButton from '../../LinkButton';
 import IconLabel from '../../IconLabel';
 import useConvertToHtml from '../../hooks/use-convert-to-html';
 
+// @ts-expect-error TS(2307): Cannot find module './theme.module.css' or its cor... Remove this comment to see the full error message
 import theme from './theme.module.css';
+// @ts-expect-error TS(2307): Cannot find module './ItemPage.module.css' or its ... Remove this comment to see the full error message
 import styles from './ItemPage.module.css';
 
-const SidebarItem = ({ icon, text }) => {
+const SidebarItem = ({
+  icon,
+  text
+}: any) => {
   if (!text) return null;
 
   return (
@@ -25,7 +30,9 @@ const SidebarItem = ({ icon, text }) => {
   );
 };
 
-const ItemPage = ({ itemData }) => {
+const ItemPage = ({
+  itemData
+}: any) => {
   if (!itemData?._id) return null;
 
   const { author, desc: description, resource_url, title, custom_fields = {} } = itemData;
@@ -43,23 +50,29 @@ const ItemPage = ({ itemData }) => {
         <div className={styles.sidebar}>
           <ul className={styles.sidebarList}>
             {author?.length > 0 ? (
+              // @ts-expect-error TS(2786): 'FaUserEdit' cannot be used as a JSX component.
               <SidebarItem text={author.join(', ')} icon={<FaUserEdit />} />
             ) : null}
             {location?.length > 0 ? (
+              // @ts-expect-error TS(2786): 'TbWorldPin' cannot be used as a JSX component.
               <SidebarItem text={location} icon={<TbWorldPin />} />
             ) : null}
             {gift_type ? (
+              // @ts-expect-error TS(2786): 'LuGift' cannot be used as a JSX component.
               <SidebarItem text={gift_type.join(', ')} icon={<LuGift />} />
             ) : null}
+            // @ts-expect-error TS(2786): 'FaLeaf' cannot be used as a JSX component.
             {un_sdg ? <SidebarItem text={un_sdg.join(', ')} icon={<FaLeaf />} /> : null}
           </ul>
         </div>
         <div className={styles.content}>
           <h2 className={styles.title}>{title}</h2>
+          // @ts-expect-error TS(2322): Type 'null' is not assignable to type 'string | Tr... Remove this comment to see the full error message
           <div dangerouslySetInnerHTML={{ __html: htmlDescription }} />
           {bibliography ? (
             <section>
               <h2 className={styles.h2}>Bibliography</h2>
+              // @ts-expect-error TS(2322): Type 'null' is not assignable to type 'string | Tr... Remove this comment to see the full error message
               <div dangerouslySetInnerHTML={{ __html: htmlBibliography }} />
             </section>
           ) : null}

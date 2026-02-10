@@ -1,4 +1,5 @@
 import { FaStar } from 'react-icons/fa6';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'prop... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
 import Badge from '../../Badge';
 import CardContent from '../../CardContent';
@@ -8,10 +9,17 @@ import { linkTargetValidator } from '../../utils/prop-types.utils';
 import BaseCard from '../../BaseCard';
 import { arrayToString, convertFileSize, truncateText } from '../../utils/text.utils';
 
+// @ts-expect-error TS(2307): Cannot find module './theme.module.css' or its cor... Remove this comment to see the full error message
 import theme from './theme.module.css';
+// @ts-expect-error TS(2307): Cannot find module './Card.module.css' or its corr... Remove this comment to see the full error message
 import styles from './Card.module.css';
 
-const Card = ({ CustomLink, href, item, to }) => {
+const Card = ({
+  CustomLink,
+  href,
+  item,
+  to
+}: any) => {
   const { title, desc, custom_fields = {} } = item;
   const { form_type, recently_added, size } = custom_fields;
 
@@ -43,6 +51,7 @@ const Card = ({ CustomLink, href, item, to }) => {
         <>
           <span className={styles.recentlyAdded} />
           <span className={styles.recentIcon}>
+            // @ts-expect-error TS(2786): 'FaStar' cannot be used as a JSX component.
             <FaStar />
           </span>
         </>

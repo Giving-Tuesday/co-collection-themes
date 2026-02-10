@@ -3,7 +3,7 @@
  * @param {*} val
  * @returns {string}
  */
-export const displayArrayItems = (val) => {
+export const displayArrayItems = (val: any) => {
   return Array.isArray(val) ? val.join(', ') : val;
 };
 
@@ -13,7 +13,7 @@ export const displayArrayItems = (val) => {
  * @param {*} custom_fields
  * @returns {undefined | { type: 'slide'|'report'|'template', url: string, label: string }}
  */
-export const getAvailableUrls = (custom_fields, CTA_LABELS) => {
+export const getAvailableUrls = (custom_fields: any, CTA_LABELS: any) => {
   const { slide_url, report_url, template_url } = custom_fields;
   const urls = [
     { type: 'slide', url: slide_url, label: CTA_LABELS.SLIDE },
