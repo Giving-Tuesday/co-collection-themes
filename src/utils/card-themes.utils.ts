@@ -21,7 +21,7 @@ const THEME_CARD_MAP = cardThemeEntries.reduce((acc, entry) => {
   return acc;
 }, {});
 
-export const getThemeCard = (themeName: any) => {
+export const getThemeCard = (themeName: string) => {
   // Accept a single name; if an array is passed, return first match that exists.
   if (Array.isArray(themeName)) {
     // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message

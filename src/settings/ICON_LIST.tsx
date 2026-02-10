@@ -64,7 +64,7 @@ const ICON_LIST = [
   { label: 'IoLibrarySharp', icon: IoLibrarySharp },
 ];
 
-export const findIcon = (iconName: any) => {
+export const findIcon = (iconName: string) => {
   const iconObj = ICON_LIST.find((item) =>
     item.label.toLowerCase().includes(iconName.toLowerCase()),
   );

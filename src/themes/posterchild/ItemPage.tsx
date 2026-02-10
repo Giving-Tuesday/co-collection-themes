@@ -1,28 +1,20 @@
-import React from 'react';
-
 import BaseItemPage from '../../BaseItemPage';
 import { Card as GtrexCard } from '../gtrex';
 import { Card as VizDatabaseCard } from '../viz-database';
 import { Card as DatasetsCard } from '../datasets';
 import ItemPageWidget from '../../Widget/ItemPageWidget';
-
 import useConvertToHtml from '../../hooks/use-convert-to-html';
-
-// @ts-expect-error TS(2307): Cannot find module './theme.module.css' or its cor... Remove this comment to see the full error message
 import theme from './theme.module.css';
-// @ts-expect-error TS(2307): Cannot find module './ItemPage.module.css' or its ... Remove this comment to see the full error message
 import styles from './ItemPage.module.css';
-
 import { Action, Datapoint } from '../datamarts/ItemPage'; // Reuse components from datamarts theme
 import LinkButton from '../../LinkButton';
 import IconLabel from '../../IconLabel';
+import type { Item } from '../../types';
 
-const ItemPage = ({
-  itemData
-}: any) => {
-  if (!itemData?._id) return null;
+const ItemPage = ({ item }: { item: Item }) => {
+  if (!item._id) return null;
 
-  const { desc: description, title, custom_fields = {} } = itemData;
+  const { desc: description, title, custom_fields = {} } = item;
   const {
     access_details,
     access_request_url,
@@ -44,7 +36,7 @@ const ItemPage = ({
     'viz-database-widget_DATA': vizDatabaseWidgetItems,
     'datasets-widget_DATA': datasetsWidgetItems,
   } = custom_fields;
-  const htmlDescription = useConvertToHtml(description);
+  const htmlDescription = useConvertToHtml(description || '');
 
   return (
     <BaseItemPage className={theme.root} data-theme="posterchild">
@@ -61,11 +53,12 @@ const ItemPage = ({
       </div>
       <div className={styles.mainContent}>
         {project_image ? <img src={project_image} alt={title} /> : null}
-        <div
-          className={styles.htmlDescription}
-          // @ts-expect-error TS(2322): Type 'null' is not assignable to type 'string | Tr... Remove this comment to see the full error message
-          dangerouslySetInnerHTML={{ __html: htmlDescription }}
-        />
+        {htmlDescription && (
+          <div
+            className={styles.htmlDescription}
+            dangerouslySetInnerHTML={{ __html: htmlDescription }}
+          />
+        )}
       </div>
       <div className={styles.datapoints}>
         <Datapoint label="Initiative Type" data={initiative_type} />
@@ -82,7 +75,7 @@ const ItemPage = ({
         {key_supporters && (
           <Datapoint
             label="Key Supporters"
-            data={key_supporters.map((supporter: any) => <li>{supporter}</li>)}
+            data={`<ul>${key_supporters.map((s: string) => `<li>${s}</li>`).join('')}</ul>`}
           />
         )}
       </div>

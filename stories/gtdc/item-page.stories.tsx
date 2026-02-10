@@ -11,6 +11,6 @@ export default {
 
 export const ItemPage = () => (
   <ItemPageContainer>
-    <GtdcItemPage itemData={item} />
+    <GtdcItemPage item={item} />
   </ItemPageContainer>
 );

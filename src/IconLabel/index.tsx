@@ -1,21 +1,34 @@
+import type { ElementType } from 'react';
 import { findIcon, findIconByLabel } from '../settings/ICON_LIST';
-// @ts-expect-error TS(2307): Cannot find module './IconLabel.module.css' or its... Remove this comment to see the full error message
 import styles from './IconLabel.module.css';
+import clsx from 'clsx';
+
+interface IconLabelProps {
+  as?: ElementType;
+  icon?: string;
+  label: string;
+  type?: 'primary';
+}
 
 const IconLabel = ({
-  as = 'p',
+  as: Element = 'p',
   icon,
   label,
-  type = 'primary'
-}: any) => {
+  type = 'primary',
+}: IconLabelProps) => {
   const Icon = icon ? findIcon(icon) : findIconByLabel(label);
-  const Element = as;
-
   return (
-    <Element className={`${styles.iconLabel} ${styles[type]}`}>
+    <Element className={clsx(styles.iconLabel, styles[type])}>
       <span className={styles.iconContainer}>
-        // @ts-expect-error TS(2786): 'Icon' cannot be used as a JSX component.
-        {Icon && <Icon className={styles.icon} />}
+        {Icon && (
+          <Icon
+            className={
+              'icon' in styles && typeof styles.icon === 'string'
+                ? styles.icon
+                : undefined
+            }
+          />
+        )}
       </span>
       <span>{label}</span>
     </Element>

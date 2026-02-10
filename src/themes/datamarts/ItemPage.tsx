@@ -1,50 +1,48 @@
-import React from 'react';
-
 import BaseItemPage from '../../BaseItemPage';
 import useConvertToHtml from '../../hooks/use-convert-to-html';
 import { findIcon, findIconByLabel } from '../../settings/ICON_LIST';
-
-// @ts-expect-error TS(2307): Cannot find module './theme.module.css' or its cor... Remove this comment to see the full error message
 import theme from './theme.module.css';
-// @ts-expect-error TS(2307): Cannot find module './ItemPage.module.css' or its ... Remove this comment to see the full error message
 import styles from './ItemPage.module.css';
 import { convertFileSize } from '../../utils/text.utils';
+import type { Item } from '../../types';
 
 export const Action = ({
   icon,
   label,
-  url
-}: any) => {
+  url,
+}: {
+  icon: string;
+  label: string;
+  url: string;
+}) => {
   const Icon = icon ? findIcon(icon) : findIconByLabel(label);
-
   return url ? (
     <a className={styles.action} href={url} target="_blank">
-      <span className={styles.iconContainer}>
-        // @ts-expect-error TS(2604): JSX element type 'Icon' does not have any construc... Remove this comment to see the full error message
-        <Icon />
-      </span>
+      <span className={styles.iconContainer}>{Icon && <Icon />}</span>
       <span className={styles.actionLabel}>{label}</span>
     </a>
   ) : null;
 };
 
-export const Datapoint = ({
-  label,
-  data
-}: any) =>
-  data ? (
+export const Datapoint = ({ label, data }: { label: string; data: string }) => {
+  return data ? (
     <div className={styles.datapoint}>
       <h3 className={styles.datapointLabel}>{label}</h3>
-      <p className={styles.data}>{data}</p>
+      <p className={styles.data}>
+        {data.startsWith('<') ? (
+          <span dangerouslySetInnerHTML={{ __html: data }} />
+        ) : (
+          data
+        )}
+      </p>
     </div>
   ) : null;
+};
 
-const ItemPage = ({
-  itemData
-}: any) => {
-  if (!itemData?._id) return null;
+const ItemPage = ({ item }: { item: Item }) => {
+  if (!item?._id) return null;
 
-  const { desc: description, title, custom_fields = {} } = itemData;
+  const { desc: description, title, custom_fields } = item;
   const {
     category,
     dataset_documentation,
@@ -55,7 +53,7 @@ const ItemPage = ({
     size,
   } = custom_fields;
 
-  const htmlDescription = useConvertToHtml(description);
+  const htmlDescription = useConvertToHtml(description || '');
 
   return (
     <BaseItemPage className={theme.root} data-theme="datamarts">
@@ -68,8 +66,7 @@ const ItemPage = ({
         />
         <Action icon="BsDatabaseFillDown" label="Download Data" url={download_url} />
       </div>
-      // @ts-expect-error TS(2322): Type 'null' is not assignable to type 'string | Tr... Remove this comment to see the full error message
-      <div dangerouslySetInnerHTML={{ __html: htmlDescription }} />
+      {htmlDescription && <div dangerouslySetInnerHTML={{ __html: htmlDescription }} />}
       <div className={styles.datapoints}>
         <Datapoint label="Form Type" data={form_type} />
         <Datapoint label="Part(s)" data={part?.join(', ')} />

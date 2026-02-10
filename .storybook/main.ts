@@ -1,8 +1,7 @@
 import { mergeConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import type { StorybookConfig } from '@storybook/react-vite';
 
-/** @type { import('@storybook/react-vite').StorybookConfig } */
-const config = {
+const config: StorybookConfig = {
   framework: {
     name: '@storybook/react-vite',
     options: {},
@@ -18,7 +17,6 @@ const config = {
   },
   viteFinal: async (config) => {
     return mergeConfig(config, {
-      plugins: [react()],
       css: {
         modules: {
           localsConvention: 'camelCaseOnly',

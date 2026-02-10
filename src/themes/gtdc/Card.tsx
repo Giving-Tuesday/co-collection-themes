@@ -1,5 +1,3 @@
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'prop... Remove this comment to see the full error message
-import PropTypes from 'prop-types';
 import CardContent from '../../CardContent';
 import IconLabel from '../../IconLabel';
 import LinkButton from '../../LinkButton';
@@ -7,30 +5,25 @@ import Title from '../../Title';
 import ReadMore from '../../ReadMore';
 import BaseCard from '../../BaseCard';
 import { truncateText } from '../../utils/text.utils';
-import { linkTargetValidator } from '../../utils/prop-types.utils';
-
-// @ts-expect-error TS(2307): Cannot find module './theme.module.css' or its cor... Remove this comment to see the full error message
 import theme from './theme.module.css';
-// @ts-expect-error TS(2307): Cannot find module './Card.module.css' or its corr... Remove this comment to see the full error message
 import styles from './Card.module.css';
+import type { ElementType } from 'react';
+import type { Item } from '../../types';
 
-const Card = ({
-  CustomLink,
-  href,
-  item,
-  to
-}: any) => {
-  const { title } = item || {};
-  const { short_description, report_url } = item?.custom_fields || {};
+interface CardProps {
+  CustomLink?: ElementType | undefined;
+  href: string;
+  item: Item;
+}
+
+const Card = ({ CustomLink, href, item }: CardProps) => {
+  const { title } = item;
+  const { short_description, report_url } = item.custom_fields;
 
   return (
     <BaseCard className={theme.root} data-theme="gtdc">
       <CardContent position="middle">
-        <Title
-          {...{ CustomLink, href, to }}
-          text={truncateText(title, 40)}
-          height="52px"
-        />
+        <Title {...{ CustomLink, href }} text={truncateText(title, 40)} height="52px" />
         {short_description ? (
           <div
             className={styles.desc}
@@ -44,24 +37,10 @@ const Card = ({
         </LinkButton>
       </CardContent>
       <CardContent align="end" position="bottom">
-        <ReadMore {...{ CustomLink, href, label: 'Learn More', to }} />
+        <ReadMore {...{ CustomLink, href, label: 'Learn More' }} />
       </CardContent>
     </BaseCard>
   );
-};
-
-Card.propTypes = {
-  CustomLink: PropTypes.elementType,
-  href: linkTargetValidator,
-  to: linkTargetValidator,
-  item: PropTypes.shape({
-    title: PropTypes.string,
-    desc: PropTypes.string,
-    author: PropTypes.arrayOf(PropTypes.string),
-    custom_fields: PropTypes.shape({
-      location: PropTypes.string,
-    }),
-  }).isRequired,
 };
 
 export default Card;

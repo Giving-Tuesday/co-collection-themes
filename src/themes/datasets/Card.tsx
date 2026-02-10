@@ -1,23 +1,20 @@
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'prop... Remove this comment to see the full error message
-import PropTypes from 'prop-types';
 import Badge from '../../Badge';
 import CardContent from '../../CardContent';
 import Title from '../../Title';
-import { linkTargetValidator } from '../../utils/prop-types.utils';
 import BaseCard from '../../BaseCard';
 import { truncateText } from '../../utils/text.utils';
-
-// @ts-expect-error TS(2307): Cannot find module './theme.module.css' or its cor... Remove this comment to see the full error message
 import theme from './theme.module.css';
-// @ts-expect-error TS(2307): Cannot find module './Card.module.css' or its corr... Remove this comment to see the full error message
 import styles from './Card.module.css';
+import type { Item } from '../../types';
+import type { ElementType } from 'react';
 
-const Card = ({
-  CustomLink,
-  href,
-  item,
-  to
-}: any) => {
+interface CardProps {
+  CustomLink?: ElementType | undefined;
+  href: string;
+  item: Item;
+}
+
+const Card = ({ CustomLink, href, item }: CardProps) => {
   const { title, custom_fields = {} } = item;
   const { dataset_type, short_desc } = custom_fields;
   return (
@@ -31,29 +28,13 @@ const Card = ({
             <img className={styles.img} src={custom_fields.dataset_image} />
           ) : null}
         </div>
-        <Title {...{ CustomLink, href, to }} text={title} className={styles.title} />
+        <Title {...{ CustomLink, href }} text={title} className={styles.title} />
         {short_desc ? (
           <p className={styles.shortDesc}>{truncateText(short_desc, 280)}</p>
         ) : null}
       </CardContent>
     </BaseCard>
   );
-};
-
-Card.propTypes = {
-  CustomLink: PropTypes.elementType,
-  href: linkTargetValidator,
-  to: linkTargetValidator,
-  item: PropTypes.shape({
-    title: PropTypes.string,
-    desc: PropTypes.string,
-    author: PropTypes.arrayOf(PropTypes.string),
-    custom_fields: PropTypes.shape({
-      dataset_image: PropTypes.string,
-      dataset_type: PropTypes.string,
-      short_desc: PropTypes.string,
-    }),
-  }).isRequired,
 };
 
 export default Card;

@@ -1,17 +1,10 @@
 // Import theme CSS modules for widget styling
-// @ts-expect-error TS(2307): Cannot find module '../themes/african-giving-tradi... Remove this comment to see the full error message
 import africanGivingTraditionsStyles from '../themes/african-giving-traditions/theme.module.css';
-// @ts-expect-error TS(2307): Cannot find module '../themes/datamarts/theme.modu... Remove this comment to see the full error message
 import datamartsStyles from '../themes/datamarts/theme.module.css';
-// @ts-expect-error TS(2307): Cannot find module '../themes/datasets/theme.modul... Remove this comment to see the full error message
 import datasetsStyles from '../themes/datasets/theme.module.css';
-// @ts-expect-error TS(2307): Cannot find module '../themes/gtrex/theme.module.c... Remove this comment to see the full error message
 import gtrexStyles from '../themes/gtrex/theme.module.css';
-// @ts-expect-error TS(2307): Cannot find module '../themes/gtdc/theme.module.cs... Remove this comment to see the full error message
 import gtdcStyles from '../themes/gtdc/theme.module.css';
-// @ts-expect-error TS(2307): Cannot find module '../themes/problems-solutions/t... Remove this comment to see the full error message
 import problemsSolutionsStyles from '../themes/problems-solutions/theme.module.css';
-// @ts-expect-error TS(2307): Cannot find module '../themes/viz-database/theme.m... Remove this comment to see the full error message
 import vizDatabaseStyles from '../themes/viz-database/theme.module.css';
 
 // Map theme names to their CSS modules
