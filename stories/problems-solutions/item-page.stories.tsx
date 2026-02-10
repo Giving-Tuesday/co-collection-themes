@@ -11,6 +11,6 @@ export default {
 
 export const ItemPage = () => (
   <ItemPageContainer>
-    <ProblemsSolutionsItemPage itemData={item} />
+    <ProblemsSolutionsItemPage item={item} />
   </ItemPageContainer>
 );

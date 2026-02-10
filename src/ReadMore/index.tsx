@@ -1,21 +1,32 @@
-// @ts-expect-error TS(2307): Cannot find module './readMore.module.css' or its ... Remove this comment to see the full error message
+import type { ElementType } from 'react';
 import styles from './readMore.module.css';
+
+interface ReadMoreProps {
+  CustomLink?: ElementType | undefined;
+  href: string;
+  label?: string;
+  align?: 'right';
+}
 
 const ReadMore = ({
   CustomLink,
   href,
-  to,
   label = 'Read More',
-  align = 'right'
-}: any) => {
+  align = 'right',
+}: ReadMoreProps) => {
   const justify = align === 'right' ? 'flex-end' : 'flex-start';
 
   return (
     <div className={styles.wrapper} style={{ justifyContent: justify }}>
-      {to ? (
-        <CustomLink to={to}>{label}</CustomLink>
+      {CustomLink ? (
+        <CustomLink href={href}>{label}</CustomLink>
       ) : (
-        <a href={href} className={styles.link}>
+        <a
+          href={href}
+          className={
+            'link' in styles && typeof styles.link === 'string' ? styles.link : undefined
+          }
+        >
           {label}
         </a>
       )}

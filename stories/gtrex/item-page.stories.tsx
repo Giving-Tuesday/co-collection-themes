@@ -11,6 +11,6 @@ export default {
 
 export const ItemPage = () => (
   <ItemPageContainer>
-    <GtrexItemPage itemData={item} />
+    <GtrexItemPage item={item} />
   </ItemPageContainer>
 );

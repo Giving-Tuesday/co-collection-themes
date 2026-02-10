@@ -9,7 +9,7 @@
     // See also https://aka.ms/tsconfig/module
     "module": "esnext",
     "target": "es2016",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "esModuleInterop": true,
     "resolveJsonModule": true,
 
@@ -30,6 +30,8 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   }
 }

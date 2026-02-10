@@ -1,6 +1,4 @@
 import { getThemeCard } from '../utils/card-themes.utils';
-
-// @ts-expect-error TS(2307): Cannot find module './Widget.module.css' or its co... Remove this comment to see the full error message
 import styles from './Widget.module.css';
 
 const Widget = ({

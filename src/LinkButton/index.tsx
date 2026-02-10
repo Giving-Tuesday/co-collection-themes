@@ -1,5 +1,16 @@
-// @ts-expect-error TS(2307): Cannot find module './LinkButton.module.css' or it... Remove this comment to see the full error message
+import type { HTMLAttributes, ReactNode } from 'react';
 import styles from './LinkButton.module.css';
+import clsx from 'clsx';
+
+interface LinkButtonProps extends HTMLAttributes<HTMLAnchorElement> {
+  url: string;
+  children: ReactNode;
+  type?: 'primary';
+  newWindow?: boolean;
+  xsmall?: boolean;
+  small?: boolean;
+  isCentered?: boolean;
+}
 
 const LinkButton = ({
   url,
@@ -10,24 +21,19 @@ const LinkButton = ({
   small,
   isCentered,
   ...props
-}: any) => {
+}: LinkButtonProps) => {
   if (!url || url.length === 0) return null;
-
-  const classNames = [
-    styles.linkButton,
-    styles[type],
-    xsmall && styles.xsmall,
-    small && styles.small,
-    isCentered && styles.isCentered,
-  ]
-    .filter(Boolean)
-    .join(' ');
-
   return (
     <a
       href={url}
-      className={classNames}
-      {...(newWindow ? { target: '_blank' } : {})}
+      className={clsx(
+        styles.linkButton,
+        styles[type],
+        xsmall && styles.xsmall,
+        small && styles.small,
+        isCentered && styles.isCentered,
+      )}
+      {...{ target: newWindow ? '_blank' : undefined }}
       {...props}
     >
       {children}

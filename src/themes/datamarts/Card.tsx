@@ -1,40 +1,34 @@
 import { FaStar } from 'react-icons/fa6';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'prop... Remove this comment to see the full error message
-import PropTypes from 'prop-types';
 import Badge from '../../Badge';
 import CardContent from '../../CardContent';
 import Title from '../../Title';
 import ReadMore from '../../ReadMore';
-import { linkTargetValidator } from '../../utils/prop-types.utils';
 import BaseCard from '../../BaseCard';
 import { arrayToString, convertFileSize, truncateText } from '../../utils/text.utils';
-
-// @ts-expect-error TS(2307): Cannot find module './theme.module.css' or its cor... Remove this comment to see the full error message
 import theme from './theme.module.css';
-// @ts-expect-error TS(2307): Cannot find module './Card.module.css' or its corr... Remove this comment to see the full error message
 import styles from './Card.module.css';
+import type { Item } from '../../types';
+import type { ElementType } from 'react';
 
-const Card = ({
-  CustomLink,
-  href,
-  item,
-  to
-}: any) => {
+interface CardProps {
+  CustomLink?: ElementType | undefined;
+  href: string;
+  item: Item;
+}
+
+const Card = ({ CustomLink, href, item }: CardProps) => {
   const { title, desc, custom_fields = {} } = item;
   const { form_type, recently_added, size } = custom_fields;
 
   return (
-    <BaseCard
-      className={`${theme.root} ${recently_added ? theme.recentlyAddedBorder : ''}   `}
-      data-theme="datamarts"
-    >
+    <BaseCard className={theme.root} data-theme="datamarts">
       <CardContent position="top">
         <Badge>{form_type}</Badge>
         <p className={styles.fileSize}>{convertFileSize(size)}</p>
       </CardContent>
       <CardContent position="middle">
         <Title
-          {...{ CustomLink, href, to }}
+          {...{ CustomLink, href }}
           text={title}
           height="52px"
           className={styles.title}
@@ -45,36 +39,18 @@ const Card = ({
         {desc ? <p className={styles.desc}>{truncateText(desc, 110)}</p> : null}
       </CardContent>
       <CardContent align="end" position="bottom">
-        <ReadMore {...{ CustomLink, href, label: 'Learn More', to }} />
+        <ReadMore {...{ CustomLink, href, label: 'Learn More' }} />
       </CardContent>
       {recently_added ? (
         <>
           <span className={styles.recentlyAdded} />
           <span className={styles.recentIcon}>
-            // @ts-expect-error TS(2786): 'FaStar' cannot be used as a JSX component.
             <FaStar />
           </span>
         </>
       ) : null}
     </BaseCard>
   );
-};
-
-Card.propTypes = {
-  CustomLink: PropTypes.elementType,
-  href: linkTargetValidator,
-  to: linkTargetValidator,
-  item: PropTypes.shape({
-    title: PropTypes.string,
-    desc: PropTypes.string,
-    author: PropTypes.arrayOf(PropTypes.string),
-    custom_fields: PropTypes.shape({
-      form_type: PropTypes.string,
-      part: PropTypes.arrayOf(PropTypes.string),
-      recently_added: PropTypes.bool,
-      size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    }),
-  }).isRequired,
 };
 
 export default Card;

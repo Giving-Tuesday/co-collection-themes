@@ -11,6 +11,6 @@ export default {
 
 export const ItemPage = () => (
   <ItemPageContainer>
-    <DatamartsItemPage itemData={item} />
+    <DatamartsItemPage item={item} />
   </ItemPageContainer>
 );

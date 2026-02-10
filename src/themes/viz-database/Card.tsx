@@ -1,22 +1,19 @@
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'prop... Remove this comment to see the full error message
-import PropTypes from 'prop-types';
 import CardContent from '../../CardContent';
 import Title from '../../Title';
-import { linkTargetValidator } from '../../utils/prop-types.utils';
 import BaseCard from '../../BaseCard';
 import { getDataYearsLabels } from '../../utils/text.utils';
-
-// @ts-expect-error TS(2307): Cannot find module './theme.module.css' or its cor... Remove this comment to see the full error message
 import theme from './theme.module.css';
-// @ts-expect-error TS(2307): Cannot find module './Card.module.css' or its corr... Remove this comment to see the full error message
 import styles from './Card.module.css';
+import type { ElementType } from 'react';
+import type { Item } from '../../types';
 
-const Card = ({
-  CustomLink,
-  href,
-  item,
-  to
-}: any) => {
+interface CardProps {
+  CustomLink?: ElementType | undefined;
+  href: string;
+  item: Item;
+}
+
+const Card = ({ CustomLink, href, item }: CardProps) => {
   const { title, custom_fields = {} } = item;
   const { data_years, image_url } = custom_fields;
 
@@ -29,7 +26,7 @@ const Card = ({
       </CardContent>
       <CardContent fill position="middle">
         <Title
-          {...{ CustomLink, href, to }}
+          {...{ CustomLink, href }}
           text={item.title}
           height="100px"
           className={styles.title}
@@ -42,18 +39,6 @@ const Card = ({
       </CardContent>
     </BaseCard>
   );
-};
-
-Card.propTypes = {
-  CustomLink: PropTypes.elementType,
-  href: linkTargetValidator,
-  to: linkTargetValidator,
-  item: PropTypes.shape({
-    title: PropTypes.string,
-    desc: PropTypes.string,
-    author: PropTypes.arrayOf(PropTypes.string),
-    custom_fields: PropTypes.shape({}),
-  }).isRequired,
 };
 
 export default Card;

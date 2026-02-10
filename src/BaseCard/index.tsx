@@ -1,40 +1,23 @@
-// @ts-expect-error TS(2307): Cannot find module './BaseCard.module.css' or its ... Remove this comment to see the full error message
 import styles from './BaseCard.module.css';
-// @ts-expect-error TS(2307): Cannot find module '../BaseItemPage/BaseItemPage.m... Remove this comment to see the full error message
 import pageStyles from '../BaseItemPage/BaseItemPage.module.css';
+import type { HTMLAttributes, ReactNode } from 'react';
+import clsx from 'clsx';
 
-/**
- * @file Provides a reusable, styled card container for consistent layout and spacing across the app.
- * Exports the BaseCard component and a CardWrapper alias for semantic usage.
- */
+interface BaseCardProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
+}
 
-/**
- * A presentational wrapper that applies the project's standard card styling.
- * Combines the global "daro-card" class with CSS Module classes (base and wrapper),
- * allows additional classes via className, and forwards standard div attributes.
- *
- * Use this component to wrap arbitrary content in a consistently styled card across the app.
- *
- * @component
- * @param {Object} props - Component props.
- * @param {import('react').ReactNode} props.children - Content to render inside the card.
- * @param {import('react').CSSProperties} [props.style] - Inline styles for the root div.
- * @param {string} [props.className] - Extra class names appended to the default classes.
- * @param {...any} [rest] - Additional DOM attributes (e.g., id, onClick, data-*, aria-*) forwarded to the root div.
- * @returns {JSX.Element} A styled div that wraps its children.
- */
-
-const BaseCard = ({
-  children,
-  style,
-  className = '',
-  ...rest
-}: any) => {
+const BaseCard = ({ children, className, ...props }: BaseCardProps) => {
   return (
     <div
-      className={`daro-card ${pageStyles.base} ${styles.base} ${styles.wrapper} ${className}`.trim()}
-      style={style}
-      {...rest}
+      className={clsx(
+        'daro-card',
+        pageStyles.base,
+        styles.base,
+        styles.wrapper,
+        className,
+      )}
+      {...props}
     >
       {children}
     </div>

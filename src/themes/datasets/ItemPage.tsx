@@ -1,21 +1,14 @@
-import React from 'react';
-
 import BaseItemPage from '../../BaseItemPage';
 import useConvertToHtml from '../../hooks/use-convert-to-html';
-
-// @ts-expect-error TS(2307): Cannot find module './theme.module.css' or its cor... Remove this comment to see the full error message
 import theme from './theme.module.css';
-// @ts-expect-error TS(2307): Cannot find module './ItemPage.module.css' or its ... Remove this comment to see the full error message
 import styles from './ItemPage.module.css';
+import { Action, Datapoint } from '../datamarts/ItemPage';
+import type { Item } from '../../types';
 
-import { Action, Datapoint } from '../datamarts/ItemPage'; // Reuse components from datamarts theme
+const ItemPage = ({ item }: { item: Item }) => {
+  if (!item?._id) return null;
 
-const ItemPage = ({
-  itemData
-}: any) => {
-  if (!itemData?._id) return null;
-
-  const { author, desc: description, title, custom_fields = {} } = itemData;
+  const { author, desc: description, title, custom_fields } = item;
   const {
     access_level,
     access_request,
@@ -29,7 +22,7 @@ const ItemPage = ({
     website_url,
   } = custom_fields;
 
-  const htmlDescription = useConvertToHtml(description);
+  const htmlDescription = useConvertToHtml(description || '');
   const gtdcProjectHtml = useConvertToHtml(gtdc_project);
 
   return (
@@ -46,31 +39,21 @@ const ItemPage = ({
       </div>
       <div className={styles.mainContent}>
         {dataset_image ? <img src={dataset_image} alt={title} /> : null}
-        <div
-          className={styles.htmlDescription}
-          // @ts-expect-error TS(2322): Type 'null' is not assignable to type 'string | Tr... Remove this comment to see the full error message
-          dangerouslySetInnerHTML={{ __html: htmlDescription }}
-        />
+        {htmlDescription && (
+          <div
+            className={styles.htmlDescription}
+            dangerouslySetInnerHTML={{ __html: htmlDescription }}
+          />
+        )}
       </div>
       <div className={styles.datapoints}>
         <Datapoint label="Dataset Type" data={dataset_type} />
-        // @ts-expect-error TS(2339): Property 'length' does not exist on type 'never'.
-        {gtdcProjectHtml?.length > 0 ? (
-          <Datapoint
-            label="Associated GivingTuesday Initiative"
-            data={
-              <span
-                dangerouslySetInnerHTML={{
-                  // @ts-expect-error TS(2322): Type 'null' is not assignable to type 'string | Tr... Remove this comment to see the full error message
-                  __html: gtdcProjectHtml,
-                }}
-              />
-            }
-          />
+        {gtdcProjectHtml && gtdcProjectHtml?.length > 0 ? (
+          <Datapoint label="Associated GivingTuesday Initiative" data={gtdcProjectHtml} />
         ) : null}
-        <Datapoint label="Topic(s)" data={topics?.join(', ')} />
-        <Datapoint label="Author(s)" data={author?.join(', ')} />
-        <Datapoint label="Region(s)" data={region?.join(', ')} />
+        {topics && <Datapoint label="Topic(s)" data={topics.join(', ')} />}
+        {author && <Datapoint label="Author(s)" data={author.join(', ')} />}
+        {region && <Datapoint label="Region(s)" data={region.join(', ')} />}
         <Datapoint label="Access Level" data={access_level} />
         <Datapoint label="Latest Data" data={year_published} />
       </div>

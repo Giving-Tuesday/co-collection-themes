@@ -3,7 +3,7 @@
  * @param {*} val
  * @returns {string}
  */
-export const displayArrayItems = (val: any) => {
+export const displayArrayItems = (val: string[] | string) => {
   return Array.isArray(val) ? val.join(', ') : val;
 };
 
