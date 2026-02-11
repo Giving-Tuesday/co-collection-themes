@@ -30,8 +30,8 @@ const ItemPageWidget = ({
       className={clsx(
         'daro-widget',
         styles.base,
-        // @ts-expect-error styles any
-        styles[`count${Math.min(itemCount, maxCardsPerRow)}`],
+
+        styles[`count${Math.min(itemCount, maxCardsPerRow)}` as keyof typeof styles],
         styles.widgetWrapper,
       )}
     >

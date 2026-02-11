@@ -1,12 +1,11 @@
-import type { ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 import styles from './CardContent.module.css';
 import clsx from 'clsx';
 
-interface IconLabelProps {
+interface IconLabelProps extends HTMLAttributes<HTMLDivElement> {
   align?: 'start' | 'center' | 'end' | 'between';
   fill?: boolean;
   position?: 'top' | 'middle' | 'bottom';
-  className?: string;
   children: ReactNode;
 }
 

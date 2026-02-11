@@ -3,8 +3,10 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import postcss from 'rollup-plugin-postcss';
 import dts from 'rollup-plugin-dts';
-import packageJson from './package.json' with { type: 'json' };
 import typescript from '@rollup/plugin-typescript';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+const packageJson = require('./package.json');
 
 const external = [
   ...Object.keys(packageJson.peerDependencies || {}),
@@ -24,6 +26,8 @@ export default [
       typescript({
         tsconfig: './tsconfig.json',
         declaration: false,
+        declarationMap: false,
+        sourceMap: true,
       }),
       postcss({
         modules: true,
