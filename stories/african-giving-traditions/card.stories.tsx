@@ -1,7 +1,7 @@
 import { AfricanGivingTraditionsCard } from '../../src';
 import item from '../_mocks/african-giving-traditions-item.json';
 import CardContainer from '../_decorators/CardContainer';
-import { Item } from '../../src/types';
+import type { Item } from '../../src/types';
 
 export default {
   title: 'Themes/African Giving Traditions',

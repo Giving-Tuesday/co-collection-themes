@@ -1,5 +1,5 @@
 import { GtdcItemPage } from '../../src';
-import { Item } from '../../src/types';
+import type { Item } from '../../src/types';
 import ItemPageContainer from '../_decorators/ItemPageContainer';
 import item from '../_mocks/gtdc-item.json';
 
