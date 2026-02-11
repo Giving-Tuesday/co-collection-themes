@@ -9,10 +9,10 @@ import theme from './theme.module.css';
 import styles from './ItemPage.module.css';
 import LinkButton from '../../LinkButton';
 import IconLabel from '../../IconLabel';
-import ItemPageWidget from '../../Widget/ItemPageWidget';
 import { Card as VizDatabaseCard } from '../viz-database';
 import type { ReactNode } from 'react';
 import type { Item } from '../../types';
+import Widget from '../../Widget';
 
 const SidebarItem = ({ icon, text }: { icon: ReactNode; text: string }) => {
   return (
@@ -134,8 +134,8 @@ const ItemPage = ({ item }: { item: Item }) => {
       </div>
 
       {widgetVizLibraryItems?.length > 0 ? (
-        <ItemPageWidget
-          isItemPageWidget
+        <Widget
+          type="item-page"
           items={widgetVizLibraryItems}
           CardComponent={VizDatabaseCard}
           embedUrl="https://www.givingtuesday.org/visualizations-library"
