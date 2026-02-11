@@ -1,7 +1,7 @@
 import { GtdcCard } from '../../src';
 import item from '../_mocks/gtdc-item.json';
 import CardContainer from '../_decorators/CardContainer';
-import { Item } from '../../src/types';
+import type { Item } from '../../src/types';
 
 export default {
   title: 'Themes/Gtdc',

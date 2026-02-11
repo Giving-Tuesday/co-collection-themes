@@ -1,5 +1,5 @@
 import { ProblemsSolutionsCard } from '../../src';
-import { Item } from '../../src/types';
+import type { Item } from '../../src/types';
 import CardContainer from '../_decorators/CardContainer';
 import item from '../_mocks/problems-solutions-item.json';
 
