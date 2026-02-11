@@ -5,10 +5,11 @@ import LinkButton from './LinkButton';
 import Title from './Title';
 import ReadMore from './ReadMore';
 import Widget from './Widget';
+import { Modal } from './Dialog/Modal';
 
 export { getThemeCard, cardThemes } from './utils/card-themes.utils';
 export { getThemeItemPage, itemPageThemes } from './utils/item-page-themes.utils';
 
 export * from './themes';
 
-export { Badge, CardContent, IconLabel, LinkButton, Title, ReadMore, Widget };
+export { Badge, CardContent, IconLabel, LinkButton, Title, ReadMore, Widget, Modal };
