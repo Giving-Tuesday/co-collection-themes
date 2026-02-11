@@ -1,7 +1,6 @@
 import { DatamartsItemPage } from '../../src';
-
+import { Item } from '../../src/types';
 import ItemPageContainer from '../_decorators/ItemPageContainer';
-// @ts-expect-error TS(2732): Cannot find module '../_mocks/datamarts-item.json'... Remove this comment to see the full error message
 import item from '../_mocks/datamarts-item.json';
 
 export default {
@@ -11,6 +10,6 @@ export default {
 
 export const ItemPage = () => (
   <ItemPageContainer>
-    <DatamartsItemPage item={item} />
+    <DatamartsItemPage item={item as Item} />
   </ItemPageContainer>
 );

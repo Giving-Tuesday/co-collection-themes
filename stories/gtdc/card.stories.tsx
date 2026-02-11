@@ -1,8 +1,7 @@
 import { GtdcCard } from '../../src';
-
-// @ts-expect-error TS(2732): Cannot find module '../_mocks/gtdc-item.json'. Con... Remove this comment to see the full error message
 import item from '../_mocks/gtdc-item.json';
 import CardContainer from '../_decorators/CardContainer';
+import { Item } from '../../src/types';
 
 export default {
   title: 'Themes/Gtdc',
@@ -10,4 +9,4 @@ export default {
   decorators: [(Story: any) => <CardContainer>{Story()}</CardContainer>],
 };
 
-export const Card = () => <GtdcCard item={item} />;
+export const Card = () => <GtdcCard item={item as Item} href="" />;
