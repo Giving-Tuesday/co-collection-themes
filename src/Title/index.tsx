@@ -1,13 +1,12 @@
-import type { ElementType, CSSProperties } from 'react';
+import type { ElementType, CSSProperties, HTMLAttributes } from 'react';
 import styles from './title.module.css';
 import clsx from 'clsx';
 
-interface TitleProps {
+interface TitleProps extends HTMLAttributes<HTMLParagraphElement> {
   CustomLink?: ElementType | undefined;
   href: string;
   text: string;
   height?: CSSProperties['height'];
-  className?: string;
 }
 
 const Title = ({ className, CustomLink, height, href, text }: TitleProps) => {
