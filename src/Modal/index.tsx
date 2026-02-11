@@ -10,7 +10,7 @@ interface ModalProps {
   title?: string;
 }
 
-export const Modal = ({ open, onOpenChange, children, title }: ModalProps) => (
+const Modal = ({ open, onOpenChange, children, title }: ModalProps) => (
   <Dialog.Root open={open} onOpenChange={onOpenChange}>
     <Dialog.Portal>
       <Dialog.Overlay className={styles.Overlay} />
@@ -26,3 +26,5 @@ export const Modal = ({ open, onOpenChange, children, title }: ModalProps) => (
     </Dialog.Portal>
   </Dialog.Root>
 );
+
+export default Modal;
