@@ -1,7 +1,6 @@
 import { DatamartsCard } from '../../src';
-
+import { Item } from '../../src/types';
 import CardContainer from '../_decorators/CardContainer';
-// @ts-expect-error TS(2732): Cannot find module '../_mocks/datamarts-item.json'... Remove this comment to see the full error message
 import item from '../_mocks/datamarts-item.json';
 
 export default {
@@ -12,9 +11,15 @@ export default {
 
 export const Card = () => (
   <>
-    <DatamartsCard item={item} />
+    <DatamartsCard item={item as Item} href="" />
     <DatamartsCard
-      item={{ ...item, custom_fields: { ...item.custom_fields, recently_added: false } }}
+      item={
+        {
+          ...item,
+          custom_fields: { ...item.custom_fields, recently_added: false },
+        } as Item
+      }
+      href=""
     />
   </>
 );
