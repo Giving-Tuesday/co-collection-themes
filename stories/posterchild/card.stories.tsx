@@ -1,5 +1,5 @@
 import { PosterchildCard } from '../../src';
-import { Item } from '../../src/types';
+import type { Item } from '../../src/types';
 import item from '../_mocks/posterchild-item.json';
 import CardContainer from '../_decorators/CardContainer';
 
