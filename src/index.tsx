@@ -5,7 +5,7 @@ import LinkButton from './LinkButton';
 import Title from './Title';
 import ReadMore from './ReadMore';
 import Widget from './Widget';
-import { Modal } from './Dialog/Modal';
+import Modal from './Modal';
 
 export { getThemeCard, cardThemes } from './utils/card-themes.utils';
 export { getThemeItemPage, itemPageThemes } from './utils/item-page-themes.utils';
