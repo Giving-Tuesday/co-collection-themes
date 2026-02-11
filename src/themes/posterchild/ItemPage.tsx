@@ -2,7 +2,6 @@ import BaseItemPage from '../../BaseItemPage';
 import { Card as GtrexCard } from '../gtrex';
 import { Card as VizDatabaseCard } from '../viz-database';
 import { Card as DatasetsCard } from '../datasets';
-import ItemPageWidget from '../../Widget/ItemPageWidget';
 import useConvertToHtml from '../../hooks/use-convert-to-html';
 import theme from './theme.module.css';
 import styles from './ItemPage.module.css';
@@ -10,6 +9,7 @@ import { Action, Datapoint } from '../datamarts/ItemPage'; // Reuse components f
 import LinkButton from '../../LinkButton';
 import IconLabel from '../../IconLabel';
 import type { Item } from '../../types';
+import Widget from '../../Widget';
 
 const ItemPage = ({ item }: { item: Item }) => {
   if (!item._id) return null;
@@ -84,7 +84,8 @@ const ItemPage = ({ item }: { item: Item }) => {
           <h3 className={styles.widgetTitle}>
             Reports and Publications from this Project
           </h3>
-          <ItemPageWidget
+          <Widget
+            type="item-page"
             items={givingLabWidgetItems}
             CardComponent={GtrexCard}
             embedUrl="https://www.givingtuesday.org/resource-exchange/library"
@@ -98,7 +99,8 @@ const ItemPage = ({ item }: { item: Item }) => {
       {vizDatabaseWidgetItems?.length > 0 ? (
         <div className={styles.widgetWrapper}>
           <h3 className={styles.widgetTitle}>Visualizations from this this Project</h3>
-          <ItemPageWidget
+          <Widget
+            type="item-page"
             items={vizDatabaseWidgetItems}
             CardComponent={VizDatabaseCard}
             embedUrl="https://www.givingtuesday.org/visualizations-library"
@@ -114,7 +116,8 @@ const ItemPage = ({ item }: { item: Item }) => {
       {datasetsWidgetItems?.length > 0 ? (
         <div className={styles.widgetWrapper}>
           <h3 className={styles.widgetTitle}>Datasets Associated with this Project</h3>
-          <ItemPageWidget
+          <Widget
+            type="item-page"
             items={datasetsWidgetItems}
             CardComponent={DatasetsCard}
             embedUrl="https://data.givingtuesday.org/datasets"
