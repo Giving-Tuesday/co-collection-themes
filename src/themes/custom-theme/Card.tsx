@@ -6,12 +6,7 @@ import BaseCard from '../../BaseCard';
 import { truncateText } from '../../utils/text.utils';
 import theme from './theme.module.css';
 import styles from './Card.module.css';
-import type { Item } from '../../types';
-
-interface CardProps {
-  href: string;
-  item: Item;
-}
+import type { CardProps } from '../../types';
 
 const Card = ({ href, item }: CardProps) => {
   const { author, title, custom_fields = {} } = item;
