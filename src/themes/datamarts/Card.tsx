@@ -7,16 +7,9 @@ import BaseCard from '../../BaseCard';
 import { arrayToString, convertFileSize, truncateText } from '../../utils/text.utils';
 import theme from './theme.module.css';
 import styles from './Card.module.css';
-import type { Item } from '../../types';
-import type { ElementType } from 'react';
+import type { CardProps } from '../../types';
 
-interface CardProps {
-  CustomLink?: ElementType | undefined;
-  href: string;
-  item: Item;
-}
-
-const Card = ({ CustomLink, href, item }: CardProps) => {
+const Card = ({ CustomLink, href, item, setItem }: CardProps) => {
   const { title, desc, custom_fields = {} } = item;
   const { form_type, recently_added, size } = custom_fields;
 
@@ -28,7 +21,7 @@ const Card = ({ CustomLink, href, item }: CardProps) => {
       </CardContent>
       <CardContent position="middle">
         <Title
-          {...{ CustomLink, href }}
+          {...{ CustomLink, href, setItem }}
           text={title}
           height="52px"
           className={styles.title}
@@ -39,7 +32,7 @@ const Card = ({ CustomLink, href, item }: CardProps) => {
         {desc ? <p className={styles.desc}>{truncateText(desc, 110)}</p> : null}
       </CardContent>
       <CardContent align="end" position="bottom">
-        <ReadMore {...{ CustomLink, href, label: 'Learn More' }} />
+        <ReadMore {...{ CustomLink, href, setItem, label: 'Learn More' }} />
       </CardContent>
       {recently_added ? (
         <>

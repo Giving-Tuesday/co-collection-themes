@@ -6,17 +6,10 @@ import BaseCard from '../../BaseCard';
 import { truncateText } from '../../utils/text.utils';
 import theme from './theme.module.css';
 import styles from './Card.module.css';
-import type { Item } from '../../types';
-import type { ElementType } from 'react';
+import type { CardProps } from '../../types';
 
-interface CardProps {
-  CustomLink?: ElementType | undefined;
-  href: string;
-  item: Item;
-}
-
-const Card = ({ CustomLink, href, item }: CardProps) => {
-  const { author, title, custom_fields = {} } = item;
+const Card = ({ CustomLink, href, item, setItem }: CardProps) => {
+  const { author, title, custom_fields } = item;
   const { item_type, short_desc } = custom_fields;
 
   return (
@@ -25,7 +18,7 @@ const Card = ({ CustomLink, href, item }: CardProps) => {
         {item_type ? <IconLabel label={item_type} /> : null}
       </CardContent>
       <CardContent position="middle">
-        <Title {...{ CustomLink, href }} text={title} className={styles.title} />
+        <Title {...{ CustomLink, href, setItem }} text={title} className={styles.title} />
         <div className={styles.authorContainer}>
           {author && author.length > 0 ? (
             <p className={styles.author}>by {truncateText(author.join(', '), 100)}</p>
@@ -41,7 +34,7 @@ const Card = ({ CustomLink, href, item }: CardProps) => {
         ) : null}
       </CardContent>
       <CardContent align="end" position="bottom">
-        <ReadMore {...{ CustomLink, href }} />
+        <ReadMore {...{ CustomLink, href, setItem }} />
       </CardContent>
     </BaseCard>
   );

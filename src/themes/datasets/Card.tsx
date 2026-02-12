@@ -5,16 +5,9 @@ import BaseCard from '../../BaseCard';
 import { truncateText } from '../../utils/text.utils';
 import theme from './theme.module.css';
 import styles from './Card.module.css';
-import type { Item } from '../../types';
-import type { ElementType } from 'react';
+import type { CardProps } from '../../types';
 
-interface CardProps {
-  CustomLink?: ElementType | undefined;
-  href: string;
-  item: Item;
-}
-
-const Card = ({ CustomLink, href, item }: CardProps) => {
+const Card = ({ CustomLink, href, item, setItem }: CardProps) => {
   const { title, custom_fields = {} } = item;
   const { dataset_type, short_desc } = custom_fields;
   return (
@@ -28,7 +21,7 @@ const Card = ({ CustomLink, href, item }: CardProps) => {
             <img className={styles.img} src={custom_fields.dataset_image} />
           ) : null}
         </div>
-        <Title {...{ CustomLink, href }} text={title} className={styles.title} />
+        <Title {...{ CustomLink, href, setItem }} text={title} className={styles.title} />
         {short_desc ? (
           <p className={styles.shortDesc}>{truncateText(short_desc, 280)}</p>
         ) : null}

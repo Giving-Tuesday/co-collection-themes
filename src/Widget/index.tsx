@@ -3,6 +3,10 @@ import type { Item } from '../types';
 import clsx from 'clsx';
 import { getThemeCard } from '../utils/card-themes.utils';
 import { Card as DefaultCard } from '../themes/gtrex';
+import type { ComponentType } from 'react';
+import { ItemPage as DefaultPage } from '../themes/gtrex';
+import { getThemeItemPage } from '../utils/item-page-themes.utils';
+import { useItemModal } from '../hooks/useItemModal';
 
 interface ItemPageWidgetProps extends CommonWidgetProps {
   type: 'item-page';
@@ -24,28 +28,36 @@ type WidgetProps = ItemPageWidgetProps | EmbedWidgetProps;
 
 const Widget = (props: WidgetProps) => {
   const { items, embedUrl, type } = props;
-  let Card: React.ComponentType<any>;
+  const { ItemModal, openItem } = useItemModal();
+  let Card: ComponentType<any> = DefaultCard;
+  let ItemPage: ComponentType<{ item: Item }> = DefaultPage;
   let showYear = true;
 
   if (type === 'embed') {
     const EmbedCard = getThemeCard(props.theme);
     if (EmbedCard) Card = EmbedCard;
+    const ThemePage = getThemeItemPage(props.theme);
+    if (ThemePage) ItemPage = ThemePage;
   } else {
     Card = props.CardComponent || DefaultCard;
     showYear = !!props.showYear;
   }
 
   return (
-    <div className={clsx('daro-widget', styles.base, styles.widgetWrapper)}>
-      {items.map((item) => (
-        <Card
-          href={`${embedUrl}?co-item=${item.slug}&from=widget`}
-          item={item}
-          key={item._id}
-          showYear={showYear}
-        />
-      ))}
-    </div>
+    <>
+      <div className={clsx('daro-widget', styles.base, styles.widgetWrapper)}>
+        {items.map((item) => (
+          <Card
+            href={`${embedUrl}?co-item=${item.slug}&from=widget`}
+            item={item}
+            key={item._id}
+            showYear={showYear}
+            setItem={() => openItem(item)}
+          />
+        ))}
+      </div>
+      <ItemModal ItemPage={ItemPage} />
+    </>
   );
 };
 
