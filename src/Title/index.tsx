@@ -1,22 +1,15 @@
-import type {
-  ElementType,
-  CSSProperties,
-  HTMLAttributes,
-  Dispatch,
-  SetStateAction,
-  ReactNode,
-} from 'react';
+import type { ElementType, CSSProperties, HTMLAttributes, ReactNode } from 'react';
 import styles from './title.module.css';
 import clsx from 'clsx';
-import type { Item } from '../types';
 
-interface TitleProps extends HTMLAttributes<HTMLParagraphElement> {
+export interface TitleProps extends HTMLAttributes<HTMLDivElement> {
   CustomLink?: ElementType | undefined;
-  href: string;
+  height?: CSSProperties['height'] | undefined;
+  href?: string | undefined;
   text: string;
-  height?: CSSProperties['height'];
   setItem?: (() => void) | undefined;
 }
+
 const TitleWrapper = ({
   className,
   height,
@@ -25,7 +18,7 @@ const TitleWrapper = ({
 }: {
   children: ReactNode;
   height?: CSSProperties['height'];
-} & HTMLAttributes<HTMLParagraphElement>) => {
+} & HTMLAttributes<HTMLDivElement>) => {
   return (
     <div className={clsx(styles.title, className)} style={{ height }} onClick={onClick}>
       {children}
