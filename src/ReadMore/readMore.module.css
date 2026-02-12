@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.wrapper > a {
+.wrapper > * {
   padding: 0;
   background: none;
   border: none;
@@ -21,7 +21,7 @@
   width: fit-content;
 }
 
-.wrapper > a:hover {
+.wrapper > *:hover {
   color: var(--color-primary);
   border-bottom: 1px solid var(--color-secondary);
   text-decoration: none;
