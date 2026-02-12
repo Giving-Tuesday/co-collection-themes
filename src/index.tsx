@@ -1,3 +1,5 @@
+import './theme.css';
+
 import Badge from './Badge';
 import CardContent from './CardContent';
 import IconLabel from './IconLabel';
