@@ -1,5 +1,5 @@
 import styles from './Widget.module.css';
-import type { Item } from '../types';
+import type { CardProps, Item } from '../types';
 import clsx from 'clsx';
 import { getThemeCard } from '../utils/card-themes.utils';
 import { Card as DefaultCard } from '../themes/gtrex';
@@ -8,47 +8,22 @@ import { ItemPage as DefaultPage } from '../themes/gtrex';
 import { getThemeItemPage } from '../utils/item-page-themes.utils';
 import { useItemModal } from '../hooks/useItemModal';
 
-interface ItemPageWidgetProps extends CommonWidgetProps {
-  type: 'item-page';
-  CardComponent?: React.ComponentType<any>;
+interface WidgetProps {
+  items: Item[];
+  embedUrl: string;
+  theme: string;
   showYear?: boolean;
 }
 
-interface CommonWidgetProps {
-  items: Item[];
-  embedUrl: string;
-}
-
-interface EmbedWidgetProps extends CommonWidgetProps {
-  type: 'embed';
-  theme: string;
-}
-
-type WidgetProps = ItemPageWidgetProps | EmbedWidgetProps;
-
-const Widget = (props: WidgetProps) => {
-  const { items, embedUrl, type } = props;
+const Widget = ({ items, embedUrl, theme, showYear = true }: WidgetProps) => {
   const { ItemModal, openItem } = useItemModal();
-  let Card: ComponentType<any> = DefaultCard;
-  let ItemPage: ComponentType<{ item: Item }> = DefaultPage;
-  let showYear = true;
-
-  if (type === 'embed') {
-    const EmbedCard = getThemeCard(props.theme);
-    if (EmbedCard) Card = EmbedCard;
-    const ThemePage = getThemeItemPage(props.theme);
-    if (ThemePage) ItemPage = ThemePage;
-  } else {
-    Card = props.CardComponent || DefaultCard;
-    showYear = !!props.showYear;
-  }
-
+  const Card: ComponentType<CardProps> = getThemeCard(theme) || DefaultCard;
+  const ItemPage: ComponentType<{ item: Item }> = getThemeItemPage(theme) || DefaultPage;
   return (
     <>
       <div className={clsx('daro-widget', styles.base, styles.widgetWrapper)}>
         {items.map((item) => (
           <Card
-            href={`${embedUrl}?co-item=${item.slug}&from=widget`}
             item={item}
             key={item._id}
             showYear={showYear}
@@ -56,7 +31,7 @@ const Widget = (props: WidgetProps) => {
           />
         ))}
       </div>
-      <ItemModal ItemPage={ItemPage} />
+      <ItemModal ItemPage={ItemPage} embedUrl={embedUrl} />
     </>
   );
 };
