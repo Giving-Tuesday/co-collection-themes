@@ -38,6 +38,12 @@ export default [
       commonjs(),
     ],
     external,
+    // @ts-expect-error warning warn
+    onwarn: (warning, warn) => {
+      if (warning.code === 'CIRCULAR_DEPENDENCY') return;
+      if (warning.code === 'MODULE_LEVEL_DIRECTIVE') return;
+      warn(warning);
+    },
   },
   {
     input: 'src/index.tsx',
