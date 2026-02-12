@@ -33,7 +33,7 @@
     "clean": "rm -rf dist",
     "build": "npm run clean && rollup -c rollup.config.ts --configPlugin typescript",
     "build:watch": "rollup -c rollup.config.ts --configPlugin typescript --watch",
-    "dev": "npm run build:watch",
+    "dev": "npm run clean && mkdir dist && cp package.dist.json dist/package.json && npm run build:watch",
     "prepare": "npm run build",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
