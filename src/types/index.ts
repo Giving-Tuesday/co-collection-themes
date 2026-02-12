@@ -1,3 +1,5 @@
+import type { Dispatch, ElementType, SetStateAction } from 'react';
+
 export interface Item {
   _id?: string;
   _collection: string;
@@ -10,4 +12,12 @@ export interface Item {
   slug: string;
   custom_fields: Record<string, any>;
   page_views?: number;
+}
+
+export interface CardProps {
+  CustomLink?: ElementType | undefined;
+  href: string;
+  item: Item;
+  setItem?: () => void | undefined;
+  showYear?: boolean;
 }

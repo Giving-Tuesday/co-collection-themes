@@ -6,17 +6,10 @@ import { truncateText } from '../../utils/text.utils';
 import BaseCard from '../../BaseCard';
 import theme from './theme.module.css';
 import styles from './Card.module.css';
-import type { Item } from '../../types';
-import type { ElementType } from 'react';
+import type { CardProps } from '../../types';
 
-interface CardProps {
-  CustomLink?: ElementType | undefined;
-  href: string;
-  item: Item;
-}
-
-const Card = ({ CustomLink, href, item }: CardProps) => {
-  const { title, custom_fields = {} } = item;
+const Card = ({ CustomLink, href, item, setItem }: CardProps) => {
+  const { title, custom_fields } = item;
   const { initiative_type, project_image, short_description, website_url } =
     custom_fields;
 
@@ -32,7 +25,7 @@ const Card = ({ CustomLink, href, item }: CardProps) => {
           </div>
         ) : null}
         <Title
-          {...{ CustomLink, href }}
+          {...{ CustomLink, href, setItem }}
           text={truncateText(title, 72)}
           className={styles.title}
         />

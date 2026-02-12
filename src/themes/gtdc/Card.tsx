@@ -7,23 +7,20 @@ import BaseCard from '../../BaseCard';
 import { truncateText } from '../../utils/text.utils';
 import theme from './theme.module.css';
 import styles from './Card.module.css';
-import type { ElementType } from 'react';
-import type { Item } from '../../types';
+import type { CardProps } from '../../types';
 
-interface CardProps {
-  CustomLink?: ElementType | undefined;
-  href: string;
-  item: Item;
-}
-
-const Card = ({ CustomLink, href, item }: CardProps) => {
+const Card = ({ CustomLink, href, item, setItem }: CardProps) => {
   const { title } = item;
   const { short_description, report_url } = item.custom_fields;
 
   return (
     <BaseCard className={theme.root} data-theme="gtdc">
       <CardContent position="middle">
-        <Title {...{ CustomLink, href }} text={truncateText(title, 40)} height="52px" />
+        <Title
+          {...{ CustomLink, href, setItem }}
+          text={truncateText(title, 40)}
+          height="52px"
+        />
         {short_description ? (
           <div
             className={styles.desc}
@@ -37,7 +34,7 @@ const Card = ({ CustomLink, href, item }: CardProps) => {
         </LinkButton>
       </CardContent>
       <CardContent align="end" position="bottom">
-        <ReadMore {...{ CustomLink, href, label: 'Learn More' }} />
+        <ReadMore {...{ CustomLink, href, setItem, label: 'Learn More' }} />
       </CardContent>
     </BaseCard>
   );

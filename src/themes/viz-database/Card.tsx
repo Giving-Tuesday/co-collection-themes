@@ -4,17 +4,10 @@ import BaseCard from '../../BaseCard';
 import { getDataYearsLabels } from '../../utils/text.utils';
 import theme from './theme.module.css';
 import styles from './Card.module.css';
-import type { ElementType } from 'react';
-import type { Item } from '../../types';
+import type { CardProps } from '../../types';
 
-interface CardProps {
-  CustomLink?: ElementType | undefined;
-  href: string;
-  item: Item;
-}
-
-const Card = ({ CustomLink, href, item }: CardProps) => {
-  const { title, custom_fields = {} } = item;
+const Card = ({ CustomLink, href, item, setItem }: CardProps) => {
+  const { title, custom_fields } = item;
   const { data_years, image_url } = custom_fields;
 
   const yearsLabel = getDataYearsLabels(data_years);
@@ -26,7 +19,7 @@ const Card = ({ CustomLink, href, item }: CardProps) => {
       </CardContent>
       <CardContent fill position="middle">
         <Title
-          {...{ CustomLink, href }}
+          {...{ CustomLink, href, setItem }}
           text={item.title}
           height="100px"
           className={styles.title}
