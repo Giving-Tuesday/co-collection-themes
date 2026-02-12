@@ -5,7 +5,7 @@ import theme from './theme.module.css';
 import styles from './ItemPage.module.css';
 import LinkButton from '../../LinkButton';
 import IconLabel from '../../IconLabel';
-import type { Item } from '../../types';
+import type { Item, ItemPageProps } from '../../types';
 
 const SOLUTION_LABEL = 'Suggest a solution for this problem.';
 const PROBLEM_LABEL = 'Suggest a problem that this solution can solve.';
@@ -34,7 +34,7 @@ const LinkedItemsList = ({
     </p>
   );
 
-const ItemPage = ({ item }: { item: Item }) => {
+const ItemPage = ({ item }: ItemPageProps) => {
   if (!item._id) return null;
 
   const { desc: description, resource_url, title, custom_fields = {} } = item;
