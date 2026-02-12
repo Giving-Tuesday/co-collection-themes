@@ -8,10 +8,7 @@ interface BaseItemPageProps extends HTMLAttributes<HTMLElement> {
 
 const BaseItemPage = ({ children, className, ...props }: BaseItemPageProps) => {
   return (
-    <article
-      className={clsx('daro-item-page', styles.base, styles.wrapper, className)}
-      {...props}
-    >
+    <article className={clsx('daro-item-page', styles.wrapper, className)} {...props}>
       {children}
     </article>
   );

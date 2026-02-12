@@ -1,5 +1,4 @@
 import styles from './BaseCard.module.css';
-import pageStyles from '../BaseItemPage/BaseItemPage.module.css';
 import type { HTMLAttributes, ReactNode } from 'react';
 import clsx from 'clsx';
 
@@ -9,16 +8,7 @@ interface BaseCardProps extends HTMLAttributes<HTMLDivElement> {
 
 const BaseCard = ({ children, className, ...props }: BaseCardProps) => {
   return (
-    <div
-      className={clsx(
-        'daro-card',
-        pageStyles.base,
-        styles.base,
-        styles.wrapper,
-        className,
-      )}
-      {...props}
-    >
+    <div className={clsx('daro-card', styles.base, styles.wrapper, className)} {...props}>
       {children}
     </div>
   );
