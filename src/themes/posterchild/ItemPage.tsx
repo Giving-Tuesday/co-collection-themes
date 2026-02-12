@@ -1,17 +1,14 @@
 import BaseItemPage from '../../BaseItemPage';
-import { Card as GtrexCard } from '../gtrex';
-import { Card as VizDatabaseCard } from '../viz-database';
-import { Card as DatasetsCard } from '../datasets';
 import useConvertToHtml from '../../hooks/use-convert-to-html';
 import theme from './theme.module.css';
 import styles from './ItemPage.module.css';
 import { Action, Datapoint } from '../datamarts/ItemPage'; // Reuse components from datamarts theme
 import LinkButton from '../../LinkButton';
 import IconLabel from '../../IconLabel';
-import type { Item } from '../../types';
+import type { ItemPageProps } from '../../types';
 import Widget from '../../Widget';
 
-const ItemPage = ({ item }: { item: Item }) => {
+const ItemPage = ({ item, inModal = false }: ItemPageProps) => {
   if (!item._id) return null;
 
   const { desc: description, title, custom_fields = {} } = item;
@@ -79,15 +76,14 @@ const ItemPage = ({ item }: { item: Item }) => {
           />
         )}
       </div>
-      {givingLabWidgetItems?.length > 0 ? (
+      {!inModal && givingLabWidgetItems?.length > 0 ? (
         <div className={styles.widgetWrapper}>
           <h3 className={styles.widgetTitle}>
             Reports and Publications from this Project
           </h3>
           <Widget
-            type="item-page"
+            theme="gtrex"
             items={givingLabWidgetItems}
-            CardComponent={GtrexCard}
             embedUrl="https://www.givingtuesday.org/resource-exchange/library"
             showYear={false}
           />
@@ -96,13 +92,12 @@ const ItemPage = ({ item }: { item: Item }) => {
           </LinkButton>
         </div>
       ) : null}
-      {vizDatabaseWidgetItems?.length > 0 ? (
+      {!inModal && vizDatabaseWidgetItems?.length > 0 ? (
         <div className={styles.widgetWrapper}>
           <h3 className={styles.widgetTitle}>Visualizations from this this Project</h3>
           <Widget
-            type="item-page"
+            theme="viz-database"
             items={vizDatabaseWidgetItems}
-            CardComponent={VizDatabaseCard}
             embedUrl="https://www.givingtuesday.org/visualizations-library"
           />
           <LinkButton newWindow isCentered url={assets_gtrex}>
@@ -113,13 +108,12 @@ const ItemPage = ({ item }: { item: Item }) => {
           </LinkButton>
         </div>
       ) : null}
-      {datasetsWidgetItems?.length > 0 ? (
+      {!inModal && datasetsWidgetItems?.length > 0 ? (
         <div className={styles.widgetWrapper}>
           <h3 className={styles.widgetTitle}>Datasets Associated with this Project</h3>
           <Widget
-            type="item-page"
+            theme="datasets"
             items={datasetsWidgetItems}
-            CardComponent={DatasetsCard}
             embedUrl="https://data.givingtuesday.org/datasets"
           />
         </div>

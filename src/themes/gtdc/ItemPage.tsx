@@ -4,7 +4,7 @@ import useConvertToHtml from '../../hooks/use-convert-to-html';
 import theme from './theme.module.css';
 import styles from './ItemPage.module.css';
 import LinkButton from '../../LinkButton';
-import type { Item } from '../../types';
+import type { ItemPageProps } from '../../types';
 
 interface SectionProps {
   heading: string;
@@ -30,7 +30,7 @@ const Section = memo(({ heading, content, ctaLabel, ctaUrl }: SectionProps) => {
   );
 });
 
-const ItemPage = ({ item }: { item: Item }) => {
+const ItemPage = ({ item }: ItemPageProps) => {
   if (!item._id) return null;
 
   const { desc: description, title, custom_fields } = item;
