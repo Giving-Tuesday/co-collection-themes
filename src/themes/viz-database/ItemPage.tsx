@@ -6,7 +6,7 @@ import styles from './ItemPage.module.css';
 import LinkButton from '../../LinkButton';
 import IconLabel from '../../IconLabel';
 import { displayArrayItems, getAvailableUrls } from '../../utils/item-page.utils';
-import type { Item } from '../../types';
+import type { ItemPageProps } from '../../types';
 
 // Configuration for CTA labels
 const CTA_LABELS = {
@@ -39,7 +39,7 @@ const DatapointsItem = memo(
   },
 );
 
-const ItemPage = ({ item }: { item: Item }) => {
+const ItemPage = ({ item }: ItemPageProps) => {
   if (!item._id) return null;
 
   const { author, title, desc, custom_fields } = item;

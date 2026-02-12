@@ -4,7 +4,7 @@ import { findIcon, findIconByLabel } from '../../settings/ICON_LIST';
 import theme from './theme.module.css';
 import styles from './ItemPage.module.css';
 import { convertFileSize } from '../../utils/text.utils';
-import type { Item } from '../../types';
+import type { ItemPageProps } from '../../types';
 
 export const Action = ({
   icon,
@@ -39,7 +39,7 @@ export const Datapoint = ({ label, data }: { label: string; data: string }) => {
   ) : null;
 };
 
-const ItemPage = ({ item }: { item: Item }) => {
+const ItemPage = ({ item }: ItemPageProps) => {
   if (!item?._id) return null;
 
   const { desc: description, title, custom_fields } = item;
