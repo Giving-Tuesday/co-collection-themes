@@ -1,13 +1,7 @@
 module.exports = {
   root: true,
   env: { browser: true, es2022: true, node: true, jest: true },
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:import/recommended',
-    'prettier',
-  ],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react-hooks/recommended', 'plugin:import/recommended', 'prettier', 'plugin:storybook/recommended'],
   plugins: ['react', 'react-hooks', 'import'],
   parserOptions: {
     ecmaVersion: 'latest',
