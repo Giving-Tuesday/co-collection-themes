@@ -9,7 +9,7 @@ import useConvertToHtml from '../../hooks/use-convert-to-html';
 import theme from './theme.module.css';
 import styles from './ItemPage.module.css';
 import type { ReactNode } from 'react';
-import type { Item } from '../../types';
+import type { ItemPageProps } from '../../types';
 
 const SidebarItem = ({ icon, text }: { icon: ReactNode; text: string }) => {
   if (!text) return null;
@@ -23,7 +23,7 @@ const SidebarItem = ({ icon, text }: { icon: ReactNode; text: string }) => {
   );
 };
 
-const ItemPage = ({ item }: { item: Item }) => {
+const ItemPage = ({ item }: ItemPageProps) => {
   if (!item._id) return null;
   const { author, desc: description, resource_url, title, custom_fields } = item;
   const { bibliography, location, gift_type, un_sdg } = custom_fields;
