@@ -1,17 +1,15 @@
 import type {
-  Dispatch,
   ElementType,
   HTMLAttributes,
   ReactNode,
-  SetStateAction,
 } from 'react';
 import styles from './readMore.module.css';
 
 interface ReadMoreProps {
+  align?: 'right' | undefined;
   CustomLink?: ElementType | undefined;
-  href: string;
-  label?: string;
-  align?: 'right';
+  href?: string | undefined;
+  label?: string | undefined;
   setItem?: (() => void) | undefined;
 }
 

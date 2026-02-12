@@ -1,4 +1,4 @@
-import type { Dispatch, ElementType, SetStateAction } from 'react';
+import type { ElementType } from 'react';
 
 export interface Item {
   _id?: string;
@@ -14,10 +14,32 @@ export interface Item {
   page_views?: number;
 }
 
-export interface CardProps {
-  CustomLink?: ElementType | undefined;
-  href: string;
+interface CommonCardProps {
   item: Item;
-  setItem?: () => void | undefined;
   showYear?: boolean;
+}
+
+interface ActionCardProps extends CommonCardProps {
+  setItem: () => void;
+  href?: never;
+  CustomLink?: never;
+}
+
+interface CustomLinkCardProps extends CommonCardProps {
+  CustomLink: ElementType;
+  href: string;
+  setItem?: never;
+}
+
+interface StandardLinkCardProps extends CommonCardProps {
+  href: string;
+  CustomLink?: never;
+  setItem?: never;
+}
+
+export type CardProps = ActionCardProps | CustomLinkCardProps | StandardLinkCardProps;
+
+export interface ItemPageProps {
+  item: Item;
+  inModal?: boolean;
 }
