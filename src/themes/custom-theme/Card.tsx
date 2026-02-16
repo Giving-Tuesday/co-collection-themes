@@ -8,7 +8,7 @@ import theme from './theme.module.css';
 import styles from './Card.module.css';
 import type { CardProps } from '../../types';
 
-const Card = ({ href, item }: CardProps) => {
+const Card = ({ href, item, setItem }: CardProps) => {
   const { author, title, custom_fields = {} } = item;
   const { resource_type, cover_url, year_published } = custom_fields;
 
@@ -24,11 +24,11 @@ const Card = ({ href, item }: CardProps) => {
             <p className={styles.author}>by {truncateText(author.join(', '), 70)}</p>
           ) : null}
         </div>
-        <Title href={href} text={title} className={styles.title} />
+        <Title {...{ href, setItem }} text={title} className={styles.title} />
       </CardContent>
       <CardContent position="bottom" className={styles.cardContentBottom}>
         {year_published ? <p className={styles.year}>{year_published}</p> : null}
-        <ReadMore href={href} />
+        <ReadMore {...{ href, setItem }} />
       </CardContent>
     </BaseCard>
   );
