@@ -1,0 +1,27 @@
+.title {
+  font-size: 2rem;
+  line-height: 2.5rem;
+  margin: 0;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  min-width: 70vw;
+}
+.footnote {
+  text-align: center;
+}
+.link {
+  text-decoration: underline;
+}
+.link:hover {
+  color: var(--color-primary);
+}
+@media (min-width: 800px) {
+  .content {
+    min-width: 50vw;
+    padding: 1rem 2rem;
+  }
+}
