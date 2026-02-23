@@ -13,15 +13,14 @@ const Card = ({ CustomLink, href, item, setItem }: CardProps) => {
   const yearsLabel = getDataYearsLabels(data_years);
 
   return (
-    <BaseCard className={`${theme.root} `} data-theme="viz-database">
+    <BaseCard className={`${theme.root}`} data-theme="viz-database">
       <CardContent position="top">
         {yearsLabel ? <p className={styles.years}>{yearsLabel}</p> : null}
       </CardContent>
-      <CardContent fill position="middle">
+      <CardContent align="start">
         <Title
           {...{ CustomLink, href, setItem }}
           text={item.title}
-          height="100px"
           className={styles.title}
         />
         {image_url ? (
