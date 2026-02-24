@@ -1,7 +1,6 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, type ReactNode } from 'react';
 import type { Item } from '../types';
 import Modal from '../Modal';
-import { WidgetModal } from '../Widget/WidgetModal';
 
 export const useItemModal = () => {
   const [selectedItem, setSelectedItem] = useState<Item | null>(null);
@@ -14,7 +13,7 @@ export const useItemModal = () => {
     setSelectedItem(null);
   }, []);
 
-  const ItemModal = ({ embedUrl }: { embedUrl: string }) => {
+  const ItemModal = ({ children }: { children: ReactNode }) => {
     return (
       <Modal
         open={!!selectedItem}
@@ -22,7 +21,7 @@ export const useItemModal = () => {
         title={selectedItem?.title || 'Item title unavailable'}
         description={selectedItem?.desc || 'Item description unavailable'}
       >
-        <WidgetModal selectedItem={selectedItem} embedUrl={embedUrl} />
+        {children}
       </Modal>
     );
   };
