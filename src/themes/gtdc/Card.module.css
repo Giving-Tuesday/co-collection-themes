@@ -1,9 +1,15 @@
 .desc {
   color: var(--card-text-color-mid);
   font-size: 13px;
-  height: 52px;
   line-height: 18px;
-  margin: auto 0;
   text-align: left;
   width: 100%;
+}
+
+.middleContent {
+  gap: 1rem;
+}
+
+.link {
+  margin-top: auto;
 }
