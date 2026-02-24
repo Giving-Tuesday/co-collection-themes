@@ -8,22 +8,24 @@ export const WidgetModal = ({
   embedUrl,
 }: {
   selectedItem: Item | null;
-  embedUrl: string;
+  embedUrl?: string | undefined;
 }) => {
   const htmlDescription = useConvertToHtml(selectedItem?.desc || '');
   return selectedItem ? (
     <div className={styles.content}>
       <h2 className={styles.title}>{selectedItem.title}</h2>
       {htmlDescription && <div dangerouslySetInnerHTML={{ __html: htmlDescription }} />}
-      <p className={styles.footnote}>
-        To learn more about this resource,{' '}
-        <a
-          className={styles.link}
-          href={`${embedUrl}?co-item=${selectedItem.slug}&from=widget`}
-        >
-          view in to our library <FaExternalLinkAlt size={'0.75rem'} />
-        </a>
-      </p>
+      {embedUrl && (
+        <p className={styles.footnote}>
+          To learn more about this resource,{' '}
+          <a
+            className={styles.link}
+            href={`${embedUrl}?co-item=${selectedItem.slug}&from=widget`}
+          >
+            view in to our library <FaExternalLinkAlt size={'0.75rem'} />
+          </a>
+        </p>
+      )}
     </div>
   ) : (
     'Error loading item'
