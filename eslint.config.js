@@ -4,8 +4,10 @@ import tseslint from "typescript-eslint";
 import reactPlugin from "eslint-plugin-react";
 import hooksPlugin from "eslint-plugin-react-hooks";
 import prettierConfig from "eslint-config-prettier";
+import { defineConfig, globalIgnores } from "eslint/config";
 
-export default tseslint.config(
+export default defineConfig(
+  globalIgnores(['./rollup.config.ts']),
   { ignores: ["dist", "build", "node_modules", "package-lock.json"] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
