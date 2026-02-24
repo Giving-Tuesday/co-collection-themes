@@ -33,8 +33,6 @@ const SidebarItem = ({ icon, text }: { icon: ReactNode; text: string }) => {
 };
 
 const ItemPage = ({ item, inModal = false }: ItemPageProps) => {
-  if (!item._id) return null;
-
   const { author, desc: description, resource_url, title, custom_fields } = item;
   const {
     access_level,
