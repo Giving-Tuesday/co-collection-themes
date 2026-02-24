@@ -1,0 +1,7 @@
+.author {
+  color: var(--card-text-color-mid);
+  font-size: 11px;
+  line-height: 1.3em;
+  margin: 0;
+  text-align: left;
+}
