@@ -7,26 +7,24 @@ import { truncateText } from '../../utils/text.utils';
 import theme from './theme.module.css';
 import styles from './Card.module.css';
 import type { CardProps } from '../../types';
-
-const Author = ({ author }: { author: string[] | undefined }) => {
-  if (!author) return null;
-  const authorString = author.join(', ');
-  if (authorString.length < 1) return null;
-  return <p className={styles.author}>by {truncateText(authorString, 100)}</p>;
-};
+import clsx from 'clsx';
+import { Author } from '../../Author';
 
 const Card = ({ CustomLink, href, item, setItem }: CardProps) => {
   const { author, title, custom_fields } = item;
   const { item_type, short_desc } = custom_fields;
-
   return (
     <BaseCard className={theme.root} data-theme="problems-solutions">
-      <CardContent align="start" position="top" className={styles.cardContentTop}>
+      <CardContent align="start" position="top" className={styles.topContent}>
         {item_type ? <IconLabel label={item_type} /> : null}
       </CardContent>
-      <CardContent position="middle">
-        <Title {...{ CustomLink, href, setItem }} text={title} className={styles.title} />
-        <div className={styles.authorContainer}>
+      <CardContent position="middle" className={styles.middleContent}>
+        <div className={styles.authorTitleContainer}>
+          <Title
+            {...{ CustomLink, href, setItem }}
+            text={truncateText(title, 60)}
+            className={clsx(styles.title, Author({ author }) && styles.titleWithAuthor)}
+          />
           <Author author={author} />
         </div>
         {short_desc ? (
