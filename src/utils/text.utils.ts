@@ -1,7 +1,7 @@
 export const convertFileSize = (megabyte: number) =>
   Number(megabyte) > 999 ? `${megabyte / 1000} GB` : `${megabyte} MB`;
 
-export const truncateText = (text: any, n: any, useWordBoundary = true) => {
+export const truncateText = (text: string, n: number, useWordBoundary = true) => {
   if (text.length <= n) {
     return text;
   }
