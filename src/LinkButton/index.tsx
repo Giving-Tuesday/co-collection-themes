@@ -5,7 +5,7 @@ import clsx from 'clsx';
 interface LinkButtonProps extends HTMLAttributes<HTMLAnchorElement> {
   url: string;
   children: ReactNode;
-  type?: 'primary';
+  type?: 'primary' | 'secondary' | 'ghost';
   newWindow?: boolean;
   xsmall?: boolean;
   small?: boolean;
@@ -35,7 +35,7 @@ const LinkButton = ({
         isCentered && styles.isCentered,
         className,
       )}
-      {...{ target: newWindow ? '_blank' : undefined }}
+      {...(newWindow ? { target: '_blank', rel: 'noreferrer' } : undefined)}
       {...props}
     >
       {children}
