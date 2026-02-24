@@ -20,6 +20,7 @@ const LinkButton = ({
   xsmall,
   small,
   isCentered,
+  className,
   ...props
 }: LinkButtonProps) => {
   if (!url || url.length === 0) return null;
@@ -32,6 +33,7 @@ const LinkButton = ({
         xsmall && styles.xsmall,
         small && styles.small,
         isCentered && styles.isCentered,
+        className,
       )}
       {...{ target: newWindow ? '_blank' : undefined }}
       {...props}
