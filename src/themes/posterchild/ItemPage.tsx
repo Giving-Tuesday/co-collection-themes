@@ -9,14 +9,11 @@ import type { ItemPageProps } from '../../types';
 import Widget from '../../Widget';
 
 const ItemPage = ({ item, inModal = false }: ItemPageProps) => {
-  if (!item._id) return null;
-
   const { desc: description, title, custom_fields = {} } = item;
   const {
     access_details,
     access_request_url,
     assets_gtrex,
-    assets_vizlib,
     data_contained,
     designed_for,
     initiative_type,
