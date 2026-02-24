@@ -21,4 +21,15 @@
   --page-top-bg: none;
   --page-padding: 1rem;
   --color-accent: #f3f4f6;
+
+  --card-title-font-size: 20px;
+  --card-title-color: rgb(48, 80, 131);
+  --card-title-line-height: 24px;
+  --card-text-color-mid: #808080;
+  --card-min-height: 320px;
+  --card-height: 100%;
+  --card-padding: 1rem;
+  --card-top-bg: none;
+  --card-border: 1px solid #e0e0e0;
+  --card-title-color-hover: #0fb5c3;
 }

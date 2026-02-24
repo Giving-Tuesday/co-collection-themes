@@ -35,8 +35,6 @@ const LinkedItemsList = ({
   );
 
 const ItemPage = ({ item }: ItemPageProps) => {
-  if (!item._id) return null;
-
   const { desc: description, resource_url, title, custom_fields = {} } = item;
   const { item_type, goals, linked_items_DATA } = custom_fields;
   const hasLinkedItems = linked_items_DATA?.length > 0;
@@ -46,7 +44,6 @@ const ItemPage = ({ item }: ItemPageProps) => {
   const linkedItemsData =
     hasLinkedItems &&
     LinkedItemsList({ linkedItems: linked_items_DATA, linkedItemsType });
-
   const htmlDescription = useConvertToHtml(description || '');
 
   return (
@@ -81,6 +78,7 @@ const ItemPage = ({ item }: ItemPageProps) => {
               className={styles.suggestLink}
               href={isProblem ? PROBLEM_LINK : SOLUTION_LINK}
               target="_blank"
+              rel="noreferrer"
             >
               <MdAddComment />
               {isProblem ? PROBLEM_LABEL : SOLUTION_LABEL}

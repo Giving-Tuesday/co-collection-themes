@@ -44,6 +44,7 @@ const Card = ({ CustomLink, href, item, setItem }: CardProps) => {
             className={`wp-element-button ${styles.externalSiteLink}`.trim()}
             href={website_url}
             target="_blank"
+            rel="noreferrer"
           >
             <IconLabel icon="External Link" label="Access the project site" />
           </a>

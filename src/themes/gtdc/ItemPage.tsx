@@ -13,7 +13,12 @@ interface SectionProps {
   ctaUrl?: string;
 }
 
-const Section = memo(({ heading, content, ctaLabel, ctaUrl }: SectionProps) => {
+const Section = memo(function Component({
+  heading,
+  content,
+  ctaLabel,
+  ctaUrl,
+}: SectionProps) {
   if (!content || content.length === 0) return null;
   return (
     <>
@@ -31,8 +36,6 @@ const Section = memo(({ heading, content, ctaLabel, ctaUrl }: SectionProps) => {
 });
 
 const ItemPage = ({ item }: ItemPageProps) => {
-  if (!item._id) return null;
-
   const { desc: description, title, custom_fields } = item;
   const {
     access_details,
@@ -84,7 +87,7 @@ const ItemPage = ({ item }: ItemPageProps) => {
       <Section
         heading="Key Supporters"
         content={key_supporters.map((supporter: any) => (
-          <li>{supporter}</li>
+          <li key={supporter}>{supporter}</li>
         ))}
       />
     </BaseItemPage>
