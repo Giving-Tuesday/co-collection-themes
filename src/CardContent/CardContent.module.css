@@ -29,7 +29,7 @@
   flex-direction: column;
 }
 .bottom {
-  margin-top: 1em;
+  margin: 0;
 }
 
 /* Fill variant */
