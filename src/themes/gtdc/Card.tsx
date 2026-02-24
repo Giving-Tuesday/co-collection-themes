@@ -15,12 +15,8 @@ const Card = ({ CustomLink, href, item, setItem }: CardProps) => {
 
   return (
     <BaseCard className={theme.root} data-theme="gtdc">
-      <CardContent position="middle">
-        <Title
-          {...{ CustomLink, href, setItem }}
-          text={truncateText(title, 40)}
-          height="52px"
-        />
+      <CardContent fill position="middle" align="start" className={styles.middleContent}>
+        <Title {...{ CustomLink, href, setItem }} text={truncateText(title, 40)} />
         {short_description ? (
           <div
             className={styles.desc}
@@ -29,7 +25,7 @@ const Card = ({ CustomLink, href, item, setItem }: CardProps) => {
             }}
           />
         ) : null}
-        <LinkButton small url={report_url}>
+        <LinkButton small url={report_url} className={styles.link}>
           <IconLabel as="span" icon="link" label="Read the latest report" />
         </LinkButton>
       </CardContent>
