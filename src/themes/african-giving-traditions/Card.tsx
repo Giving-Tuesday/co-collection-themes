@@ -34,7 +34,7 @@ const Card = ({ CustomLink, href, item, setItem }: CardProps) => {
           <div
             className={styles.desc}
             dangerouslySetInnerHTML={{
-              __html: truncateText(item.desc, 125),
+              __html: truncateText(desc, 125),
             }}
           />
         ) : null}
