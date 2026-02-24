@@ -8,6 +8,13 @@ import theme from './theme.module.css';
 import styles from './Card.module.css';
 import type { CardProps } from '../../types';
 
+const Author = ({ author }: { author: string[] | undefined }) => {
+  if (!author) return null;
+  const authorString = author.join(', ');
+  if (authorString.length < 1) return null;
+  return <p className={styles.author}>by {truncateText(authorString, 100)}</p>;
+};
+
 const Card = ({ CustomLink, href, item, setItem }: CardProps) => {
   const { author, title, custom_fields } = item;
   const { item_type, short_desc } = custom_fields;
@@ -20,9 +27,7 @@ const Card = ({ CustomLink, href, item, setItem }: CardProps) => {
       <CardContent position="middle">
         <Title {...{ CustomLink, href, setItem }} text={title} className={styles.title} />
         <div className={styles.authorContainer}>
-          {author && author.length > 0 ? (
-            <p className={styles.author}>by {truncateText(author.join(', '), 100)}</p>
-          ) : null}
+          <Author author={author} />
         </div>
         {short_desc ? (
           <div
