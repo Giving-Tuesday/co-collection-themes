@@ -27,21 +27,23 @@ const DATAPOINTS_CONFIG = [
   { key: 'source', label: 'Source' },
 ];
 
-const DatapointsItem = memo(
-  ({ label, value }: { label: string; value: string[] | string }) => {
-    if (!value) return null;
-    return (
-      <li className={styles.datapointItem}>
-        <p className={styles.datapointLabel}>{label}</p>
-        <p className={styles.datapointValue}>{displayArrayItems(value)}</p>
-      </li>
-    );
-  },
-);
+const DatapointsItem = memo(function Component({
+  label,
+  value,
+}: {
+  label: string;
+  value: string[] | string;
+}) {
+  if (!value) return null;
+  return (
+    <li className={styles.datapointItem}>
+      <p className={styles.datapointLabel}>{label}</p>
+      <p className={styles.datapointValue}>{displayArrayItems(value)}</p>
+    </li>
+  );
+});
 
 const ItemPage = ({ item }: ItemPageProps) => {
-  if (!item._id) return null;
-
   const { author, title, desc, custom_fields } = item;
   const { image_url } = custom_fields;
 
