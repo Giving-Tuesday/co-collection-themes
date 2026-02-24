@@ -8,7 +8,7 @@ interface BaseCardProps extends HTMLAttributes<HTMLDivElement> {
 
 const BaseCard = ({ children, className, ...props }: BaseCardProps) => {
   return (
-    <div className={clsx('daro-card', styles.base, styles.wrapper, className)} {...props}>
+    <div className={clsx('daro-card', styles.wrapper, className)} {...props}>
       {children}
     </div>
   );
