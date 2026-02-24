@@ -18,7 +18,7 @@ const Card = ({ CustomLink, href, item, setItem }: CardProps) => {
       <CardContent align="end" position="top" className={styles.cardContentTop}>
         <Badge>{initiative_type}</Badge>
       </CardContent>
-      <CardContent align="center" position="middle">
+      <CardContent align="start" position="middle">
         {project_image ? (
           <div className={styles.thumbnailWrapper}>
             <img className={styles.thumbnail} src={project_image} />
@@ -26,7 +26,7 @@ const Card = ({ CustomLink, href, item, setItem }: CardProps) => {
         ) : null}
         <Title
           {...{ CustomLink, href, setItem }}
-          text={truncateText(title, 72)}
+          text={truncateText(title, 70)}
           className={styles.title}
         />
         {short_description ? (
