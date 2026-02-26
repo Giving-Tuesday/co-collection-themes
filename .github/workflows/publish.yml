@@ -1,16 +1,21 @@
 name: Publish to GitHub Packages
 
 on:
+  push:
+    tags:
+      - "v*"
   release:
     types: [created]
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version type to publish (patch, minor, major)'
+        description: "Version type"
         required: true
-        default: 'patch'
+        default: "patch"
         type: choice
         options:
+          - prepatch
+          - preminor
           - patch
           - minor
           - major
@@ -21,38 +26,101 @@ jobs:
     permissions:
       contents: write
       packages: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          registry-url: 'https://npm.pkg.github.com'
+          node-version: "20"
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@giving-tuesday"
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
+      - name: Install & Build
+        run: |
+          npm ci
+          npm run compile
+        env:
+          GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Configure Git
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-      - name: Version and Publish (Manual trigger)
+      - name: Publish (Tag Push)
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+        run: |
+          TAG_NAME="${{ github.ref_name }}"
+          if [[ "$TAG_NAME" == *"beta"* ]] || [[ "$TAG_NAME" == *"alpha"* ]] || [[ "$TAG_NAME" == *"rc"* ]]; then
+            echo "Publishing prerelease: $TAG_NAME"
+            npm publish --tag beta
+          else
+            echo "Publishing stable release: $TAG_NAME"
+            npm publish
+          fi
+        env:
+          GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Version and Publish (Manual)
+        id: manual_version
         if: github.event_name == 'workflow_dispatch'
         run: |
-          npm version ${{ github.event.inputs.version }} -m "Release v%s"
-          npm publish
+          VERSION="${{ inputs.version }}"
+          if [[ "$VERSION" == pre* ]]; then
+            npm version "$VERSION" --preid beta
+            npm publish --tag beta
+          else
+            npm version "$VERSION"
+            npm publish
+          fi
           git push --follow-tags
+          NEW_TAG="v$(node -p "require('./package.json').version")"
+          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish (Release trigger)
+      - name: Publish (Release Trigger)
         if: github.event_name == 'release'
-        run: npm publish
+        run: |
+          if [[ "${{ github.event.release.prerelease }}" == "true" ]]; then
+            npm publish --tag beta
+          else
+            npm publish
+          fi
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub Release
+        if: github.event_name == 'workflow_dispatch' || github.event_name == 'push'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.manual_version.outputs.new_tag || github.ref_name }}
+          name: Release ${{ steps.manual_version.outputs.new_tag || github.ref_name }}
+          generate_release_notes: true
+          draft: false
+          prerelease: ${{ contains(github.ref_name, 'beta') || contains(github.ref_name, 'alpha') || inputs.version == 'prepatch' || inputs.version == 'preminor' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sync Main back to Staging
+        if: (github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/'))) && success()
+        run: |
+          echo "Synchronizing staging with latest release..."
+
+          git fetch origin main staging
+          if ! git merge-base --is-ancestor ${{ github.sha }} origin/main; then
+            echo "Tag is not on main, skipping sync."
+            exit 0
+          fi
+
+          git checkout staging
+          git merge origin/main --ff-only || git merge origin/main --no-edit
+          git push origin staging
+
+          echo "Sync complete."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
