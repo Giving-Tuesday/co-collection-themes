@@ -6,11 +6,19 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 export const WidgetModal = ({
   selectedItem,
   embedUrl,
+  newWindow,
 }: {
   selectedItem: Item | null;
   embedUrl?: string | undefined;
+  newWindow?: boolean | undefined;
 }) => {
   const htmlDescription = useConvertToHtml(selectedItem?.desc || '');
+  const linkProps = newWindow
+    ? {
+        target: '_blank',
+        rel: 'noreferrer',
+      }
+    : {};
   return selectedItem ? (
     <div className={styles.content}>
       <h2 className={styles.title}>{selectedItem.title}</h2>
@@ -21,6 +29,7 @@ export const WidgetModal = ({
           <a
             className={styles.link}
             href={`${embedUrl}?co-item=${selectedItem.slug}&from=widget`}
+            {...linkProps}
           >
             visit our library <FaExternalLinkAlt size={'0.75rem'} />
           </a>

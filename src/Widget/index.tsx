@@ -12,9 +12,10 @@ interface WidgetProps {
   embedUrl?: string | undefined;
   theme: string;
   showYear?: boolean;
+  newWindow?: boolean | undefined;
 }
 
-const Widget = ({ items, embedUrl, theme, showYear = true }: WidgetProps) => {
+const Widget = ({ items, embedUrl, theme, showYear = true, newWindow }: WidgetProps) => {
   const { ItemModal, openItem, selectedItem } = useItemModal();
   const Card: ComponentType<CardProps> = getThemeCard(theme) || DefaultCard;
 
@@ -31,7 +32,11 @@ const Widget = ({ items, embedUrl, theme, showYear = true }: WidgetProps) => {
         ))}
       </div>
       <ItemModal>
-        <WidgetModal selectedItem={selectedItem} embedUrl={embedUrl} />
+        <WidgetModal
+          selectedItem={selectedItem}
+          embedUrl={embedUrl}
+          newWindow={newWindow}
+        />
       </ItemModal>
     </>
   );
