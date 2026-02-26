@@ -1,6 +1,6 @@
-import { memo } from 'react';
+import { memo, type ReactNode } from 'react';
 import BaseItemPage from '../../BaseItemPage';
-import useConvertToHtml from '../../hooks/use-convert-to-html';
+import useConvertToHtml from '../../hooks/useConvertToHtml';
 import theme from './theme.module.css';
 import styles from './ItemPage.module.css';
 import LinkButton from '../../LinkButton';
@@ -8,21 +8,33 @@ import type { ItemPageProps } from '../../types';
 
 interface SectionProps {
   heading: string;
-  content: string;
+  content: string | ReactNode[];
   ctaLabel?: string;
   ctaUrl?: string;
 }
 
-const Section = memo(({ heading, content, ctaLabel, ctaUrl }: SectionProps) => {
+const Section = memo(function Component({
+  heading,
+  content,
+  ctaLabel,
+  ctaUrl,
+}: SectionProps) {
   if (!content || content.length === 0) return null;
+
+  const isArray = Array.isArray(content);
+
   return (
     <>
       <div className={styles.section}>
         <h2 className={styles.sectionHeading}>{heading}</h2>
-        <p className={styles.sectionContent}>{content}</p>
+        {isArray ? (
+          <ul className={styles.sectionContent}>{content}</ul>
+        ) : (
+          <p className={styles.sectionContent}>{content}</p>
+        )}
       </div>
       {ctaLabel && ctaUrl && (
-        <LinkButton isCentered small url={ctaUrl}>
+        <LinkButton newWindow isCentered small url={ctaUrl}>
           {ctaLabel}
         </LinkButton>
       )}
@@ -31,8 +43,6 @@ const Section = memo(({ heading, content, ctaLabel, ctaUrl }: SectionProps) => {
 });
 
 const ItemPage = ({ item }: ItemPageProps) => {
-  if (!item._id) return null;
-
   const { desc: description, title, custom_fields } = item;
   const {
     access_details,
@@ -59,7 +69,7 @@ const ItemPage = ({ item }: ItemPageProps) => {
           dangerouslySetInnerHTML={{ __html: htmlDescription }}
         />
       )}
-      <LinkButton isCentered url={website_url}>
+      <LinkButton newWindow isCentered url={website_url}>
         Access the Project Website
       </LinkButton>
       <hr className={styles.divider} />
@@ -83,8 +93,8 @@ const ItemPage = ({ item }: ItemPageProps) => {
       <Section heading="Learn More" content={learn_more} />
       <Section
         heading="Key Supporters"
-        content={key_supporters.map((supporter: any) => (
-          <li>{supporter}</li>
+        content={key_supporters.map((s: string) => (
+          <li key={s}>{s}</li>
         ))}
       />
     </BaseItemPage>
