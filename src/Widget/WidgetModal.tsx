@@ -22,7 +22,7 @@ export const WidgetModal = ({
             className={styles.link}
             href={`${embedUrl}?co-item=${selectedItem.slug}&from=widget`}
           >
-            view in to our library <FaExternalLinkAlt size={'0.75rem'} />
+            view in our library <FaExternalLinkAlt size={'0.75rem'} />
           </a>
         </p>
       )}
