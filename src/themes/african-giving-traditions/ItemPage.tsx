@@ -5,7 +5,7 @@ import { TbWorldPin } from 'react-icons/tb';
 import BaseItemPage from '../../BaseItemPage';
 import LinkButton from '../../LinkButton';
 import IconLabel from '../../IconLabel';
-import useConvertToHtml from '../../hooks/use-convert-to-html';
+import useConvertToHtml from '../../hooks/useConvertToHtml';
 import theme from './theme.module.css';
 import styles from './ItemPage.module.css';
 import type { ReactNode } from 'react';

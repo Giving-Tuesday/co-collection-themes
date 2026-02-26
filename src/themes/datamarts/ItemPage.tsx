@@ -1,5 +1,5 @@
 import BaseItemPage from '../../BaseItemPage';
-import useConvertToHtml from '../../hooks/use-convert-to-html';
+import useConvertToHtml from '../../hooks/useConvertToHtml';
 import { findIcon, findIconByLabel } from '../../settings/ICON_LIST';
 import theme from './theme.module.css';
 import styles from './ItemPage.module.css';

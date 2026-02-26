@@ -1,6 +1,6 @@
-import { memo } from 'react';
+import { memo, type ReactNode } from 'react';
 import BaseItemPage from '../../BaseItemPage';
-import useConvertToHtml from '../../hooks/use-convert-to-html';
+import useConvertToHtml from '../../hooks/useConvertToHtml';
 import theme from './theme.module.css';
 import styles from './ItemPage.module.css';
 import LinkButton from '../../LinkButton';
@@ -8,7 +8,7 @@ import type { ItemPageProps } from '../../types';
 
 interface SectionProps {
   heading: string;
-  content: string;
+  content: string | ReactNode[];
   ctaLabel?: string;
   ctaUrl?: string;
 }
@@ -20,11 +20,18 @@ const Section = memo(function Component({
   ctaUrl,
 }: SectionProps) {
   if (!content || content.length === 0) return null;
+
+  const isArray = Array.isArray(content);
+
   return (
     <>
       <div className={styles.section}>
         <h2 className={styles.sectionHeading}>{heading}</h2>
-        <p className={styles.sectionContent}>{content}</p>
+        {isArray ? (
+          <ul className={styles.sectionContent}>{content}</ul>
+        ) : (
+          <p className={styles.sectionContent}>{content}</p>
+        )}
       </div>
       {ctaLabel && ctaUrl && (
         <LinkButton isCentered small url={ctaUrl}>
@@ -86,8 +93,8 @@ const ItemPage = ({ item }: ItemPageProps) => {
       <Section heading="Learn More" content={learn_more} />
       <Section
         heading="Key Supporters"
-        content={key_supporters.map((supporter: any) => (
-          <li key={supporter}>{supporter}</li>
+        content={key_supporters.map((s: string) => (
+          <li key={s}>{s}</li>
         ))}
       />
     </BaseItemPage>

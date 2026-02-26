@@ -4,7 +4,7 @@ import { GoBook } from 'react-icons/go';
 import { IoCalendarOutline } from 'react-icons/io5';
 import { MdOutlineCollectionsBookmark } from 'react-icons/md';
 import BaseItemPage from '../../BaseItemPage';
-import useConvertToHtml from '../../hooks/use-convert-to-html';
+import useConvertToHtml from '../../hooks/useConvertToHtml';
 import theme from './theme.module.css';
 import styles from './ItemPage.module.css';
 import LinkButton from '../../LinkButton';

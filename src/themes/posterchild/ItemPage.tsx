@@ -1,5 +1,5 @@
 import BaseItemPage from '../../BaseItemPage';
-import useConvertToHtml from '../../hooks/use-convert-to-html';
+import useConvertToHtml from '../../hooks/useConvertToHtml';
 import theme from './theme.module.css';
 import styles from './ItemPage.module.css';
 import { Action, Datapoint } from '../datamarts/ItemPage'; // Reuse components from datamarts theme

@@ -1,4 +1,4 @@
-import useConvertToHtml from '../hooks/use-convert-to-html';
+import useConvertToHtml from '../hooks/useConvertToHtml';
 import type { Item } from '../types';
 import styles from './WidgetModal.module.css';
 import { FaExternalLinkAlt } from 'react-icons/fa';
