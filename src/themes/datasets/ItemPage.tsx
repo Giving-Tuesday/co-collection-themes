@@ -1,13 +1,11 @@
 import BaseItemPage from '../../BaseItemPage';
-import useConvertToHtml from '../../hooks/use-convert-to-html';
+import useConvertToHtml from '../../hooks/useConvertToHtml';
 import theme from './theme.module.css';
 import styles from './ItemPage.module.css';
 import { Action, Datapoint } from '../datamarts/ItemPage';
 import type { ItemPageProps } from '../../types';
 
 const ItemPage = ({ item }: ItemPageProps) => {
-  if (!item?._id) return null;
-
   const { author, desc: description, title, custom_fields } = item;
   const {
     access_level,
@@ -21,7 +19,6 @@ const ItemPage = ({ item }: ItemPageProps) => {
     year_published,
     website_url,
   } = custom_fields;
-
   const htmlDescription = useConvertToHtml(description || '');
   const gtdcProjectHtml = useConvertToHtml(gtdc_project);
 
