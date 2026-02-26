@@ -11,6 +11,7 @@ const SOLUTION_LABEL = 'Suggest a solution for this problem.';
 const PROBLEM_LABEL = 'Suggest a problem that this solution can solve.';
 const SOLUTION_LINK = 'https://airtable.com/appuaKysIAOxom6CA/pagYRGlw4ML2TsuCG/form';
 const PROBLEM_LINK = 'https://airtable.com/appuaKysIAOxom6CA/pag6jGDU9cxYHNNVK/form';
+const EMBED_URL = 'https://ai.givingtuesday.org/problems-and-solutions';
 
 const LinkedItemsList = ({
   linkedItems,
@@ -23,9 +24,7 @@ const LinkedItemsList = ({
     <ul className={styles.linkedItemsList}>
       {linkedItems.map((item: Item) => (
         <li key={item._id}>
-          <a href={item.resource_url} target="_blank" rel="noreferrer">
-            {item.title}
-          </a>
+          <a href={`${EMBED_URL}?co-item=${item.slug}&from=widget`}>{item.title}</a>
         </li>
       ))}
     </ul>
@@ -74,6 +73,7 @@ const ItemPage = ({ item }: ItemPageProps) => {
         ) : null}
       </div>
       <LinkButton
+        newWindow
         small
         type="ghost"
         url={isProblem ? PROBLEM_LINK : SOLUTION_LINK}
@@ -83,7 +83,7 @@ const ItemPage = ({ item }: ItemPageProps) => {
         {isProblem ? PROBLEM_LABEL : SOLUTION_LABEL}
       </LinkButton>
       {resource_url && (
-        <LinkButton isCentered url={resource_url}>
+        <LinkButton newWindow isCentered url={resource_url}>
           <IconLabel icon="External Link" label="Access Resource" />
         </LinkButton>
       )}

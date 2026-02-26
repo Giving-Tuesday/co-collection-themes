@@ -34,7 +34,7 @@ const Section = memo(function Component({
         )}
       </div>
       {ctaLabel && ctaUrl && (
-        <LinkButton isCentered small url={ctaUrl}>
+        <LinkButton newWindow isCentered small url={ctaUrl}>
           {ctaLabel}
         </LinkButton>
       )}
@@ -69,7 +69,7 @@ const ItemPage = ({ item }: ItemPageProps) => {
           dangerouslySetInnerHTML={{ __html: htmlDescription }}
         />
       )}
-      <LinkButton isCentered url={website_url}>
+      <LinkButton newWindow isCentered url={website_url}>
         Access the Project Website
       </LinkButton>
       <hr className={styles.divider} />
