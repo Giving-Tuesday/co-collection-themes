@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import BaseItemPage from '../../BaseItemPage';
-import useConvertToHtml from '../../hooks/use-convert-to-html';
+import useConvertToHtml from '../../hooks/useConvertToHtml';
 import theme from './theme.module.css';
 import styles from './ItemPage.module.css';
 import LinkButton from '../../LinkButton';
