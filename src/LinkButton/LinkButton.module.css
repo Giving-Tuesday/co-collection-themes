@@ -9,7 +9,7 @@
 }
 
 .ghost {
-  background-color: none;
+  background-color: transparent;
   color: var(--color-secondary);
 }
 
