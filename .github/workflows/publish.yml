@@ -42,7 +42,7 @@ jobs:
       - name: Install & Build
         run: |
           npm ci
-          npm run compile
+          npm run build
         env:
           GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
