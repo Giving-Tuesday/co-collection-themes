@@ -1,0 +1,55 @@
+.container {
+  width: 100%;
+  background: #f8f9fa;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.country {
+  stroke: #fff;
+  stroke-width: 0.5;
+  transition: fill 0.15s ease;
+  outline: none;
+}
+
+.unavailable {
+  fill: #d1d5db;
+  cursor: default;
+}
+
+.available {
+  fill: #6cb4e4;
+  cursor: pointer;
+}
+
+.available:hover {
+  fill: #3d97d3;
+}
+
+.selected {
+  fill: #1a56a0;
+  cursor: pointer;
+}
+
+.selected:hover {
+  fill: #134080;
+}
+
+.tooltip {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1000;
+  transform: translate(-50%, calc(-100% - 6px));
+}
