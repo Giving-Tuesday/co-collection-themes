@@ -24,7 +24,7 @@ const LinkedItemsList = ({
     <ul className={styles.linkedItemsList}>
       {linkedItems.map((item: Item) => (
         <li key={item._id}>
-          <a href={`${EMBED_URL}?co-item=${item.slug}&from=widget`}>{item.title}</a>
+          <a href={`${EMBED_URL}?co-item=${item.slug}`}>{item.title}</a>
         </li>
       ))}
     </ul>
