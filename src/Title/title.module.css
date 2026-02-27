@@ -1,7 +1,7 @@
 .title {
   background: none;
   font-weight: 500;
-  line-height: 24px;
+  line-height: 20px;
   margin: 0;
   overflow: hidden;
   padding: 0;
@@ -9,7 +9,7 @@
   width: 100%;
 }
 
-.title > a {
+.title > * {
   border-bottom: 1px solid transparent;
   color: var(--card-title-color);
   font-family: var(--font-family-heading);
@@ -19,7 +19,7 @@
   text-decoration: none;
 }
 
-.title > a:hover {
+.title > *:hover {
   text-decoration: underline;
   color: var(--card-title-color-hover);
   transition: all 0.2s linear;
