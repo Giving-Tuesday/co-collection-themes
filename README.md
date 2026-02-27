@@ -137,14 +137,33 @@ stories/                     # Storybook documentation & testing
 
 ## 📦 Deployment & Publishing
 
-### Automated Publishing
+### Publishing
 
-The library uses GitHub Actions for automated publishing to GitHub Packages:
+**NPM Package (GitHub Packages):**
 
-**Automatic Release** (Recommended):
+Can be published automatically with contained .github/publish.yml file.
 
-1. Create a GitHub release with semantic version tag (e.g., `v0.3.8`)
-2. Package is automatically built and published
+**For beta releases:**
+```bash
+# Update version in package.json
+npm version prepatch --preid beta  # or patch, minor, etc.
+npm version prerelease --preid beta
+# This creates a tag like v0.6.1-beta.1
+# Push the tag
+git push --follow-tags
+# Or push tag explicitly
+git push origin v0.6.1-beta.1
+```
+
+**For stable releases:**
+```bash
+# Update version in package.json
+npm version patch  # or minor, major
+# Push the tag
+git push --follow-tags
+# Or push tag explicitly
+git push origin v0.6.2
+```
 
 **Manual Release**:
 

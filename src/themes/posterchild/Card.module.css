@@ -1,10 +1,10 @@
 .cardContentTop {
   margin: 0;
+  padding: 0 0 1rem;
 }
 .thumbnailWrapper {
   text-align: center;
   width: calc(100% + 1rem);
-  margin: -0.5rem -0.5rem 1rem -0.5rem;
 }
 .thumbnail {
   width: 100%;

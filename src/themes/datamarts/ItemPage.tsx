@@ -1,5 +1,5 @@
 import BaseItemPage from '../../BaseItemPage';
-import useConvertToHtml from '../../hooks/use-convert-to-html';
+import useConvertToHtml from '../../hooks/useConvertToHtml';
 import { findIcon, findIconByLabel } from '../../settings/ICON_LIST';
 import theme from './theme.module.css';
 import styles from './ItemPage.module.css';
@@ -17,7 +17,7 @@ export const Action = ({
 }) => {
   const Icon = icon ? findIcon(icon) : findIconByLabel(label);
   return url ? (
-    <a className={styles.action} href={url} target="_blank">
+    <a className={styles.action} href={url} target="_blank" rel="noreferrer">
       <span className={styles.iconContainer}>{Icon && <Icon />}</span>
       <span className={styles.actionLabel}>{label}</span>
     </a>
@@ -40,8 +40,6 @@ export const Datapoint = ({ label, data }: { label: string; data: string }) => {
 };
 
 const ItemPage = ({ item }: ItemPageProps) => {
-  if (!item?._id) return null;
-
   const { desc: description, title, custom_fields } = item;
   const {
     category,

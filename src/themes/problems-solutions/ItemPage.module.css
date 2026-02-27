@@ -4,24 +4,16 @@
   font-size: 1.5rem;
   margin-bottom: 0;
 }
-
 .title span {
   font-weight: 600;
 }
-
 .description p {
   line-height: 24px !important;
-  margin-bottom: 3rem;
-}
-.datapoints {
-  margin: 0 auto;
-  max-width: 1080px;
-  padding: 1rem;
 }
 .datapoint {
   display: flex;
   flex-direction: column;
-  margin: 0.75rem 0;
+  padding: 2rem;
 }
 .datapointLabel {
   color: var(--color-secondary);
@@ -37,6 +29,7 @@
   padding: 0 0 0 1rem;
 }
 .linkedItemsList {
+  color: var(--color-primary);
   line-height: 24px !important;
   margin: 0;
   padding: 0;
@@ -47,21 +40,11 @@
   text-decoration: none;
 }
 .linkedItemsList li a:hover {
-  text-decoration: underline;
-}
-.suggestLink {
-  display: flex;
-  color: var(--color-secondary);
-  cursor: pointer;
-  margin: 0.75rem 0 0;
   text-decoration: none;
 }
-.suggestLink:hover {
-  text-decoration: underline;
-}
-.suggestLink svg {
-  color: var(--color-primary);
-  margin: 4px 0.5rem 0 0;
+.suggestLink {
+  margin-bottom: 2rem;
+  justify-self: end;
 }
 
 .emptyListMessage {
@@ -69,6 +52,20 @@
   list-style: none;
   margin: 0.75rem 0 0;
   padding: 0;
+}
+
+.suggestLinkWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.sidebar {
+  margin-top: 2rem;
+  background-color: var(--sidebar-bg);
+  border-radius: var(--sidebar-border-radius);
+  height: fit-content;
 }
 
 @media (min-width: 830px) {
@@ -80,25 +77,8 @@
     padding: 0 0 1rem 0;
     text-align: center;
   }
-  .datapoint {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .datapointLabel {
-    padding: 0 0 0 12rem !important;
-  }
-  .datapointValue {
-    flex: 0 0 calc(50% - 3rem);
-    padding: 0 0 0 3rem;
-  }
   .emptyListMessage {
     margin: 0;
     padding: 0;
-  }
-}
-
-@media (min-width: 1080px) {
-  .description {
-    margin: 0 0 5rem 0;
   }
 }

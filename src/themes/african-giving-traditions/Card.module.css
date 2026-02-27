@@ -1,21 +1,20 @@
 .desc {
   color: var(--card-text-color-mid);
   font-size: 13px;
-  height: 52px;
   line-height: 18px;
-  margin: auto 0;
   text-align: left;
-  width: 100%;
-}
-.authorContainer {
-  height: 40px;
   width: 100%;
 }
 
-.author {
-  color: var(--card-text-color-mid);
-  font-size: 11px;
-  line-height: 1.3em;
-  margin: 0;
-  text-align: left;
+.title {
+  line-height: 20px;
+}
+
+.titleWithAuthor {
+  margin: 0 0 0.75rem;
+}
+
+.authorTitleContainer {
+  width: 100%;
+  margin-bottom: 1rem;
 }

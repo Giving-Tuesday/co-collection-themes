@@ -1,9 +1,16 @@
 .primary {
   background-color: var(--color-primary);
+  color: white;
 }
 
 .secondary {
   background-color: var(--color-secondary);
+  color: white;
+}
+
+.ghost {
+  background-color: transparent;
+  color: var(--color-secondary);
 }
 
 .linkButton {
