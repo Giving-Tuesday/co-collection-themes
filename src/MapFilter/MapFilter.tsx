@@ -1,326 +1,470 @@
-import { useEffect, useRef, useState } from 'react';
-import { geoNaturalEarth1, geoPath } from 'd3-geo';
-import { feature } from 'topojson-client';
-import type { Topology, GeometryCollection } from 'topojson-specification';
+import { useCallback, useMemo, useRef, useState } from 'react';
+import {
+  Map,
+  Source,
+  Layer,
+  Popup,
+  NavigationControl,
+} from 'react-map-gl/maplibre';
+import type { MapLayerMouseEvent, MapRef } from 'react-map-gl/maplibre';
+import type { FeatureCollection } from 'geojson';
 import styles from './MapFilter.module.css';
 import { resolveIsoCodes, isoToOptions } from './regions';
-import clsx from 'clsx';
+import { useCountryGeojson } from './useCountryGeojson';
+import {
+  MAP_STYLE,
+  buildFillColorExpression,
+  FILL_OPACITY_EXPRESSION,
+} from './mapStyles';
 
-const WORLD_TOPO_URL =
-  'https://cdn.jsdelivr.net/npm/visionscarto-world-atlas@1/world/110m.json';
-
-// ISO numeric → ISO alpha-3 lookup (110m world atlas uses numeric codes)
-const NUMERIC_TO_ISO3: Record<number, string> = {
-  4: 'AFG',
-  8: 'ALB',
-  12: 'DZA',
-  24: 'AGO',
-  28: 'ATG',
-  31: 'AZE',
-  32: 'ARG',
-  36: 'AUS',
-  40: 'AUT',
-  44: 'BHS',
-  48: 'BHR',
-  50: 'BGD',
-  51: 'ARM',
-  52: 'BRB',
-  56: 'BEL',
-  64: 'BTN',
-  68: 'BOL',
-  70: 'BIH',
-  72: 'BWA',
-  76: 'BRA',
-  84: 'BLZ',
-  90: 'SLB',
-  96: 'BRN',
-  100: 'BGR',
-  104: 'MMR',
-  108: 'BDI',
-  112: 'BLR',
-  116: 'KHM',
-  120: 'CMR',
-  124: 'CAN',
-  140: 'CAF',
-  144: 'LKA',
-  148: 'TCD',
-  152: 'CHL',
-  156: 'CHN',
-  158: 'TWN',
-  170: 'COL',
-  174: 'COM',
-  178: 'COG',
-  180: 'COD',
-  188: 'CRI',
-  191: 'HRV',
-  192: 'CUB',
-  196: 'CYP',
-  203: 'CZE',
-  204: 'BEN',
-  208: 'DNK',
-  212: 'DMA',
-  214: 'DOM',
-  218: 'ECU',
-  222: 'SLV',
-  226: 'GNQ',
-  231: 'ETH',
-  232: 'ERI',
-  233: 'EST',
-  242: 'FJI',
-  246: 'FIN',
-  250: 'FRA',
-  262: 'DJI',
-  266: 'GAB',
-  268: 'GEO',
-  275: 'PSE',
-  276: 'DEU',
-  288: 'GHA',
-  296: 'KIR',
-  300: 'GRC',
-  308: 'GRD',
-  320: 'GTM',
-  324: 'GIN',
-  328: 'GUY',
-  332: 'HTI',
-  340: 'HND',
-  348: 'HUN',
-  356: 'IND',
-  360: 'IDN',
-  364: 'IRN',
-  368: 'IRQ',
-  372: 'IRL',
-  376: 'ISR',
-  380: 'ITA',
-  384: 'CIV',
-  388: 'JAM',
-  392: 'JPN',
-  398: 'KAZ',
-  400: 'JOR',
-  404: 'KEN',
-  408: 'PRK',
-  410: 'KOR',
-  414: 'KWT',
-  417: 'KGZ',
-  418: 'LAO',
-  422: 'LBN',
-  426: 'LSO',
-  428: 'LVA',
-  430: 'LBR',
-  434: 'LBY',
-  440: 'LTU',
-  450: 'MDG',
-  454: 'MWI',
-  458: 'MYS',
-  466: 'MLI',
-  478: 'MRT',
-  484: 'MEX',
-  496: 'MNG',
-  498: 'MDA',
-  499: 'MNE',
-  504: 'MAR',
-  508: 'MOZ',
-  512: 'OMN',
-  516: 'NAM',
-  520: 'NRU',
-  524: 'NPL',
-  528: 'NLD',
-  548: 'VUT',
-  554: 'NZL',
-  558: 'NIC',
-  562: 'NER',
-  566: 'NGA',
-  578: 'NOR',
-  583: 'FSM',
-  584: 'MHL',
-  585: 'PLW',
-  586: 'PAK',
-  591: 'PAN',
-  598: 'PNG',
-  600: 'PRY',
-  604: 'PER',
-  608: 'PHL',
-  616: 'POL',
-  620: 'PRT',
-  624: 'GNB',
-  626: 'TLS',
-  630: 'PRI',
-  634: 'QAT',
-  642: 'ROU',
-  643: 'RUS',
-  646: 'RWA',
-  659: 'KNA',
-  662: 'LCA',
-  670: 'VCT',
-  678: 'STP',
-  682: 'SAU',
-  686: 'SEN',
-  688: 'SRB',
-  694: 'SLE',
-  702: 'SGP',
-  703: 'SVK',
-  704: 'VNM',
-  705: 'SVN',
-  706: 'SOM',
-  710: 'ZAF',
-  716: 'ZWE',
-  724: 'ESP',
-  728: 'SSD',
-  729: 'SDN',
-  740: 'SUR',
-  748: 'SWZ',
-  752: 'SWE',
-  756: 'CHE',
-  760: 'SYR',
-  762: 'TJK',
-  764: 'THA',
-  768: 'TGO',
-  776: 'TON',
-  780: 'TTO',
-  784: 'ARE',
-  788: 'TUN',
-  792: 'TUR',
-  795: 'TKM',
-  798: 'TUV',
-  800: 'UGA',
-  804: 'UKR',
-  807: 'MKD',
-  818: 'EGY',
-  826: 'GBR',
-  834: 'TZA',
-  840: 'USA',
-  854: 'BFA',
-  858: 'URY',
-  860: 'UZB',
-  862: 'VEN',
-  882: 'WSM',
-  887: 'YEM',
-  894: 'ZMB',
-};
-
-interface CountryFeature {
-  type: 'Feature';
-  id: string;
-  properties: Record<string, unknown>;
-  geometry: { type: string; coordinates: unknown[] };
-}
-
-interface TooltipState {
-  x: number;
-  y: number;
-  label: string;
+export interface MarkerData {
+  longitude: number;
+  latitude: number;
+  label?: string;
+  [key: string]: unknown;
 }
 
 export interface MapFilterProps {
   availableOptions: string[];
   selectedOptions?: string[];
   onSelect: (option: string) => void;
+  markers?: MarkerData[];
+  onMarkerClick?: (marker: MarkerData) => void;
 }
-
-const WIDTH = 960;
-const HEIGHT = 500;
-
-const projection = geoNaturalEarth1()
-  .scale(153)
-  .translate([WIDTH / 2, HEIGHT / 2]);
-
-const pathGenerator = geoPath(projection);
 
 export const MapFilter = ({
   availableOptions,
   selectedOptions = [],
   onSelect,
+  markers,
+  onMarkerClick,
 }: MapFilterProps) => {
-  const [countries, setCountries] = useState<CountryFeature[]>([]);
-  const [tooltip, setTooltip] = useState<TooltipState | null>(null);
-  const svgRef = useRef<SVGSVGElement>(null);
+  const { geojson } = useCountryGeojson();
+  const mapRef = useRef<MapRef>(null);
+  const hoveredIdRef = useRef<number | null>(null);
+  const hoveredMarkerIdRef = useRef<number | null>(null);
+  const [popupInfo, setPopupInfo] = useState<{
+    lng: number;
+    lat: number;
+    label: string;
+  } | null>(null);
+  const [markerPopupInfo, setMarkerPopupInfo] = useState<{
+    lng: number;
+    lat: number;
+    label: string;
+  } | null>(null);
+  const [pinnedMarkerInfo, setPinnedMarkerInfo] = useState<{
+    lng: number;
+    lat: number;
+    marker: MarkerData;
+  } | null>(null);
 
-  const availableCodes = resolveIsoCodes(availableOptions);
-  const selectedCodes = resolveIsoCodes(selectedOptions);
+  const markersGeojson = useMemo((): FeatureCollection | null => {
+    if (!markers?.length) return null;
+    return {
+      type: 'FeatureCollection',
+      features: markers.map((m, i) => ({
+        type: 'Feature' as const,
+        id: i,
+        geometry: {
+          type: 'Point' as const,
+          coordinates: [m.longitude, m.latitude],
+        },
+        properties: { label: m.label ?? '', ...m },
+      })),
+    };
+  }, [markers]);
 
-  useEffect(() => {
-    fetch(WORLD_TOPO_URL)
-      .then((r) => r.json())
-      .then((topo: Topology) => {
-        const worldFeatures = feature(
-          topo,
-          topo.objects['countries'] as GeometryCollection,
-        );
-        setCountries(worldFeatures.features as CountryFeature[]);
-      })
-      .catch(console.error);
+  const availableCodes = useMemo(
+    () => resolveIsoCodes(availableOptions),
+    [availableOptions],
+  );
+  const selectedCodes = useMemo(
+    () => resolveIsoCodes(selectedOptions),
+    [selectedOptions],
+  );
+
+  const fillColor = useMemo(
+    () => buildFillColorExpression(availableCodes, selectedCodes),
+    [availableCodes, selectedCodes],
+  );
+
+  const allOptions = useMemo(
+    () => [...availableOptions, ...selectedOptions],
+    [availableOptions, selectedOptions],
+  );
+
+  const getIso3FromFeature = useCallback(
+    (e: MapLayerMouseEvent): string | undefined => {
+      const feature = e.features?.[0];
+      if (!feature) return undefined;
+      return (feature.properties?.['ISO_A3'] as string) ?? undefined;
+    },
+    [],
+  );
+
+  const isClickable = useCallback(
+    (iso3: string | undefined): boolean => {
+      if (!iso3) return false;
+      return availableCodes.has(iso3) || selectedCodes.has(iso3);
+    },
+    [availableCodes, selectedCodes],
+  );
+
+  const clearHoverState = useCallback(() => {
+    const map = mapRef.current;
+    if (hoveredIdRef.current !== null && map) {
+      map.setFeatureState(
+        { source: 'countries', id: hoveredIdRef.current },
+        { hover: false },
+      );
+      hoveredIdRef.current = null;
+    }
   }, []);
 
-  const getIso3 = (numericId: string): string | undefined =>
-    NUMERIC_TO_ISO3[parseInt(numericId, 10)];
+  const clearMarkerHoverState = useCallback(() => {
+    const map = mapRef.current;
+    if (hoveredMarkerIdRef.current !== null && map) {
+      map.setFeatureState(
+        { source: 'markers', id: hoveredMarkerIdRef.current },
+        { hover: false },
+      );
+      hoveredMarkerIdRef.current = null;
+    }
+  }, []);
 
-  const getCountryState = (
-    iso3: string | undefined,
-  ): 'unavailable' | 'available' | 'selected' => {
-    if (!iso3) return 'unavailable';
-    if (selectedCodes.has(iso3)) return 'selected';
-    if (availableCodes.has(iso3)) return 'available';
-    return 'unavailable';
-  };
+  // Ensure marker layers always render above choropleth layers.
+  // react-map-gl manages layer lifecycle and may re-insert them in
+  // declaration order on re-render, so we enforce order on every render frame.
+  const onRender = useCallback(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const style = map.getStyle();
+    if (!style?.layers) return;
+    const layerIds = style.layers.map((l) => l.id);
+    const markerLayerIds = ['clusters', 'cluster-count', 'unclustered-point'];
+    const borderIdx = layerIds.indexOf('countries-border');
+    if (borderIdx === -1) return;
+    for (const id of markerLayerIds) {
+      const idx = layerIds.indexOf(id);
+      if (idx !== -1 && idx < borderIdx) {
+        map.moveLayer(id);
+      }
+    }
+  }, []);
 
-  const handleClick = (numericId: string) => {
-    const iso3 = getIso3(numericId);
-    if (!iso3) return;
-    const state = getCountryState(iso3);
-    if (state === 'unavailable') return;
+  const onMouseMove = useCallback(
+    (e: MapLayerMouseEvent) => {
+      const map = mapRef.current;
+      if (!map) return;
 
-    // Find which option string(s) this country belongs to and fire the first match
-    const matched = isoToOptions(iso3, [...availableOptions, ...selectedOptions]);
-    if (matched[0]) onSelect(matched[0]);
-  };
+      const feature = e.features?.[0];
+      const layerId = feature?.layer?.id;
 
-  const handleMouseMove = (e: React.MouseEvent, numericId: string) => {
-    const iso3 = getIso3(numericId);
-    if (!iso3) return;
-    const state = getCountryState(iso3);
-    if (state === 'unavailable') return;
+      // Handle marker layers
+      if (layerId === 'unclustered-point') {
+        clearHoverState();
+        clearMarkerHoverState();
+        setPopupInfo(null);
+        map.getCanvas().style.cursor = 'pointer';
 
-    const matched = isoToOptions(iso3, [...availableOptions, ...selectedOptions]);
-    if (!matched[0]) return;
+        // Set hover feature state on the marker
+        const featureId = feature!.id as number;
+        hoveredMarkerIdRef.current = featureId;
+        map.setFeatureState(
+          { source: 'markers', id: featureId },
+          { hover: true },
+        );
 
-    setTooltip({ x: e.clientX, y: e.clientY, label: matched[0] });
-  };
+        const label = feature?.properties?.label;
+        if (label) {
+          setMarkerPopupInfo({ lng: e.lngLat.lng, lat: e.lngLat.lat, label });
+        }
+        return;
+      }
 
-  const handleMouseLeave = () => setTooltip(null);
+      if (layerId === 'clusters') {
+        clearHoverState();
+        clearMarkerHoverState();
+        setPopupInfo(null);
+        map.getCanvas().style.cursor = 'pointer';
+
+        // Show cluster count tooltip
+        const count = feature?.properties?.point_count;
+        if (count != null) {
+          setMarkerPopupInfo({
+            lng: e.lngLat.lng,
+            lat: e.lngLat.lat,
+            label: `${count} points — click to expand`,
+          });
+        }
+        return;
+      }
+
+      // Clear marker hover + popup when hovering countries
+      clearMarkerHoverState();
+      setMarkerPopupInfo(null);
+
+      const iso3 = getIso3FromFeature(e);
+
+      // Clear previous hover
+      clearHoverState();
+
+      if (!feature || !isClickable(iso3)) {
+        setPopupInfo(null);
+        map.getCanvas().style.cursor = '';
+        return;
+      }
+
+      // Set hover state on new feature
+      const featureId = feature.id as number;
+      hoveredIdRef.current = featureId;
+      map.setFeatureState(
+        { source: 'countries', id: featureId },
+        { hover: true },
+      );
+      map.getCanvas().style.cursor = 'pointer';
+
+      // Show popup
+      const matched = isoToOptions(iso3!, allOptions);
+      if (matched[0]) {
+        setPopupInfo({ lng: e.lngLat.lng, lat: e.lngLat.lat, label: matched[0] });
+      }
+    },
+    [getIso3FromFeature, isClickable, clearHoverState, allOptions],
+  );
+
+  const onMouseLeave = useCallback(() => {
+    clearHoverState();
+    clearMarkerHoverState();
+    setPopupInfo(null);
+    setMarkerPopupInfo(null);
+    const map = mapRef.current;
+    if (map) map.getCanvas().style.cursor = '';
+  }, [clearHoverState, clearMarkerHoverState]);
+
+  const onClick = useCallback(
+    (e: MapLayerMouseEvent) => {
+      const map = mapRef.current;
+      if (!map) return;
+
+      const feature = e.features?.[0];
+      const layerId = feature?.layer?.id;
+
+      // Click on cluster → zoom to expand
+      if (layerId === 'clusters') {
+        const clusterId = feature?.properties?.cluster_id;
+        const source = map.getSource('markers');
+        if (source && clusterId != null) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (source as any).getClusterExpansionZoom(clusterId, (err: Error | null, zoom: number) => {
+            if (err) return;
+            map.easeTo({
+              center: (feature!.geometry as GeoJSON.Point).coordinates as [number, number],
+              zoom,
+            });
+          });
+        }
+        return;
+      }
+
+      // Click on unclustered marker → pin info window
+      if (layerId === 'unclustered-point' && markers) {
+        const props = feature?.properties;
+        if (props) {
+          const marker = markers.find(
+            (m) =>
+              m.longitude === props.longitude && m.latitude === props.latitude,
+          );
+          if (marker) {
+            setPinnedMarkerInfo({
+              lng: marker.longitude,
+              lat: marker.latitude,
+              marker,
+            });
+            if (onMarkerClick) onMarkerClick(marker);
+          }
+        }
+        return;
+      }
+
+      // Country click
+      const iso3 = getIso3FromFeature(e);
+      if (!isClickable(iso3)) return;
+
+      const matched = isoToOptions(iso3!, allOptions);
+      if (matched[0]) onSelect(matched[0]);
+    },
+    [getIso3FromFeature, isClickable, allOptions, onSelect, onMarkerClick, markers],
+  );
 
   return (
     <div className={styles.container}>
-      <svg
-        ref={svgRef}
-        viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
-        className={styles.svg}
-        aria-label="World map filter"
+      <Map
+        ref={mapRef}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        mapStyle={MAP_STYLE as any}
+        initialViewState={{
+          longitude: 0,
+          latitude: 20,
+          zoom: 1.2,
+        }}
+        interactiveLayerIds={[
+          ...(geojson ? ['countries-fill'] : []),
+          ...(markersGeojson ? ['clusters', 'unclustered-point'] : []),
+        ]}
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
+        onClick={onClick}
+        onRender={onRender}
+        attributionControl={false}
       >
-        {countries.map((country) => {
-          const iso3 = getIso3(country.id);
-          const state = getCountryState(iso3);
-          const d = pathGenerator(
-            country as unknown as Parameters<typeof pathGenerator>[0],
-          );
-          if (!d) return null;
-
-          return (
-            <path
-              key={country.id}
-              d={d}
-              className={clsx(styles.country, styles[state])}
-              onClick={() => handleClick(country.id)}
-              onMouseMove={(e) => handleMouseMove(e, country.id)}
-              onMouseLeave={handleMouseLeave}
+        {geojson && (
+          <Source id="countries" type="geojson" data={geojson} generateId>
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            <Layer
+              id="countries-fill"
+              type="fill"
+              paint={{
+                'fill-color': fillColor,
+                'fill-opacity': FILL_OPACITY_EXPRESSION,
+              } as any}
             />
-          );
-        })}
-      </svg>
+            <Layer
+              id="countries-border"
+              type="line"
+              paint={{ 'line-color': '#ffffff', 'line-width': 0.5 } as any}
+            />
+          </Source>
+        )}
 
-      {tooltip && (
-        <div className={styles.tooltip} style={{ left: tooltip.x, top: tooltip.y }}>
-          {tooltip.label}
-        </div>
-      )}
+        {markersGeojson && (
+          <Source
+            id="markers"
+            type="geojson"
+            data={markersGeojson}
+            cluster
+            clusterMaxZoom={14}
+            clusterRadius={50}
+          >
+            {/* Cluster circles — sized by point_count */}
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            <Layer
+              id="clusters"
+              type="circle"
+              filter={['has', 'point_count']}
+              paint={{
+                'circle-color': [
+                  'step', ['get', 'point_count'],
+                  '#e8723a', 10,
+                  '#d94f1e', 50,
+                  '#b83214',
+                ],
+                'circle-radius': [
+                  'step', ['get', 'point_count'],
+                  14, 10,
+                  18, 50,
+                  24,
+                ],
+                'circle-stroke-width': 2,
+                'circle-stroke-color': '#fff',
+                'circle-opacity': 0.9,
+              } as any}
+            />
+            {/* Cluster count label */}
+            <Layer
+              id="cluster-count"
+              type="symbol"
+              filter={['has', 'point_count']}
+              layout={{
+                'text-field': '{point_count_abbreviated}',
+                'text-size': 11,
+              }}
+              paint={{
+                'text-color': '#ffffff',
+              }}
+            />
+            {/* Unclustered individual markers — with hover effect via feature-state */}
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            <Layer
+              id="unclustered-point"
+              type="circle"
+              filter={['!', ['has', 'point_count']]}
+              paint={{
+                'circle-color': [
+                  'case',
+                  ['boolean', ['feature-state', 'hover'], false],
+                  '#d94f1e',
+                  '#e8723a',
+                ],
+                'circle-radius': [
+                  'case',
+                  ['boolean', ['feature-state', 'hover'], false],
+                  8,
+                  5,
+                ],
+                'circle-stroke-width': [
+                  'case',
+                  ['boolean', ['feature-state', 'hover'], false],
+                  2.5,
+                  1.5,
+                ],
+                'circle-stroke-color': '#fff',
+              } as any}
+            />
+          </Source>
+        )}
+
+        {markerPopupInfo && (
+          <Popup
+            longitude={markerPopupInfo.lng}
+            latitude={markerPopupInfo.lat}
+            closeButton={false}
+            closeOnClick={false}
+            anchor="bottom"
+            className={styles.markerPopup ?? ''}
+          >
+            {markerPopupInfo.label}
+          </Popup>
+        )}
+
+        {popupInfo && (
+          <Popup
+            longitude={popupInfo.lng}
+            latitude={popupInfo.lat}
+            closeButton={false}
+            closeOnClick={false}
+            anchor="bottom"
+            className={styles.popup ?? ''}
+          >
+            {popupInfo.label}
+          </Popup>
+        )}
+
+        {pinnedMarkerInfo && (
+          <Popup
+            longitude={pinnedMarkerInfo.lng}
+            latitude={pinnedMarkerInfo.lat}
+            closeButton
+            closeOnClick={false}
+            anchor="bottom"
+            offset={12}
+            className={styles.infoWindow ?? ''}
+            onClose={() => setPinnedMarkerInfo(null)}
+          >
+            <div className={styles.infoWindowContent}>
+              {pinnedMarkerInfo.marker.label && (
+                <strong>{pinnedMarkerInfo.marker.label}</strong>
+              )}
+              <span className={styles.infoWindowCoords}>
+                {pinnedMarkerInfo.lat.toFixed(4)}, {pinnedMarkerInfo.lng.toFixed(4)}
+              </span>
+            </div>
+          </Popup>
+        )}
+
+        <NavigationControl position="bottom-right" showCompass={false} />
+      </Map>
     </div>
   );
 };

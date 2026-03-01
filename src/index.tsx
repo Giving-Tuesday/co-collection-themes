@@ -15,3 +15,6 @@ export { getThemeItemPage, itemPageThemes } from './utils/item-page-themes.utils
 export * from './themes';
 
 export { Badge, CardContent, IconLabel, LinkButton, Title, ReadMore, Widget, Modal };
+
+export { MapFilter } from './MapFilter/MapFilter';
+export type { MapFilterProps, MarkerData } from './MapFilter/MapFilter';
