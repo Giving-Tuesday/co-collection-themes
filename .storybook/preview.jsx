@@ -1,4 +1,5 @@
 import React from 'react';
+import 'maplibre-gl/dist/maplibre-gl.css';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
