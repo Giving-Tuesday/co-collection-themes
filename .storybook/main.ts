@@ -17,6 +17,12 @@ const config: StorybookConfig = {
           localsConvention: 'camelCaseOnly',
         },
       },
+      optimizeDeps: {
+        include: ['maplibre-gl'],
+        esbuildOptions: {
+          target: 'es2022',
+        },
+      },
     });
   },
 };

@@ -1,4 +1,5 @@
 import { MapFilter } from '../../src/MapFilter';
+import { availableOptions, countsByCountry } from './mockData';
 
 export default {
   title: 'MapFilter',
@@ -10,6 +11,7 @@ export default {
 };
 
 export const Default = () => {
-  return <MapFilter />;
+  return (
+    <MapFilter availableOptions={availableOptions} countsByCountry={countsByCountry} />
+  );
 };
-// export const Card = () => <PosterchildCard item={item as Item} href="" />;
