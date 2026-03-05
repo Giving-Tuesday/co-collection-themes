@@ -11,8 +11,11 @@ export const parameters = {
 };
 
 export const decorators = [
-  (Story) =>
-    React.createElement(
+  (Story, context) => {
+    if (context.parameters.layout === 'fullscreen') {
+      return React.createElement(Story);
+    }
+    return React.createElement(
       'div',
       {
         style: {
@@ -22,5 +25,6 @@ export const decorators = [
         },
       },
       React.createElement(Story),
-    ),
+    );
+  },
 ];
