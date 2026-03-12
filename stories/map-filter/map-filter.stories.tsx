@@ -1,5 +1,5 @@
 import { MapFilter } from '../../src/MapFilter';
-import { availableOptions, countsByCountry } from './mockData';
+import { locations } from './mockData';
 
 export default {
   title: 'MapFilter',
@@ -11,7 +11,5 @@ export default {
 };
 
 export const Default = () => {
-  return (
-    <MapFilter availableOptions={availableOptions} countsByCountry={countsByCountry} />
-  );
+  return <MapFilter locations={locations} />;
 };

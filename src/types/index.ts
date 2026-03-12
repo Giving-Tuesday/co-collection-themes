@@ -43,3 +43,28 @@ export interface ItemPageProps {
   item: Item;
   inModal?: boolean;
 }
+
+export type Location = {
+  _id: string;
+  title: string;
+  desc: string;
+  slug: string;
+  location: {
+    iso: string;
+    region: string;
+    coordinates: [number, number];
+  };
+};
+
+type GeoConfigGroups = {
+  name: string;
+  regions: string[];
+};
+
+export interface GeoConfigEntry {
+  iso: string;
+  name: string;
+  continent: string;
+  groupByRegion: boolean;
+  groups: GeoConfigGroups[];
+}

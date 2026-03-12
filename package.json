@@ -44,7 +44,8 @@
     "release:major": "npm version major && npm publish --access public",
     "storybook": "storybook dev -p 6006",
     "build:stories": "storybook build",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "generate:geo-config": "tsx scripts/generateGeoConfig.ts && tsx scripts/applyOverrides.ts"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.6",
@@ -55,6 +56,7 @@
     "@storybook/react": "^10.2.8",
     "@storybook/react-vite": "^10.2.8",
     "@storybook/testing-library": "^0.2.2",
+"@types/geojson": "^7946.0.16",
     "@types/node": "^25.2.3",
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.2.14",
@@ -76,6 +78,7 @@
     "rollup-plugin-postcss": "^4.0.2",
     "storybook": "^10.2.8",
     "tslib": "^2.8.1",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.1",
     "typescript-plugin-css-modules": "^5.2.0",

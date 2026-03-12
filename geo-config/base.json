@@ -1,0 +1,1227 @@
+[
+  {
+    "iso": "AE",
+    "name": "United Arab Emirates",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "AF",
+    "name": "Afghanistan",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "AL",
+    "name": "Albania",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "AM",
+    "name": "Armenia",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "AO",
+    "name": "Angola",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "AQ",
+    "name": "Antarctica",
+    "continent": "010",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "AR",
+    "name": "Argentina",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "AT",
+    "name": "Austria",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "AU",
+    "name": "Australia",
+    "continent": "009",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "AZ",
+    "name": "Azerbaijan",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "BA",
+    "name": "Bosnia and Herz.",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "BD",
+    "name": "Bangladesh",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "BE",
+    "name": "Belgium",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "BF",
+    "name": "Burkina Faso",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "BG",
+    "name": "Bulgaria",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "BI",
+    "name": "Burundi",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "BJ",
+    "name": "Benin",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "BN",
+    "name": "Brunei",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "BO",
+    "name": "Bolivia",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "BR",
+    "name": "Brazil",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "BS",
+    "name": "Bahamas",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "BT",
+    "name": "Bhutan",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "BW",
+    "name": "Botswana",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "BY",
+    "name": "Belarus",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "BZ",
+    "name": "Belize",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "CA",
+    "name": "Canada",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "CD",
+    "name": "Dem. Rep. Congo",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "CF",
+    "name": "Central African Rep.",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "CG",
+    "name": "Congo",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "CH",
+    "name": "Switzerland",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "CI",
+    "name": "Côte d'Ivoire",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "CL",
+    "name": "Chile",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "CM",
+    "name": "Cameroon",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "CN",
+    "name": "China",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "CN-TW",
+    "name": "Taiwan",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "CO",
+    "name": "Colombia",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "CR",
+    "name": "Costa Rica",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "CU",
+    "name": "Cuba",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "CY",
+    "name": "Cyprus",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "CZ",
+    "name": "Czechia",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "DE",
+    "name": "Germany",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "DJ",
+    "name": "Djibouti",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "DK",
+    "name": "Denmark",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "DO",
+    "name": "Dominican Rep.",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "DZ",
+    "name": "Algeria",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "EC",
+    "name": "Ecuador",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "EE",
+    "name": "Estonia",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "EG",
+    "name": "Egypt",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "EH",
+    "name": "W. Sahara",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "ER",
+    "name": "Eritrea",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "ES",
+    "name": "Spain",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "ET",
+    "name": "Ethiopia",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "FI",
+    "name": "Finland",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "FJ",
+    "name": "Fiji",
+    "continent": "009",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "FK",
+    "name": "Falkland Is.",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "FR",
+    "name": "France",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "GA",
+    "name": "Gabon",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "GB",
+    "name": "United Kingdom",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "GE",
+    "name": "Georgia",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "GH",
+    "name": "Ghana",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "GL",
+    "name": "Greenland",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "GM",
+    "name": "Gambia",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "GN",
+    "name": "Guinea",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "GQ",
+    "name": "Eq. Guinea",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "GR",
+    "name": "Greece",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "GT",
+    "name": "Guatemala",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "GW",
+    "name": "Guinea-Bissau",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "GY",
+    "name": "Guyana",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "HN",
+    "name": "Honduras",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "HR",
+    "name": "Croatia",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "HT",
+    "name": "Haiti",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "HU",
+    "name": "Hungary",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "ID",
+    "name": "Indonesia",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "IE",
+    "name": "Ireland",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "IL",
+    "name": "Israel",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "IN",
+    "name": "India",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "IQ",
+    "name": "Iraq",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "IR",
+    "name": "Iran",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "IS",
+    "name": "Iceland",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "IT",
+    "name": "Italy",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "JM",
+    "name": "Jamaica",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "JO",
+    "name": "Jordan",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "JP",
+    "name": "Japan",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "KE",
+    "name": "Kenya",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "KG",
+    "name": "Kyrgyzstan",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "KH",
+    "name": "Cambodia",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "KP",
+    "name": "North Korea",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "KR",
+    "name": "South Korea",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "KW",
+    "name": "Kuwait",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "KZ",
+    "name": "Kazakhstan",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "LA",
+    "name": "Laos",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "LB",
+    "name": "Lebanon",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "LK",
+    "name": "Sri Lanka",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "LR",
+    "name": "Liberia",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "LS",
+    "name": "Lesotho",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "LT",
+    "name": "Lithuania",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "LU",
+    "name": "Luxembourg",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "LV",
+    "name": "Latvia",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "LY",
+    "name": "Libya",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "MA",
+    "name": "Morocco",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "MD",
+    "name": "Moldova",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "ME",
+    "name": "Montenegro",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "MG",
+    "name": "Madagascar",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "MK",
+    "name": "North Macedonia",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "ML",
+    "name": "Mali",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "MM",
+    "name": "Myanmar",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "MN",
+    "name": "Mongolia",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "MR",
+    "name": "Mauritania",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "MW",
+    "name": "Malawi",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "MX",
+    "name": "Mexico",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "MY",
+    "name": "Malaysia",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "MZ",
+    "name": "Mozambique",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "NA",
+    "name": "Namibia",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "NC",
+    "name": "New Caledonia",
+    "continent": "009",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "NE",
+    "name": "Niger",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "NG",
+    "name": "Nigeria",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "NI",
+    "name": "Nicaragua",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "NL",
+    "name": "Netherlands",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "NO",
+    "name": "Norway",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "NP",
+    "name": "Nepal",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "NZ",
+    "name": "New Zealand",
+    "continent": "009",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "OM",
+    "name": "Oman",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "PA",
+    "name": "Panama",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "PE",
+    "name": "Peru",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "PG",
+    "name": "Papua New Guinea",
+    "continent": "009",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "PH",
+    "name": "Philippines",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "PK",
+    "name": "Pakistan",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "PL",
+    "name": "Poland",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "PR",
+    "name": "Puerto Rico",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "PS",
+    "name": "Palestine",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "PT",
+    "name": "Portugal",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "PY",
+    "name": "Paraguay",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "QA",
+    "name": "Qatar",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "RO",
+    "name": "Romania",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "RS",
+    "name": "Serbia",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "RU",
+    "name": "Russia",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "RW",
+    "name": "Rwanda",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "SA",
+    "name": "Saudi Arabia",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "SB",
+    "name": "Solomon Is.",
+    "continent": "009",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "SD",
+    "name": "Sudan",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "SE",
+    "name": "Sweden",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "SI",
+    "name": "Slovenia",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "SK",
+    "name": "Slovakia",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "SL",
+    "name": "Sierra Leone",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "SN",
+    "name": "Senegal",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "SO",
+    "name": "Somalia",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "SR",
+    "name": "Suriname",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "SS",
+    "name": "S. Sudan",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "SV",
+    "name": "El Salvador",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "SY",
+    "name": "Syria",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "SZ",
+    "name": "eSwatini",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "TD",
+    "name": "Chad",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "TF",
+    "name": "Fr. S. Antarctic Lands",
+    "continent": "999",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "TG",
+    "name": "Togo",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "TH",
+    "name": "Thailand",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "TJ",
+    "name": "Tajikistan",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "TL",
+    "name": "Timor-Leste",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "TM",
+    "name": "Turkmenistan",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "TN",
+    "name": "Tunisia",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "TR",
+    "name": "Turkey",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "TT",
+    "name": "Trinidad and Tobago",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "TZ",
+    "name": "Tanzania",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "UA",
+    "name": "Ukraine",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "UG",
+    "name": "Uganda",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "US",
+    "name": "United States of America",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "UY",
+    "name": "Uruguay",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "UZ",
+    "name": "Uzbekistan",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "VE",
+    "name": "Venezuela",
+    "continent": "019",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "VN",
+    "name": "Vietnam",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "VU",
+    "name": "Vanuatu",
+    "continent": "009",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "XK",
+    "name": "Kosovo",
+    "continent": "150",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "YE",
+    "name": "Yemen",
+    "continent": "142",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "ZA",
+    "name": "South Africa",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "ZM",
+    "name": "Zambia",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  },
+  {
+    "iso": "ZW",
+    "name": "Zimbabwe",
+    "continent": "002",
+    "groupByRegion": false,
+    "groups": []
+  }
+]

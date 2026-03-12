@@ -1,0 +1,36 @@
+[
+  {
+    "iso": "CA",
+    "groupByRegion": true,
+    "groups": [
+      {
+        "name": "East",
+        "regions": [
+          "CA-QC",
+          "CA-ON",
+          "CA-NB",
+          "CA-NS",
+          "CA-PE",
+          "CA-NL"
+        ]
+      },
+      {
+        "name": "West",
+        "regions": [
+          "CA-BC",
+          "CA-AB",
+          "CA-SK",
+          "CA-MB"
+        ]
+      },
+      {
+        "name": "North",
+        "regions": [
+          "CA-YT",
+          "CA-NT",
+          "CA-NU"
+        ]
+      }
+    ]
+  }
+]
