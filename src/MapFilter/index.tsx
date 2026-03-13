@@ -95,7 +95,12 @@ export const MapFilter = ({
           source: 'country-counts',
           paint: {
             'circle-color': '#E8456A',
-            'circle-radius': ['step', ['get', 'count'], 20, 10, 25, 50, 30],
+            'circle-radius': [
+              'case',
+              ['==', ['get', 'count'], 1],
+              12,
+              ['step', ['get', 'count'], 20, 10, 25, 50, 30],
+            ],
             'circle-opacity': 0.9,
           },
           maxzoom: 4,
@@ -105,6 +110,7 @@ export const MapFilter = ({
           id: 'country-counts-label',
           type: 'symbol',
           source: 'country-counts',
+          filter: ['>', ['get', 'count'], 1],
           layout: {
             'text-field': ['get', 'count'],
             'text-size': 13,
