@@ -1,5 +1,5 @@
-import { useRef, useEffect } from 'react';
-import { Map, NavigationControl, Popup } from 'maplibre-gl';
+import { useRef, useEffect, useMemo, useState, useCallback } from 'react';
+import { Map, NavigationControl, Popup, type GeoJSONSource } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import styles from './MapFilter.module.css';
 import {
@@ -16,20 +16,43 @@ const STYLE_URL =
 
 interface MapFilterProps {
   locations: Location[];
-  onSelect?: (option: string) => void | undefined;
+  onCountryFilter?: (name: string) => void;
+  onClearFilter?: () => void;
 }
 
 export const MapFilter = ({
   locations,
-  // onSelect,
+  onCountryFilter,
+  onClearFilter,
 }: MapFilterProps) => {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<Map | null>(null);
   const mapReady = useRef(false);
-  const countryCounts = countryCountsGeoJSON(
-    locations,
-    countryConfig as unknown as GeoConfigEntry[],
+  const [hasManualZoom, setHasManualZoom] = useState(false);
+  const [hasCountryFilter, setHasCountryFilter] = useState(false);
+  const countryCounts = useMemo(
+    () => countryCountsGeoJSON(locations, countryConfig as unknown as GeoConfigEntry[]),
+    [locations],
   );
+
+  const fitToLocations = useCallback((locations: Location[]) => {
+    if (!map.current) return;
+    const bounds = getBounds(locations);
+    if (!bounds) return;
+    const { minLng, maxLng, minLat, maxLat } = bounds;
+    map.current.fitBounds(
+      [
+        [minLng, minLat],
+        [maxLng, maxLat],
+      ],
+      {
+        padding: 80,
+        maxZoom: 10,
+        duration: 800,
+      },
+    );
+    setHasManualZoom(false);
+  }, []);
 
   // Initialize map, register all event listeners (runs once)
   useEffect(() => {
@@ -46,6 +69,13 @@ export const MapFilter = ({
 
     // Add zoom and compass controls
     map.current.addControl(new NavigationControl(), 'bottom-right');
+
+    // Detect user-initiated zoom/pan
+    map.current.on('movestart', (e) => {
+      if (e.originalEvent) {
+        setHasManualZoom(true);
+      }
+    });
 
     // Load marker image, add GeoJSON source, and render pin layer once map is ready
     map.current.on('load', async () => {
@@ -68,7 +98,7 @@ export const MapFilter = ({
             'circle-radius': ['step', ['get', 'count'], 20, 10, 25, 50, 30],
             'circle-opacity': 0.9,
           },
-          maxzoom: 5,
+          maxzoom: 4,
         });
         // Display the count number inside each country circle
         map.current.addLayer({
@@ -83,7 +113,7 @@ export const MapFilter = ({
           paint: {
             'text-color': '#ffffff',
           },
-          maxzoom: 5,
+          maxzoom: 4,
         });
       }
 
@@ -103,7 +133,7 @@ export const MapFilter = ({
           'icon-anchor': 'bottom',
           'icon-allow-overlap': true,
         },
-        minzoom: 5,
+        minzoom: 4,
       });
 
       mapReady.current = true;
@@ -112,7 +142,12 @@ export const MapFilter = ({
     // Zoom into a cluster when it is clicked
     map.current.on('click', 'country-circles', (e) => {
       if (!map.current || !e.features) return;
-      // onSelect(placeString);
+      if (onCountryFilter) {
+        onCountryFilter(e.features[0]?.properties.name);
+        setHasCountryFilter(true);
+      } else {
+        setHasManualZoom(true);
+      }
       // @ts-expect-error coordinates
       map.current.easeTo({ center: e.features[0]?.geometry.coordinates, zoom: 5 });
     });
@@ -162,24 +197,49 @@ export const MapFilter = ({
     return () => {};
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Update GeoJSON source data when availableOptions changes
+  // Update map data and bounds when locations change
   useEffect(() => {
-    if (!map.current) return;
-    const bounds = getBounds(locations);
-    if (!bounds) return;
-    const { minLng, maxLng, minLat, maxLat } = bounds;
-    map.current.fitBounds(
-      [
-        [minLng, minLat],
-        [maxLng, maxLat],
-      ],
-      {
-        padding: 80, // px breathing room around the bounds
-        maxZoom: 10, // don't over-zoom when records are clustered
-        duration: 800, // animation in ms, 0 to snap instantly
-      },
-    );
-  }, [locations]);
+    if (map.current && mapReady.current) {
+      (map.current.getSource('pins') as GeoJSONSource)?.setData(
+        placeToGeoJSON(locations),
+      );
+      if (countryCounts) {
+        (map.current.getSource('country-counts') as GeoJSONSource)?.setData(
+          countryCounts,
+        );
+      }
+    }
+    fitToLocations(locations);
+  }, [locations, countryCounts, fitToLocations]);
 
-  return <div ref={mapContainer} className={styles['map']} />;
+  const handleResetZoom = () => {
+    fitToLocations(locations);
+  };
+
+  const handleResetFilter = () => {
+    if (onClearFilter) onClearFilter();
+    fitToLocations(locations);
+    setHasCountryFilter(false);
+    setHasManualZoom(false);
+  };
+
+  return (
+    <div className={styles['mapWrapper']}>
+      <div ref={mapContainer} className={styles['map']} />
+      {(hasManualZoom || hasCountryFilter) && (
+        <div className={styles['overlayButtons']}>
+          {hasManualZoom && (
+            <button className={styles['overlayButton']} onClick={handleResetZoom}>
+              Reset Zoom
+            </button>
+          )}
+          {hasCountryFilter && (
+            <button className={styles['overlayButton']} onClick={handleResetFilter}>
+              Reset Filter
+            </button>
+          )}
+        </div>
+      )}
+    </div>
+  );
 };
